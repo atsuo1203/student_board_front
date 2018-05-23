@@ -1,5 +1,10 @@
 # student_board_front
 
+## 環境
+
+* yarn v0.24.6
+* node v9.5.0
+
 ## install
 ```
 $ yarn install
