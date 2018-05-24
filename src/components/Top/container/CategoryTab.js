@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
 
 class CategoryTab extends Component {
   render() {
+    const Div = styled.div`
+      background: #ff99ff;
+    `;
     return (
-      <div className="CategoryTab">
+      <Div>
       CategoryTab
-      </div>
+      </Div>
     );
   }
 }
