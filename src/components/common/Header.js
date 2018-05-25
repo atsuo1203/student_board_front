@@ -1,12 +1,27 @@
 import React, { Component } from 'react';
-import {Div} from './style'
+import PropTypes from 'prop-types';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import {AppBar, IconButton, NavigationClose, FlatButton} from 'material-ui';
+
+import {Div, Span} from './style'
 
 class Header extends Component {
+  static propTypes = {
+    onToggle: PropTypes.func
+  }
   render() {
     return (
-      <Div>
-        Top
-      </Div>
+      <MuiThemeProvider>
+        <div>
+          <AppBar
+            title={<span>Title</span>}
+            titleStyle={{textAlign: "center"}}
+            iconElementRight={<FlatButton label="Save" />}
+            // onTitleClick={this.props.onToggle}
+            onLeftIconButtonClick={this.props.onToggle}
+          />
+        </div>
+      </MuiThemeProvider>
     );
   }
 }

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
-import styled from 'styled-components';
 
 import TopAction from '../../modules/Top/action'
 
@@ -20,11 +19,14 @@ class Top extends Component {
     const {actions, inputValue} = this.props
     actions.changeUserName(inputValue)
   }
+  handleToggle() {
+    console.log('ok')
+  }
   render() {
     const {userName} = this.props
     return (
       <Div>
-        <Header/>
+        <Header onToggle={this.handleToggle}/>
         <CategoryTab/>
         <Thread/>
       </Div>

@@ -7,3 +7,8 @@ export const Div = styled.header`
   color: #FFC507;
   background: #353B41;
 `;
+
+export const Span = styled.span`
+  cursor: pointer,
+  text-align: center;
+`;
