@@ -9,6 +9,8 @@ import Header from '../common/Header'
 import CategoryTab from './container/CategoryTab'
 import Thread from './container/Thread'
 
+import {Div} from './style'
+
 class Top extends Component {
   handleChangeInputValue = event => {
     const {actions} = this.props
@@ -20,15 +22,11 @@ class Top extends Component {
   }
   render() {
     const {userName} = this.props
-    const Div = styled.article`
-      background: #F6F6F6;
-      width: 100%;
-      height: 100vh;
-    `;
     return (
       <Div>
         <Header/>
         <CategoryTab/>
+        <Thread/>
       </Div>
     );
   }
