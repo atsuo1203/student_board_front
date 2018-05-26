@@ -8,16 +8,16 @@ import {Div, PaperStyle} from './style/CategoryTabStyle'
 class CategoryTab extends Component {
   static propTypes = {
     open: PropTypes.bool.isRequired,
+    categoryNameArray: PropTypes.array.isRequired
   }
   render() {
-    const {open} = this.props
+    const {open, categoryNameArray} = this.props
     const result = open ? (
       <Paper style={PaperStyle}>
         <Menu>
-          <MenuItem primaryText="Maps" />
-          <MenuItem primaryText="Books" />
-          <MenuItem primaryText="Flights" />
-          <MenuItem primaryText="Apps" />
+          {categoryNameArray.map(categoryName =>
+            <MenuItem key={categoryName} primaryText={categoryName} />
+          )}
         </Menu>
       </Paper>
     ) : null

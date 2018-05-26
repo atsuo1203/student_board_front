@@ -11,6 +11,18 @@ import Thread from './container/Thread'
 import {Div} from './style'
 
 class Top extends Component {
+  componentWillMount () {
+    const {actions} = this.props
+    const categoryNameArray = this.makeList()
+    actions.setCategoryNameArray(categoryNameArray)
+  }
+  makeList = () => {
+    const categoryNameArray = [
+      '雑談', '勉強', '恋愛', '部活', '進路',
+    ]
+    return categoryNameArray
+  }
+
   handleChangeInputValue = event => {
     const {actions} = this.props
     actions.changeInputValue(event.target.value)
@@ -26,7 +38,7 @@ class Top extends Component {
     actions.setCategoryTabVisual(categoryTabState)
   }
   render() {
-    const {userName, isCategoryTabVisible} = this.props
+    const {userName, isCategoryTabVisible, categoryNameArray} = this.props
     return (
       <Div>
         <Header
@@ -35,6 +47,7 @@ class Top extends Component {
           />
         <CategoryTab
           open={isCategoryTabVisible}
+          categoryNameArray={categoryNameArray}
         />
         <Thread/>
       </Div>
@@ -44,6 +57,7 @@ class Top extends Component {
 const mapStateToProps = (store) => ({
   userName: store.Top.userName,
   isCategoryTabVisible: store.Top.isCategoryTabVisible,
+  categoryNameArray: store.Top.categoryNameArray,
 })
 
 const mapDispatchToProps = (dispatch) => ({
