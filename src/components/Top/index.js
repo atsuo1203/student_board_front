@@ -50,7 +50,7 @@ class Top extends Component {
     console.log(isCategory, name)
   }
   render() {
-    const {userName, isCategoryTabVisible, categoryNameArray, tabName} = this.props
+    const {userName, isCategoryTabVisible, categoryNameArray, threadName} = this.props
     return (
       <Div>
         <Header
@@ -64,13 +64,15 @@ class Top extends Component {
         />
         <Container>
           <Tab
-            tabName={tabName}
+            threadName={threadName}
+            threadID={'category_hoge'}
             isCategoryThread={true}
             onDelete={this.handleDelete}
             onSelect={this.handleSelectThread}
           />
           <Tab
-            tabName={"vipから来ました"}
+            threadName={'vipから来ました'}
+            threadID={'thread_114'}
             isCategoryThread={false}
             onDelete={this.handleDelete}
             onSelect={this.handleSelectThread}
@@ -85,7 +87,7 @@ const mapStateToProps = (store) => ({
   userName: store.Top.userName,
   isCategoryTabVisible: store.Top.isCategoryTabVisible,
   categoryNameArray: store.Top.categoryNameArray,
-  tabName: store.Top.tabName,
+  threadName: store.Top.threadName,
   currentThread: store.Top.currentThread,
 })
 

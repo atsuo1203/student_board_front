@@ -2,8 +2,8 @@ const initializeState = {
   userName: "名前はまだない",
   isCategoryTabVisible : false,
   categoryNameArray: [],
-  tabName: "雑談",
-  currentThread: {isCategory: true, name: ""},
+  threadName: "雑談",
+  currentThread: {isCategory: true, threadID: "category_hoge"},
 }
 
 export default (state=initializeState, action) => {
@@ -17,11 +17,11 @@ export default (state=initializeState, action) => {
     case "SET_CATEGORY_NAME_ARRAY":
       return Object.assign({}, state, {categoryNameArray: action.payload})
     case "SET_TAB_NAME":
-      return Object.assign({}, state, {tabName: action.payload})
+      return Object.assign({}, state, {threadName: action.payload})
     case "SET_CURRENT_THREAD":
       return Object.assign({}, state, {currentThread: {
         isCategory: action.isCategory,
-        name: action.name
+        threadID: action.threadID
       }})
     default:
       return state;

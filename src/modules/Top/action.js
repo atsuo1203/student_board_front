@@ -32,11 +32,11 @@ function setTabName(tabName){
   }
 }
 
-function setCurrentThread(isCategory, name){
+function setCurrentThread(isCategory, threadID){
   return {
     type: "SET_CURRENT_THREAD",
     isCategory: isCategory,
-    name: name,
+    threadID: threadID,
   }
 }
 

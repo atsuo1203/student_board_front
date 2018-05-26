@@ -10,14 +10,15 @@ import {titleStyle, deleteButtonStyle} from './style/TabStyle'
 
 class Tab extends Component {
   static propTypes = {
-    tabName: PropTypes.string.isRequired,
+    threadName: PropTypes.string.isRequired,
+    threadID: PropTypes.string.isRequired,
     isCategoryThread: PropTypes.bool,
     onDelete: PropTypes.func,
     onSelect: PropTypes.func,
   }
 
   render() {
-    const {tabName, isCategoryThread, onDelete, onSelect} = this.props
+    const {threadName, threadID, isCategoryThread, onDelete, onSelect} = this.props
     const num = 20
     const appBarStyle = {
       display: 'flex',
@@ -29,7 +30,7 @@ class Tab extends Component {
     const deleteButton = (isCategoryThread===true) ? null : (
       <MuiThemeProvider>
         <IconButton
-          onClick={() => onDelete(0)}
+          onClick={() => onDelete(threadID)}
           iconStyle={deleteButtonStyle.smallIcon}
           style={deleteButtonStyle.small}
         >
@@ -42,9 +43,9 @@ class Tab extends Component {
         <div>
           <AppBar
             style={appBarStyle}
-            title={tabName}
+            title={threadName}
             titleStyle={titleStyle}
-            onTitleClick={() => onSelect(isCategoryThread, tabName)}
+            onTitleClick={() => onSelect(isCategoryThread, threadID)}
             iconElementLeft={<div></div>}
             iconElementRight={deleteButton}
           />
