@@ -12,6 +12,12 @@ function setCategoryTabVisual(isVisible){
   }
 }
 
+function resetCategoryTabVisual(){
+  return {
+    type: "RESET_CATEGORY_TAB_VISUAL",
+  }
+}
+
 function setCategoryNameArray(categoryNameArray){
   return {
     type: "SET_CATEGORY_NAME_ARRAY",
@@ -22,5 +28,6 @@ function setCategoryNameArray(categoryNameArray){
 export default ({
   setUserName,
   setCategoryTabVisual,
+  resetCategoryTabVisual,
   setCategoryNameArray,
 })

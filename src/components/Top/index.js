@@ -37,6 +37,11 @@ class Top extends Component {
     const categoryTabState = !isCategoryTabVisible
     actions.setCategoryTabVisual(categoryTabState)
   }
+  handleClickMenu = (categoryName) => {
+    const {actions} = this.props
+    console.log(categoryName)
+    actions.resetCategoryTabVisual()
+  }
   render() {
     const {userName, isCategoryTabVisible, categoryNameArray} = this.props
     return (
@@ -48,6 +53,7 @@ class Top extends Component {
         <CategoryTab
           open={isCategoryTabVisible}
           categoryNameArray={categoryNameArray}
+          onClickMenu={this.handleClickMenu}
         />
         <Thread/>
       </Div>
