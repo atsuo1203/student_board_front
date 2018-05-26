@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 
 import TopAction from '../../modules/Top/action'
 
-import Header from '../common/Header'
+import Header from './container/Header'
 import CategoryTab from './container/CategoryTab'
 import Thread from './container/Thread'
 
