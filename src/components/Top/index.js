@@ -26,7 +26,10 @@ class Top extends Component {
     const {userName} = this.props
     return (
       <Div>
-        <Header onToggle={this.handleToggle}/>
+        <Header
+          onToggle={this.handleToggle}
+          userName={userName}
+          />
         <CategoryTab/>
         <Thread/>
       </Div>

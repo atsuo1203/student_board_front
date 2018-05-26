@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 
-import {CategoryTabDiv} from './style'
+import {Div} from './style/CategoryTabStyle'
 
 class CategoryTab extends Component {
   render() {
     return (
-      <CategoryTabDiv>
+      <Div>
         CategoryTab
-      </CategoryTabDiv>
+      </Div>
     );
   }
 }

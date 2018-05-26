@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import {ThreadDiv} from './style'
+import {Div} from './style/ThreadStyle'
 
 class Thread extends Component {
   render() {
     return (
-      <ThreadDiv>
+      <Div>
         Thread
-      </ThreadDiv>
+      </Div>
     );
   }
 }
