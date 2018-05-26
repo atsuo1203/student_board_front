@@ -13,10 +13,11 @@ class Tab extends Component {
     tabName: PropTypes.string.isRequired,
     isCategoryThread: PropTypes.bool,
     onDelete: PropTypes.func,
+    onSelect: PropTypes.func,
   }
 
   render() {
-    const {tabName, isCategoryThread, onDelete} = this.props
+    const {tabName, isCategoryThread, onDelete, onSelect} = this.props
     const num = 20
     const appBarStyle = {
       display: 'flex',
@@ -43,6 +44,7 @@ class Tab extends Component {
             style={appBarStyle}
             title={tabName}
             titleStyle={titleStyle}
+            onTitleClick={() => onSelect(isCategoryThread, tabName)}
             iconElementLeft={<div></div>}
             iconElementRight={deleteButton}
           />

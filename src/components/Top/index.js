@@ -46,6 +46,9 @@ class Top extends Component {
   handleDelete = (threadID) => {
     console.log(threadID)
   }
+  handleSelectThread = (isCategory, name) => {
+    console.log(isCategory, name)
+  }
   render() {
     const {userName, isCategoryTabVisible, categoryNameArray, tabName} = this.props
     return (
@@ -64,11 +67,13 @@ class Top extends Component {
             tabName={tabName}
             isCategoryThread={true}
             onDelete={this.handleDelete}
+            onSelect={this.handleSelectThread}
           />
           <Tab
             tabName={"vipから来ました"}
             isCategoryThread={false}
             onDelete={this.handleDelete}
+            onSelect={this.handleSelectThread}
           />
         </Container>
         <ThreadContents />
@@ -81,6 +86,7 @@ const mapStateToProps = (store) => ({
   isCategoryTabVisible: store.Top.isCategoryTabVisible,
   categoryNameArray: store.Top.categoryNameArray,
   tabName: store.Top.tabName,
+  currentThread: store.Top.currentThread,
 })
 
 const mapDispatchToProps = (dispatch) => ({
