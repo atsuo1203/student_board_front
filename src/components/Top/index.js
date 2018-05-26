@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
-import styled from 'styled-components';
 
 import TopAction from '../../modules/Top/action'
 
-import Header from '../common/Header'
+import Header from './container/Header'
 import CategoryTab from './container/CategoryTab'
 import Thread from './container/Thread'
+
+import {Div} from './style'
 
 class Top extends Component {
   handleChangeInputValue = event => {
@@ -18,17 +19,19 @@ class Top extends Component {
     const {actions, inputValue} = this.props
     actions.changeUserName(inputValue)
   }
+  handleToggle() {
+    console.log('ok')
+  }
   render() {
     const {userName} = this.props
-    const Div = styled.article`
-      background: #F6F6F6;
-      width: 100%;
-      height: 100vh;
-    `;
     return (
       <Div>
-        <Header/>
+        <Header
+          onToggle={this.handleToggle}
+          userName={userName}
+          />
         <CategoryTab/>
+        <Thread/>
       </Div>
     );
   }
