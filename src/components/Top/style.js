@@ -5,3 +5,10 @@ export const Div = styled.article`
   width: 100%;
   height: 100vh;
 `;
+
+export const Container = styled.div`
+  display: flex;
+  flex-direction: row;
+  overflow: scroll;
+  overflow-y: hidden;
+`;

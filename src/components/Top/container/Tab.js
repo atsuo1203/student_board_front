@@ -17,9 +17,10 @@ class Tab extends Component {
 
   render() {
     const {tabName, isCategoryThread, onDelete} = this.props
-    const num = 10
+    const num = 20
     const appBarStyle = {
-      width: String(num)+"%",
+      display: 'flex',
+      width: String(num)+'vw',
       height: '40px',
       background: '#7dff7d',
       margin: '5px',

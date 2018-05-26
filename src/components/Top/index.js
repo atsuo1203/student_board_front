@@ -6,10 +6,10 @@ import TopAction from '../../modules/Top/action'
 
 import Header from './container/Header'
 import CategoryTab from './container/CategoryTab'
-import Thread from './container/Thread'
 import ThreadContents from './container/ThreadContents'
+import Tab from './container/Tab'
 
-import {Div} from './style'
+import {Div, Container} from './style'
 
 class Top extends Component {
   componentWillMount () {
@@ -59,16 +59,18 @@ class Top extends Component {
           categoryNameArray={categoryNameArray}
           onClickMenu={this.handleClickMenu}
         />
-        <Thread
-          tabName={tabName}
-          isCategoryThread={true}
-          onDelete={this.handleDelete}
-        />
-        <Thread
-          tabName={"vipから来ました"}
-          isCategoryThread={false}
-          onDelete={this.handleDelete}
-        />
+        <Container>
+          <Tab
+            tabName={tabName}
+            isCategoryThread={true}
+            onDelete={this.handleDelete}
+          />
+          <Tab
+            tabName={"vipから来ました"}
+            isCategoryThread={false}
+            onDelete={this.handleDelete}
+          />
+        </Container>
         <ThreadContents />
         </Div>
     );
