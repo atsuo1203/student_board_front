@@ -8,17 +8,23 @@ export const BoxDiv = styled.div`
   border:1px solid black;
   background-color:lightgray;
 `
+export const titleStyle = {
+  position: 'relative',
+  top: '-10px',
+  fontSize: '1em',
+  color: '#000000'
+}
 
-export const deleteButtonStyles = {
-  icon: {
-    height: '18px',
-    width: '24x',
-    padding: '0px 0px 3px 0px',
+export const deleteButtonStyle = {
+  smallIcon: {
+    width: 18,
+    height: 18,
   },
-  body: {
-    right: '2px',
-    height: '18px',
-    width: '24px',
-    padding: '0px 0px 3px 0px',
+  small: {
+    position: 'relative',
+    top: '4px',
+    width: 20,
+    height: 20,
+    padding: 0,
   },
-};
+}

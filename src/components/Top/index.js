@@ -7,6 +7,7 @@ import TopAction from '../../modules/Top/action'
 import Header from './container/Header'
 import CategoryTab from './container/CategoryTab'
 import Thread from './container/Thread'
+import ThreadContents from './container/ThreadContents'
 
 import {Div} from './style'
 
@@ -42,6 +43,9 @@ class Top extends Component {
     actions.setTabName(categoryName)
     actions.resetCategoryTabVisual()
   }
+  handleDelete = (threadID) => {
+    console.log(threadID)
+  }
   render() {
     const {userName, isCategoryTabVisible, categoryNameArray, tabName} = this.props
     return (
@@ -58,8 +62,15 @@ class Top extends Component {
         <Thread
           tabName={tabName}
           isCategoryThread={true}
+          onDelete={this.handleDelete}
         />
-      </Div>
+        <Thread
+          tabName={"vipから来ました"}
+          isCategoryThread={false}
+          onDelete={this.handleDelete}
+        />
+        <ThreadContents />
+        </Div>
     );
   }
 }
