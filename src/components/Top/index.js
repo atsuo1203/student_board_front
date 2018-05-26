@@ -46,11 +46,13 @@ class Top extends Component {
   handleDelete = (threadID) => {
     console.log(threadID)
   }
-  handleSelectThread = (isCategory, name) => {
-    console.log(isCategory, name)
+  handleSelectThread = (isCategory, threadID) => {
+    const {actions} = this.props
+    actions.setCurrentThread(isCategory, threadID)
   }
   render() {
-    const {userName, isCategoryTabVisible, categoryNameArray, threadName} = this.props
+    const {userName, isCategoryTabVisible,
+      categoryNameArray, threadName, currentThread} = this.props
     return (
       <Div>
         <Header
@@ -66,6 +68,7 @@ class Top extends Component {
           <Tab
             threadName={threadName}
             threadID={'category_hoge'}
+            currentThread={currentThread}
             isCategoryThread={true}
             onDelete={this.handleDelete}
             onSelect={this.handleSelectThread}
@@ -73,6 +76,7 @@ class Top extends Component {
           <Tab
             threadName={'vipから来ました'}
             threadID={'thread_114'}
+            currentThread={currentThread}
             isCategoryThread={false}
             onDelete={this.handleDelete}
             onSelect={this.handleSelectThread}

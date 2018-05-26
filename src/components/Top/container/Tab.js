@@ -12,20 +12,24 @@ class Tab extends Component {
   static propTypes = {
     threadName: PropTypes.string.isRequired,
     threadID: PropTypes.string.isRequired,
+    currentThread: PropTypes.object.isRequired,
     isCategoryThread: PropTypes.bool,
     onDelete: PropTypes.func,
     onSelect: PropTypes.func,
   }
 
   render() {
-    const {threadName, threadID, isCategoryThread, onDelete, onSelect} = this.props
+    const {threadName, threadID, currentThread,
+      isCategoryThread, onDelete, onSelect} = this.props
+    const isCurrentThread = (threadID === currentThread.threadID)
     const num = 20
     const appBarStyle = {
       display: 'flex',
       width: String(num)+'vw',
       height: '40px',
       background: '#7dff7d',
-      margin: '5px',
+      margin: '3px',
+      opacity: isCurrentThread ? 1 : 0.5
     }
     const deleteButton = (isCategoryThread===true) ? null : (
       <MuiThemeProvider>
