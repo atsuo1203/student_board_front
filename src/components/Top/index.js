@@ -6,9 +6,10 @@ import TopAction from '../../modules/Top/action'
 
 import Header from './container/Header'
 import CategoryTab from './container/CategoryTab'
-import Thread from './container/Thread'
+import ThreadContents from './container/ThreadContents'
+import Tab from './container/Tab'
 
-import {Div} from './style'
+import {Div, Container} from './style'
 
 class Top extends Component {
   componentWillMount () {
@@ -39,11 +40,19 @@ class Top extends Component {
   }
   handleClickMenu = (categoryName) => {
     const {actions} = this.props
-    console.log(categoryName)
+    actions.setTabName(categoryName)
     actions.resetCategoryTabVisual()
   }
+  handleDelete = (threadID) => {
+    console.log(threadID)
+  }
+  handleSelectThread = (isCategory, threadID) => {
+    const {actions} = this.props
+    actions.setCurrentThread(isCategory, threadID)
+  }
   render() {
-    const {userName, isCategoryTabVisible, categoryNameArray} = this.props
+    const {userName, isCategoryTabVisible,
+      categoryNameArray, threadName, currentThread} = this.props
     return (
       <Div>
         <Header
@@ -55,8 +64,26 @@ class Top extends Component {
           categoryNameArray={categoryNameArray}
           onClickMenu={this.handleClickMenu}
         />
-        <Thread/>
-      </Div>
+        <Container>
+          <Tab
+            threadName={threadName}
+            threadID={'category_hoge'}
+            currentThread={currentThread}
+            isCategoryThread={true}
+            onDelete={this.handleDelete}
+            onSelect={this.handleSelectThread}
+          />
+          <Tab
+            threadName={'vipから来ました'}
+            threadID={'thread_114'}
+            currentThread={currentThread}
+            isCategoryThread={false}
+            onDelete={this.handleDelete}
+            onSelect={this.handleSelectThread}
+          />
+        </Container>
+        <ThreadContents />
+        </Div>
     );
   }
 }
@@ -64,6 +91,8 @@ const mapStateToProps = (store) => ({
   userName: store.Top.userName,
   isCategoryTabVisible: store.Top.isCategoryTabVisible,
   categoryNameArray: store.Top.categoryNameArray,
+  threadName: store.Top.threadName,
+  currentThread: store.Top.currentThread,
 })
 
 const mapDispatchToProps = (dispatch) => ({

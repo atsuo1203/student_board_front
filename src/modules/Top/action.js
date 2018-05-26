@@ -25,9 +25,26 @@ function setCategoryNameArray(categoryNameArray){
   }
 }
 
+function setTabName(tabName){
+  return {
+    type: "SET_TAB_NAME",
+    payload: tabName,
+  }
+}
+
+function setCurrentThread(isCategory, threadID){
+  return {
+    type: "SET_CURRENT_THREAD",
+    isCategory: isCategory,
+    threadID: threadID,
+  }
+}
+
 export default ({
   setUserName,
   setCategoryTabVisual,
   resetCategoryTabVisual,
   setCategoryNameArray,
+  setTabName,
+  setCurrentThread,
 })

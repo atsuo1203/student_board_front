@@ -9,4 +9,5 @@ export const PaperStyle = {
   top: '45px',
   display: 'inline-block',
   margin: '16px 32px 16px 0',
+  zIndex: '9999',
 }
