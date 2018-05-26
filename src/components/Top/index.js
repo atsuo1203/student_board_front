@@ -19,18 +19,23 @@ class Top extends Component {
     const {actions, inputValue} = this.props
     actions.changeUserName(inputValue)
   }
-  handleToggle() {
-    console.log('ok')
+  handleToggle = () => {
+    const {actions} = this.props
+    const {isCategoryTabVisible} = this.props
+    const categoryTabState = !isCategoryTabVisible
+    actions.setCategoryTabVisual(categoryTabState)
   }
   render() {
-    const {userName} = this.props
+    const {userName, isCategoryTabVisible} = this.props
     return (
       <Div>
         <Header
           onToggle={this.handleToggle}
           userName={userName}
           />
-        <CategoryTab/>
+        <CategoryTab
+          open={isCategoryTabVisible}
+        />
         <Thread/>
       </Div>
     );
@@ -38,7 +43,7 @@ class Top extends Component {
 }
 const mapStateToProps = (store) => ({
   userName: store.Top.userName,
-  inputValue: store.Top.inputValue,
+  isCategoryTabVisible: store.Top.isCategoryTabVisible,
 })
 
 const mapDispatchToProps = (dispatch) => ({
