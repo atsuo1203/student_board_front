@@ -1,13 +1,24 @@
 import React, { Component } from 'react';
+import {Paper, Menu, MenuItem } from 'material-ui';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-import {Div} from './style/CategoryTabStyle'
+import {Div, PaperStyle} from './style/CategoryTabStyle'
 
 class CategoryTab extends Component {
   render() {
     return (
-      <Div>
-        CategoryTab
-      </Div>
+      <MuiThemeProvider>
+        <div>
+          <Paper style={PaperStyle}>
+            <Menu>
+              <MenuItem primaryText="Maps" />
+              <MenuItem primaryText="Books" />
+              <MenuItem primaryText="Flights" />
+              <MenuItem primaryText="Apps" />
+            </Menu>
+          </Paper>
+        </div>
+      </MuiThemeProvider>
     );
   }
 }
