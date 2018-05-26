@@ -55,7 +55,10 @@ class Top extends Component {
           categoryNameArray={categoryNameArray}
           onClickMenu={this.handleClickMenu}
         />
-        <Thread/>
+        <Thread
+          tabName={'雑談'}
+          isCategoryThread={true}
+        />
       </Div>
     );
   }
