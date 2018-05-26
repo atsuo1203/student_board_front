@@ -25,9 +25,17 @@ function setCategoryNameArray(categoryNameArray){
   }
 }
 
+function setTabName(tabName){
+  return {
+    type: "SET_TAB_NAME",
+    payload: tabName,
+  }
+}
+
 export default ({
   setUserName,
   setCategoryTabVisual,
   resetCategoryTabVisual,
   setCategoryNameArray,
+  setTabName,
 })

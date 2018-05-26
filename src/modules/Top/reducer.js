@@ -2,6 +2,7 @@ const initializeState = {
   userName: "名前はまだない",
   isCategoryTabVisible : false,
   categoryNameArray: [],
+  tabName: "雑談",
 }
 
 export default (state=initializeState, action) => {
@@ -14,6 +15,8 @@ export default (state=initializeState, action) => {
       return Object.assign({}, state, {isCategoryTabVisible: false})
     case "SET_CATEGORY_NAME_ARRAY":
       return Object.assign({}, state, {categoryNameArray: action.payload})
+    case "SET_TAB_NAME":
+      return Object.assign({}, state, {tabName: action.payload})
     default:
       return state;
   }

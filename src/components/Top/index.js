@@ -39,11 +39,11 @@ class Top extends Component {
   }
   handleClickMenu = (categoryName) => {
     const {actions} = this.props
-    console.log(categoryName)
+    actions.setTabName(categoryName)
     actions.resetCategoryTabVisual()
   }
   render() {
-    const {userName, isCategoryTabVisible, categoryNameArray} = this.props
+    const {userName, isCategoryTabVisible, categoryNameArray, tabName} = this.props
     return (
       <Div>
         <Header
@@ -56,7 +56,7 @@ class Top extends Component {
           onClickMenu={this.handleClickMenu}
         />
         <Thread
-          tabName={'雑談'}
+          tabName={tabName}
           isCategoryThread={true}
         />
       </Div>
@@ -67,6 +67,7 @@ const mapStateToProps = (store) => ({
   userName: store.Top.userName,
   isCategoryTabVisible: store.Top.isCategoryTabVisible,
   categoryNameArray: store.Top.categoryNameArray,
+  tabName: store.Top.tabName,
 })
 
 const mapDispatchToProps = (dispatch) => ({
