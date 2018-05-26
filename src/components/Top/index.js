@@ -11,6 +11,18 @@ import Thread from './container/Thread'
 import {Div} from './style'
 
 class Top extends Component {
+  componentWillMount () {
+    const {actions} = this.props
+    const categoryNameArray = this.makeList()
+    actions.setCategoryNameArray(categoryNameArray)
+  }
+  makeList = () => {
+    const categoryNameArray = [
+      '雑談', '勉強', '恋愛', '部活', '進路',
+    ]
+    return categoryNameArray
+  }
+
   handleChangeInputValue = event => {
     const {actions} = this.props
     actions.changeInputValue(event.target.value)
@@ -19,18 +31,30 @@ class Top extends Component {
     const {actions, inputValue} = this.props
     actions.changeUserName(inputValue)
   }
-  handleToggle() {
-    console.log('ok')
+  handleToggle = () => {
+    const {actions} = this.props
+    const {isCategoryTabVisible} = this.props
+    const categoryTabState = !isCategoryTabVisible
+    actions.setCategoryTabVisual(categoryTabState)
+  }
+  handleClickMenu = (categoryName) => {
+    const {actions} = this.props
+    console.log(categoryName)
+    actions.resetCategoryTabVisual()
   }
   render() {
-    const {userName} = this.props
+    const {userName, isCategoryTabVisible, categoryNameArray} = this.props
     return (
       <Div>
         <Header
           onToggle={this.handleToggle}
           userName={userName}
           />
-        <CategoryTab/>
+        <CategoryTab
+          open={isCategoryTabVisible}
+          categoryNameArray={categoryNameArray}
+          onClickMenu={this.handleClickMenu}
+        />
         <Thread/>
       </Div>
     );
@@ -38,7 +62,8 @@ class Top extends Component {
 }
 const mapStateToProps = (store) => ({
   userName: store.Top.userName,
-  inputValue: store.Top.inputValue,
+  isCategoryTabVisible: store.Top.isCategoryTabVisible,
+  categoryNameArray: store.Top.categoryNameArray,
 })
 
 const mapDispatchToProps = (dispatch) => ({
