@@ -8,17 +8,20 @@ import Header from './container/Header'
 import CategoryTab from './container/CategoryTab'
 import ThreadContents from './container/ThreadContents'
 import Tab from './container/Tab'
+import Contents from './container/Contents'
+
 import CategoryModel from '../../models/CategoryModel'
+import ThreadModel from '../../models/ThreadModel'
 
 import {Div, Container} from './style'
 
 class Top extends Component {
   componentWillMount () {
     const {actions} = this.props
-    const categoryArray = this.makeList()
+    const categoryArray = this.makeCategoryList()
     actions.setCategoryArray(categoryArray)
   }
-  makeList = () => {
+  makeCategoryList = () => {
     const categoryArray = [
       new CategoryModel({id: 1, name: '雑談'}),
       new CategoryModel({id: 2, name: '勉強'}),
@@ -27,6 +30,20 @@ class Top extends Component {
       new CategoryModel({id: 5, name: '進路'}),
     ]
     return categoryArray
+  }
+  makeThreadList = () => {
+    const threadArray = [
+      new ThreadModel({id: 'thread_1', title: 'vipからきました',
+      date: '2018/05/28(月) 21:07:50.001', categoryId: 1,
+      commentCount: 100, speed: 1000,}),
+      new ThreadModel({id: 'thread_2', title: 'なんjから来ました',
+      date: '2018/05/29(火) 21:07:50.001', categoryId: 1,
+      commentCount: 100, speed: 1000,}),
+      new ThreadModel({id: 'thread_3', title: '生き物苦手版サイコー',
+      date: '2018/05/30(水) 21:07:50.001', categoryId: 1,
+      commentCount: 100, speed: 1000,}),
+    ]
+    return threadArray
   }
   handleChangeInputValue = event => {
     const {actions} = this.props
@@ -53,6 +70,9 @@ class Top extends Component {
   handleSelectThread = (isCategory, threadID) => {
     const {actions} = this.props
     actions.setCurrentThread(isCategory, threadID)
+  }
+  handleReload = () => {
+    console.log('reload')
   }
   render() {
     const {userName, isCategoryTabVisible,
@@ -86,7 +106,7 @@ class Top extends Component {
             onSelect={this.handleSelectThread}
           />
         </Container>
-        <ThreadContents />
+        <Contents onReload={this.handleReload}/>
         </Div>
     );
   }
