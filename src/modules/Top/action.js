@@ -18,10 +18,10 @@ function resetCategoryTabVisual(){
   }
 }
 
-function setCategoryNameArray(categoryNameArray){
+function setCategoryArray(categoryArray){
   return {
-    type: "SET_CATEGORY_NAME_ARRAY",
-    payload: categoryNameArray,
+    type: "SET_CATEGORY_ARRAY",
+    payload: categoryArray,
   }
 }
 
@@ -44,7 +44,7 @@ export default ({
   setUserName,
   setCategoryTabVisual,
   resetCategoryTabVisual,
-  setCategoryNameArray,
+  setCategoryArray,
   setTabName,
   setCurrentThread,
 })

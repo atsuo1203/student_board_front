@@ -8,19 +8,19 @@ import {Div, PaperStyle} from './style/CategoryTabStyle'
 class CategoryTab extends Component {
   static propTypes = {
     open: PropTypes.bool.isRequired,
-    categoryNameArray: PropTypes.array.isRequired,
+    categoryArray: PropTypes.array.isRequired,
     onClickMenu: PropTypes.func,
   }
   render() {
-    const {open, categoryNameArray, onClickMenu} = this.props
+    const {open, categoryArray, onClickMenu} = this.props
     const result = open ? (
       <Paper style={PaperStyle}>
         <Menu>
-          {categoryNameArray.map(categoryName =>
+          {categoryArray.map(category =>
             <MenuItem
-              key={categoryName}
-              primaryText={categoryName}
-              onClick={() => onClickMenu(categoryName)}
+              key={category.id}
+              primaryText={category.name}
+              onClick={() => onClickMenu(category.name)}
             />
           )}
         </Menu>

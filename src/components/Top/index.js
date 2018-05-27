@@ -8,22 +8,26 @@ import Header from './container/Header'
 import CategoryTab from './container/CategoryTab'
 import ThreadContents from './container/ThreadContents'
 import Tab from './container/Tab'
+import CategoryModel from '../../models/CategoryModel'
 
 import {Div, Container} from './style'
 
 class Top extends Component {
   componentWillMount () {
     const {actions} = this.props
-    const categoryNameArray = this.makeList()
-    actions.setCategoryNameArray(categoryNameArray)
+    const categoryArray = this.makeList()
+    actions.setCategoryArray(categoryArray)
   }
   makeList = () => {
-    const categoryNameArray = [
-      '雑談', '勉強', '恋愛', '部活', '進路',
+    const categoryArray = [
+      new CategoryModel({id: 1, name: '雑談'}),
+      new CategoryModel({id: 2, name: '勉強'}),
+      new CategoryModel({id: 3, name: '恋愛'}),
+      new CategoryModel({id: 4, name: '部活'}),
+      new CategoryModel({id: 5, name: '進路'}),
     ]
-    return categoryNameArray
+    return categoryArray
   }
-
   handleChangeInputValue = event => {
     const {actions} = this.props
     actions.changeInputValue(event.target.value)
@@ -52,7 +56,7 @@ class Top extends Component {
   }
   render() {
     const {userName, isCategoryTabVisible,
-      categoryNameArray, threadName, currentThread} = this.props
+      categoryArray, threadName, currentThread} = this.props
     return (
       <Div>
         <Header
@@ -61,7 +65,7 @@ class Top extends Component {
           />
         <CategoryTab
           open={isCategoryTabVisible}
-          categoryNameArray={categoryNameArray}
+          categoryArray={categoryArray}
           onClickMenu={this.handleClickMenu}
         />
         <Container>
@@ -90,7 +94,7 @@ class Top extends Component {
 const mapStateToProps = (store) => ({
   userName: store.Top.userName,
   isCategoryTabVisible: store.Top.isCategoryTabVisible,
-  categoryNameArray: store.Top.categoryNameArray,
+  categoryArray: store.Top.categoryArray,
   threadName: store.Top.threadName,
   currentThread: store.Top.currentThread,
 })
