@@ -67,7 +67,7 @@ class Top extends Component {
   handleDelete = (threadID) => {
     console.log(threadID)
   }
-  handleSelectThread = (isCategory, threadID) => {
+  handleSelectTab = (isCategory, threadID) => {
     const {actions} = this.props
     actions.setCurrentThread(isCategory, threadID)
   }
@@ -98,7 +98,7 @@ class Top extends Component {
             currentThread={currentThread}
             isCategoryThread={true}
             onDelete={this.handleDelete}
-            onSelect={this.handleSelectThread}
+            onSelect={this.handleSelectTab}
           />
           <Tab
             threadName={'vipから来ました'}
@@ -106,7 +106,7 @@ class Top extends Component {
             currentThread={currentThread}
             isCategoryThread={false}
             onDelete={this.handleDelete}
-            onSelect={this.handleSelectThread}
+            onSelect={this.handleSelectTab}
           />
         </Container>
         <Contents
