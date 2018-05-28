@@ -6,11 +6,12 @@ import Cached from 'material-ui/svg-icons/action/cached';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import {ContentsDiv, appBarStyle, titleStyle, reloadButtonStyle} from './style/ContentsStyle'
-import {ReloadButton} from './ContentsParts'
+import {ReloadButton, CreateThreadButton} from './ContentsParts'
 
 class Contents extends Component {
   static propTypes = {
     currentThread: PropTypes.object.isRequired,
+    onCreate: PropTypes.func.isRequired,
     onReload: PropTypes.func.isRequired,
   }
   render() {
@@ -22,7 +23,7 @@ class Contents extends Component {
             style={appBarStyle}
             title={<button>ほげ</button>}
             titleStyle={titleStyle}
-            iconElementLeft={<button>新規作成</button>}
+            iconElementLeft={<CreateThreadButton currentThread={currentThread} onCreate={onReload}/> }
             iconElementRight={<ReloadButton currentThread={currentThread} onReload={onReload}/> }
           />
           hoge

@@ -71,6 +71,9 @@ class Top extends Component {
     const {actions} = this.props
     actions.setCurrentThread(isCategory, threadID)
   }
+  handleCreateThread = (currentThread) => {
+    console.log(currentThread)
+  }
   handleReload = (currentThread) => {
     console.log(currentThread)
   }

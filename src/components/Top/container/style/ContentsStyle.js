@@ -26,3 +26,15 @@ export const reloadButtonStyle = {
   position: 'relative',
   top: '-10px',
 }
+
+export const createButtonStyle = {
+  button: {
+    position: 'relative',
+    top: '-2px',
+    height: '30px',
+  },
+  buttonText: {
+    position: 'relative',
+    top: '2px',
+  }
+}

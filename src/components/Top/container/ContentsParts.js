@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import IconButton from 'material-ui/IconButton';
+import {IconButton, RaisedButton} from 'material-ui';
 import Cached from 'material-ui/svg-icons/action/cached';
+import Add from 'material-ui/svg-icons/content/add';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-import {reloadButtonStyle} from './style/ContentsStyle'
+import {reloadButtonStyle, createButtonStyle } from './style/ContentsStyle'
 
 export class ReloadButton extends Component {
   static propTypes = {
@@ -22,6 +23,27 @@ export class ReloadButton extends Component {
           <Cached />
         </IconButton>
       </MuiThemeProvider>
+    );
+  }
+}
+
+export class CreateThreadButton extends Component {
+  static propTypes = {
+    currentThread: PropTypes.object.isRequired,
+    onCreate: PropTypes.func.isRequired,
+  }
+  render() {
+    const {currentThread, onCreate} = this.props
+    return (
+      <RaisedButton
+        onClick={() => onCreate(currentThread)}
+        label={'新規作成'}
+        labelPosition={'before'}
+        primary={true}
+        icon={<Add />}
+        style={createButtonStyle.button}
+        labelStyle={createButtonStyle.buttonText}
+      />
     );
   }
 }
