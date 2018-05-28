@@ -32,6 +32,7 @@ export const createButtonStyle = {
     position: 'relative',
     top: '-2px',
     height: '30px',
+    transform: 'scale(0.7)',
   },
   buttonText: {
     position: 'relative',
