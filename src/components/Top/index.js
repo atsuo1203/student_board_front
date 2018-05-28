@@ -6,7 +6,6 @@ import TopAction from '../../modules/Top/action'
 
 import Header from './container/Header'
 import CategoryTab from './container/CategoryTab'
-import ThreadContents from './container/ThreadContents'
 import Tab from './container/Tab'
 import Contents from './container/Contents'
 

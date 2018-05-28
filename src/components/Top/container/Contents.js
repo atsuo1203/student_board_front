@@ -6,7 +6,7 @@ import Cached from 'material-ui/svg-icons/action/cached';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import {ContentsDiv, appBarStyle, titleStyle, reloadButtonStyle} from './style/ContentsStyle'
-import {ReloadButton, CreateButton} from './ContentsParts'
+import {ReloadButton, CreateButton} from './contentsParts/HeadParts'
 
 class Contents extends Component {
   static propTypes = {

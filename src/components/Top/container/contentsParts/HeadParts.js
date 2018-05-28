@@ -5,7 +5,7 @@ import Cached from 'material-ui/svg-icons/action/cached';
 import Add from 'material-ui/svg-icons/content/add';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-import {reloadButtonStyle, createButtonStyle } from './style/ContentsStyle'
+import {reloadButtonStyle, createButtonStyle } from './style/HeadStyle'
 
 export class ReloadButton extends Component {
   static propTypes = {

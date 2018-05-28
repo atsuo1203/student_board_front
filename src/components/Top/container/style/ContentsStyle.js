@@ -14,29 +14,3 @@ export const appBarStyle = {
   height: '40px',
   background: '#7dff7d',
 }
-
-export const titleStyle = {
-  position: 'relative',
-  textAlign: 'center',
-  top: '-10px',
-  color: '#000000',
-}
-
-export const reloadButtonStyle = {
-  position: 'relative',
-  top: '-10px',
-}
-
-export const createButtonStyle = {
-  button: {
-    position: 'relative',
-    top: '-2px',
-    left: '-20px',
-    height: '30px',
-    transform: 'scale(0.7)',
-  },
-  buttonText: {
-    position: 'relative',
-    top: '2px',
-  }
-}
