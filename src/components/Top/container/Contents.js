@@ -24,11 +24,10 @@ class Contents extends Component {
         <ContentsDiv>
           <AppBar
             style={appBarStyle}
-            title={<button>ほげ</button>}
-            titleStyle={titleStyle}
             iconElementLeft={<CreateButton
               label={label} currentThread={currentThread} onCreate={onCreate}/> }
-            iconElementRight={<ReloadButton currentThread={currentThread} onReload={onReload}/> }
+            iconElementRight={<div><ReloadButton currentThread={currentThread} onReload={onReload}/>
+              <ReloadButton currentThread={currentThread} onReload={onReload}/> </div>}
           />
           hoge
         </ContentsDiv>
