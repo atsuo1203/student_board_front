@@ -6,16 +6,19 @@ import Cached from 'material-ui/svg-icons/action/cached';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import {ContentsDiv, appBarStyle, titleStyle, reloadButtonStyle} from './style/ContentsStyle'
-import {ReloadButton, CreateThreadButton} from './ContentsParts'
+import {ReloadButton, CreateButton} from './ContentsParts'
 
 class Contents extends Component {
   static propTypes = {
     currentThread: PropTypes.object.isRequired,
-    onCreate: PropTypes.func.isRequired,
+    onCreateThread: PropTypes.func.isRequired,
+    onCreateComment: PropTypes.func.isRequired,
     onReload: PropTypes.func.isRequired,
   }
   render() {
-    const {currentThread, onReload} = this.props
+    const {currentThread, onReload, onCreateThread, onCreateComment} = this.props
+    const label = currentThread.isCategory ? "スレッド新規作成" : "コメント新規作成"
+    const onCreate = currentThread.isCategory ? onCreateThread : onCreateComment
     return (
       <MuiThemeProvider>
         <ContentsDiv>
@@ -23,7 +26,8 @@ class Contents extends Component {
             style={appBarStyle}
             title={<button>ほげ</button>}
             titleStyle={titleStyle}
-            iconElementLeft={<CreateThreadButton currentThread={currentThread} onCreate={onReload}/> }
+            iconElementLeft={<CreateButton
+              label={label} currentThread={currentThread} onCreate={onCreate}/> }
             iconElementRight={<ReloadButton currentThread={currentThread} onReload={onReload}/> }
           />
           hoge

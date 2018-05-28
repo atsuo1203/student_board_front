@@ -77,6 +77,11 @@ class Top extends Component {
     actions.setCurrentThread(isCategory, threadID)
   }
   handleCreateThread = (currentThread) => {
+    console.log('handleCreateThread')
+    console.log(currentThread)
+  }
+  handleCreateComment = (currentThread) => {
+    console.log('handleCreateComment')
     console.log(currentThread)
   }
   handleReload = (currentThread) => {
@@ -117,6 +122,8 @@ class Top extends Component {
         <Contents
           currentThread={currentThread}
           onReload={this.handleReload}
+          onCreateThread={this.handleCreateThread}
+          onCreateComment={this.handleCreateComment}
         />
         </Div>
     );
