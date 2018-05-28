@@ -32,6 +32,13 @@ function setTabName(tabName){
   }
 }
 
+function setCurrentCategory(category){
+  return {
+    type: "SET_CURRENT_CATEGORY",
+    payload: category,
+  }
+}
+
 function setCurrentThread(isCategory, threadID){
   return {
     type: "SET_CURRENT_THREAD",
@@ -46,5 +53,6 @@ export default ({
   resetCategoryTabVisual,
   setCategoryArray,
   setTabName,
+  setCurrentCategory,
   setCurrentThread,
 })

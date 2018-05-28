@@ -20,7 +20,7 @@ class CategoryTab extends Component {
             <MenuItem
               key={category.id}
               primaryText={category.name}
-              onClick={() => onClickMenu(category.name)}
+              onClick={() => onClickMenu(category.id)}
             />
           )}
         </Menu>

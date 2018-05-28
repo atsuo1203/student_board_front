@@ -23,11 +23,11 @@ class Top extends Component {
   }
   makeCategoryList = () => {
     const categoryArray = [
-      new CategoryModel({id: 1, name: '雑談'}),
-      new CategoryModel({id: 2, name: '勉強'}),
-      new CategoryModel({id: 3, name: '恋愛'}),
-      new CategoryModel({id: 4, name: '部活'}),
-      new CategoryModel({id: 5, name: '進路'}),
+      new CategoryModel({id: '1', name: '雑談'}),
+      new CategoryModel({id: '2', name: '勉強'}),
+      new CategoryModel({id: '3', name: '恋愛'}),
+      new CategoryModel({id: '4', name: '部活'}),
+      new CategoryModel({id: '5', name: '進路'}),
     ]
     return categoryArray
   }
@@ -59,9 +59,14 @@ class Top extends Component {
     const categoryTabState = !isCategoryTabVisible
     actions.setCategoryTabVisual(categoryTabState)
   }
-  handleClickMenu = (categoryName) => {
-    const {actions} = this.props
-    actions.setTabName(categoryName)
+  handleClickMenu = (categoryId) => {
+    const {actions, categoryArray} = this.props
+    const category = categoryArray.find(c => {
+      return (c.id === categoryId )
+    })
+    console.log(category)
+    actions.setCurrentCategory(category)
+    actions.setCurrentThread(true, category.id)
     actions.resetCategoryTabVisual()
   }
   handleDelete = (threadID) => {
@@ -79,7 +84,7 @@ class Top extends Component {
   }
   render() {
     const {userName, isCategoryTabVisible,
-      categoryArray, threadName, currentThread} = this.props
+      categoryArray, threadName, currentCategory, currentThread} = this.props
     return (
       <Div>
         <Header
@@ -93,8 +98,8 @@ class Top extends Component {
         />
         <Container>
           <Tab
-            threadName={threadName}
-            threadID={'category_hoge'}
+            threadName={currentCategory.name}
+            threadID={currentCategory.id}
             currentThread={currentThread}
             isCategoryThread={true}
             onDelete={this.handleDelete}
@@ -122,6 +127,7 @@ const mapStateToProps = (store) => ({
   isCategoryTabVisible: store.Top.isCategoryTabVisible,
   categoryArray: store.Top.categoryArray,
   threadName: store.Top.threadName,
+  currentCategory: store.Top.currentCategory,
   currentThread: store.Top.currentThread,
 })
 
