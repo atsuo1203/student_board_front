@@ -6,6 +6,10 @@ export const ContentsDiv = styled.div`
   margin-bottom: 3px;
 `;
 
+export const inContentsDiv = styled.div`
+  mergin 3px;
+`;
+
 export const appBarStyle = {
   height: '40px',
   background: '#7dff7d',
@@ -13,6 +17,7 @@ export const appBarStyle = {
 
 export const titleStyle = {
   position: 'relative',
+  textAlign: 'center',
   top: '-10px',
   color: '#000000',
 }

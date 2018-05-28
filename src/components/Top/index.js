@@ -71,8 +71,8 @@ class Top extends Component {
     const {actions} = this.props
     actions.setCurrentThread(isCategory, threadID)
   }
-  handleReload = () => {
-    console.log('reload')
+  handleReload = (currentThread) => {
+    console.log(currentThread)
   }
   render() {
     const {userName, isCategoryTabVisible,
@@ -106,7 +106,10 @@ class Top extends Component {
             onSelect={this.handleSelectThread}
           />
         </Container>
-        <Contents onReload={this.handleReload}/>
+        <Contents
+          currentThread={currentThread}
+          onReload={this.handleReload}
+        />
         </Div>
     );
   }
