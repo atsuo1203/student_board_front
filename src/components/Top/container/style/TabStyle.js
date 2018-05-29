@@ -12,7 +12,8 @@ export const titleStyle = {
   position: 'relative',
   top: '-10px',
   fontSize: '1em',
-  color: '#000000'
+  color: '#000000',
+  cursor: 'pointer',
 }
 
 export const deleteButtonStyle = {

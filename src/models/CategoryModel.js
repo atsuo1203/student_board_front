@@ -2,7 +2,7 @@ import {Record} from 'immutable';
 
 const CategoryRecord = Record(
   {
-    id: 1,
+    id: '1',
     name: '雑談',
   }
 );
