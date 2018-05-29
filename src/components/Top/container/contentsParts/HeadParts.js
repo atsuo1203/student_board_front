@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {IconButton, RaisedButton} from 'material-ui';
+import {IconButton, RaisedButton, MenuItem, DropDownMenu} from 'material-ui';
 import Cached from 'material-ui/svg-icons/action/cached';
 import Add from 'material-ui/svg-icons/content/add';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -45,6 +45,36 @@ export class CreateButton extends Component {
         style={createButtonStyle.button}
         labelStyle={createButtonStyle.buttonText}
       />
+    );
+  }
+}
+
+export class SortButton extends Component {
+  static propTypes = {
+    onSort: PropTypes.func.isRequired,
+  }
+  render() {
+    const {onSort} = this.props
+    return (
+      <DropDownMenu
+        value={1}
+        style={{transform: 'scale(0.9)', position: 'relative', top: '5px'}}
+        underlineStyle={{background: '#000000'}}
+        iconStyle={{fill: '#000000'}}
+      >
+        <MenuItem
+          key={1}
+          value={1}
+          primaryText={'ID順'}
+          onClick={() => onSort(1)}
+        />
+        <MenuItem
+          key={2}
+          value={2}
+          primaryText={'人気順'}
+          onClick={() => onSort(2)}
+        />
+      </DropDownMenu>
     );
   }
 }

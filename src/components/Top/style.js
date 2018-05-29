@@ -6,7 +6,7 @@ export const Div = styled.article`
   height: 100vh;
 `;
 
-export const Container = styled.div`
+export const TabContainer = styled.div`
   display: flex;
   flex-direction: row;
   overflow: scroll;

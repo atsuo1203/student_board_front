@@ -11,7 +11,7 @@ import Contents from './container/Contents'
 import CategoryModel from '../../models/CategoryModel'
 import ThreadModel from '../../models/ThreadModel'
 
-import {Div, Container} from './style'
+import {Div, TabContainer} from './style'
 
 class Top extends Component {
   componentWillMount () {
@@ -85,6 +85,9 @@ class Top extends Component {
   handleReload = (currentThread) => {
     console.log(currentThread)
   }
+  handleSort = (sortId) => {
+    console.log(sortId)
+  }
   render() {
     const {userName, isCategoryTabVisible,
       categoryArray, threadName, currentCategory, currentThread} = this.props
@@ -96,7 +99,7 @@ class Top extends Component {
           currentCategory={currentCategory}
           onClickMenu={this.handleClickMenu}
           />
-        <Container>
+        <TabContainer>
           <Tab
             threadName={currentCategory.name}
             threadID={currentCategory.id}
@@ -113,12 +116,13 @@ class Top extends Component {
             onDelete={this.handleDelete}
             onSelect={this.handleSelectTab}
           />
-        </Container>
+        </TabContainer>
         <Contents
           currentThread={currentThread}
           onReload={this.handleReload}
           onCreateThread={this.handleCreateThread}
           onCreateComment={this.handleCreateComment}
+          onSort={this.handleSort}
         />
         </Div>
     );
