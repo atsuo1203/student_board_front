@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {AppBar, FlatButton} from 'material-ui';
+
+import CategoryTab from './CategoryTab'
 import {Title, RightUserName, RightButton, RightButtonText} from './style/HeaderStyle'
 
 class Header extends Component {
@@ -52,8 +54,9 @@ class Header extends Component {
             title={<span>学生限定掲示板</span>}
             titleStyle={Title}
             onTitleClick={this.handleClickTile}
+            iconElementLeft={<CategoryTab/>}
+            iconStyleLeft={{position: 'relative',left: '-20px',}}
             iconElementRight={this.rightObject()}
-            onLeftIconButtonClick={this.props.onToggle}
           />
         </div>
       </MuiThemeProvider>

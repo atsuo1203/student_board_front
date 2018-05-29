@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {Paper, Menu, MenuItem } from 'material-ui';
+import {Paper, Menu, MenuItem, DropDownMenu } from 'material-ui';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import {Div, PaperStyle} from './style/CategoryTabStyle'
@@ -28,9 +28,10 @@ class CategoryTab extends Component {
     ) : null
     return (
       <MuiThemeProvider>
-        <div>
-          {result}
-        </div>
+        <DropDownMenu value={1} onChange={this.handleChange}>
+          <MenuItem value={1} primaryText="雑談" />
+          <MenuItem value={2} primaryText="勉強" />
+        </DropDownMenu>
       </MuiThemeProvider>
     );
   }

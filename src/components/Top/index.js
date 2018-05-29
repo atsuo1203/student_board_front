@@ -5,7 +5,6 @@ import { bindActionCreators } from 'redux';
 import TopAction from '../../modules/Top/action'
 
 import Header from './container/Header'
-import CategoryTab from './container/CategoryTab'
 import Tab from './container/Tab'
 import Contents from './container/Contents'
 
@@ -95,11 +94,6 @@ class Top extends Component {
           onToggle={this.handleToggle}
           userName={userName}
           />
-        <CategoryTab
-          open={isCategoryTabVisible}
-          categoryArray={categoryArray}
-          onClickMenu={this.handleClickMenu}
-        />
         <Container>
           <Tab
             threadName={currentCategory.name}
