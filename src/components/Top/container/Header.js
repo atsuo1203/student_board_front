@@ -10,6 +10,7 @@ class Header extends Component {
   static propTypes = {
     userName: PropTypes.string.isRequired,
     categoryArray: PropTypes.array.isRequired,
+    currentCategory: PropTypes.object.isRequired,
     onClickMenu: PropTypes.func.isRequired,
   }
 
@@ -48,7 +49,7 @@ class Header extends Component {
   }
 
   render() {
-    const {categoryArray, onClickMenu} = this.props
+    const {categoryArray, currentCategory, onClickMenu} = this.props
     return (
       <MuiThemeProvider>
         <div>
@@ -58,7 +59,9 @@ class Header extends Component {
             onTitleClick={this.handleClickTile}
             iconElementLeft={<CategoryTab
               categoryArray={categoryArray}
-              onClickMenu={onClickMenu}/>}
+              onClickMenu={onClickMenu}
+              currentCategory={currentCategory}
+              />}
             iconStyleLeft={{position: 'relative',left: '-20px',}}
             iconElementRight={this.rightObject()}
           />

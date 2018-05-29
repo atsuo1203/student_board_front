@@ -4,7 +4,7 @@ export const Title = {
   position: 'relative',
   left: '-70px',
   textAlign: "center",
-  cursor: "pointer",
+  // cursor: "pointer",
 }
 
 export const RightUserName = styled.a`

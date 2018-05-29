@@ -88,12 +88,12 @@ class Top extends Component {
   render() {
     const {userName, isCategoryTabVisible,
       categoryArray, threadName, currentCategory, currentThread} = this.props
-      console.log(categoryArray)
     return (
       <Div>
         <Header
           userName={userName}
           categoryArray={categoryArray}
+          currentCategory={currentCategory}
           onClickMenu={this.handleClickMenu}
           />
         <Container>

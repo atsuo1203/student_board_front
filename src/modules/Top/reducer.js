@@ -2,7 +2,7 @@ import CategoryModel from '../../models/CategoryModel'
 const initializeState = {
   userName: "名前はまだない",
   isCategoryTabVisible : false,
-  categoryArray: [new CategoryModel()],
+  categoryArray: [new CategoryModel({id: '1', name: '雑談'})],
   threadName: "雑談",
   //現在選択しているカテゴリ
   currentCategory: new CategoryModel({id: '1', name: '雑談'}),
