@@ -1,5 +1,3 @@
-import styled from 'styled-components';
-
 export const reloadButtonStyle = {
   position: 'relative',
   top: '-10px',

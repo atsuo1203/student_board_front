@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {AppBar, FlatButton} from 'material-ui';
-import IconButton from 'material-ui/IconButton';
-import Cached from 'material-ui/svg-icons/action/cached';
+import {AppBar} from 'material-ui';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-import {ContentsDiv, appBarStyle, titleStyle, reloadButtonStyle} from './style/ContentsStyle'
+import {ContentsDiv, appBarStyle} from './style/ContentsStyle'
 import {ReloadButton, CreateButton, SortButton} from './contentsParts/HeadParts'
 
 class Contents extends Component {

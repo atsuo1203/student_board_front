@@ -43,20 +43,6 @@ class Top extends Component {
     ]
     return threadArray
   }
-  handleChangeInputValue = event => {
-    const {actions} = this.props
-    actions.changeInputValue(event.target.value)
-  }
-  handleChangeName = () => {
-    const {actions, inputValue} = this.props
-    actions.changeUserName(inputValue)
-  }
-  handleToggle = () => {
-    const {actions} = this.props
-    const {isCategoryTabVisible} = this.props
-    const categoryTabState = !isCategoryTabVisible
-    actions.setCategoryTabVisual(categoryTabState)
-  }
   handleClickMenu = (categoryId) => {
     const {actions, categoryArray} = this.props
     const category = categoryArray.find(c => {
@@ -65,7 +51,6 @@ class Top extends Component {
     console.log(category)
     actions.setCurrentCategory(category)
     actions.setCurrentThread(true, category.id)
-    actions.resetCategoryTabVisual()
   }
   handleDelete = (threadID) => {
     console.log(threadID)
@@ -89,8 +74,7 @@ class Top extends Component {
     console.log(sortId)
   }
   render() {
-    const {userName, isCategoryTabVisible,
-      categoryArray, threadName, currentCategory, currentThread} = this.props
+    const {userName, categoryArray, currentCategory, currentThread} = this.props
     return (
       <Div>
         <Header
@@ -130,7 +114,6 @@ class Top extends Component {
 }
 const mapStateToProps = (store) => ({
   userName: store.Top.userName,
-  isCategoryTabVisible: store.Top.isCategoryTabVisible,
   categoryArray: store.Top.categoryArray,
   threadName: store.Top.threadName,
   currentCategory: store.Top.currentCategory,

@@ -5,16 +5,11 @@ function setUserName(name){
   }
 }
 
-function setCategoryTabVisual(isVisible){
+function setCurrentThread(isCategory, threadID){
   return {
-    type: "SET_CATEGORY_TAB_VISUAL",
-    payload: isVisible,
-  }
-}
-
-function resetCategoryTabVisual(){
-  return {
-    type: "RESET_CATEGORY_TAB_VISUAL",
+    type: "SET_CURRENT_THREAD",
+    isCategory: isCategory,
+    threadID: threadID,
   }
 }
 
@@ -25,13 +20,6 @@ function setCategoryArray(categoryArray){
   }
 }
 
-function setTabName(tabName){
-  return {
-    type: "SET_TAB_NAME",
-    payload: tabName,
-  }
-}
-
 function setCurrentCategory(category){
   return {
     type: "SET_CURRENT_CATEGORY",
@@ -39,20 +27,9 @@ function setCurrentCategory(category){
   }
 }
 
-function setCurrentThread(isCategory, threadID){
-  return {
-    type: "SET_CURRENT_THREAD",
-    isCategory: isCategory,
-    threadID: threadID,
-  }
-}
-
 export default ({
   setUserName,
-  setCategoryTabVisual,
-  resetCategoryTabVisual,
-  setCategoryArray,
-  setTabName,
-  setCurrentCategory,
   setCurrentThread,
+  setCategoryArray,
+  setCurrentCategory,
 })
