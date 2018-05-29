@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import {AppBar, FlatButton} from 'material-ui';
+import {AppBar} from 'material-ui';
 import IconButton from 'material-ui/IconButton';
 import Delete from 'material-ui/svg-icons/action/delete';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';

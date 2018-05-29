@@ -9,15 +9,18 @@ import Tab from './container/Tab'
 import Contents from './container/Contents'
 
 import CategoryModel from '../../models/CategoryModel'
+import SortModel from '../../models/SortModel'
 import ThreadModel from '../../models/ThreadModel'
 
-import {Div, Container} from './style'
+import {Div, TabContainer} from './style'
 
 class Top extends Component {
   componentWillMount () {
     const {actions} = this.props
     const categoryArray = this.makeCategoryList()
+    const sortArray = this.makeSortList()
     actions.setCategoryArray(categoryArray)
+    actions.setSortArray(sortArray)
   }
   makeCategoryList = () => {
     const categoryArray = [
@@ -28,6 +31,17 @@ class Top extends Component {
       new CategoryModel({id: '5', name: '進路'}),
     ]
     return categoryArray
+  }
+  makeSortList = () => {
+    const sortArray = [
+      new SortModel({id: '1', name: 'ID昇順'}),
+      new SortModel({id: '2', name: 'ID降順'}),
+      new SortModel({id: '3', name: '人気昇順'}),
+      new SortModel({id: '4', name: '人気降順'}),
+      new SortModel({id: '5', name: 'コメント数昇順'}),
+      new SortModel({id: '6', name: 'コメント数降順'}),
+    ]
+    return sortArray
   }
   makeThreadList = () => {
     const threadArray = [
@@ -43,20 +57,6 @@ class Top extends Component {
     ]
     return threadArray
   }
-  handleChangeInputValue = event => {
-    const {actions} = this.props
-    actions.changeInputValue(event.target.value)
-  }
-  handleChangeName = () => {
-    const {actions, inputValue} = this.props
-    actions.changeUserName(inputValue)
-  }
-  handleToggle = () => {
-    const {actions} = this.props
-    const {isCategoryTabVisible} = this.props
-    const categoryTabState = !isCategoryTabVisible
-    actions.setCategoryTabVisual(categoryTabState)
-  }
   handleClickMenu = (categoryId) => {
     const {actions, categoryArray} = this.props
     const category = categoryArray.find(c => {
@@ -65,7 +65,6 @@ class Top extends Component {
     console.log(category)
     actions.setCurrentCategory(category)
     actions.setCurrentThread(true, category.id)
-    actions.resetCategoryTabVisual()
   }
   handleDelete = (threadID) => {
     console.log(threadID)
@@ -85,9 +84,13 @@ class Top extends Component {
   handleReload = (currentThread) => {
     console.log(currentThread)
   }
+  handleSort = (sortModel) => {
+    const {actions} = this.props
+    actions.setCurrentSort(sortModel)
+  }
   render() {
-    const {userName, isCategoryTabVisible,
-      categoryArray, threadName, currentCategory, currentThread} = this.props
+    const {userName, categoryArray, sortArray,
+      currentCategory, currentThread, currentSort} = this.props
     return (
       <Div>
         <Header
@@ -96,7 +99,7 @@ class Top extends Component {
           currentCategory={currentCategory}
           onClickMenu={this.handleClickMenu}
           />
-        <Container>
+        <TabContainer>
           <Tab
             threadName={currentCategory.name}
             threadID={currentCategory.id}
@@ -113,12 +116,15 @@ class Top extends Component {
             onDelete={this.handleDelete}
             onSelect={this.handleSelectTab}
           />
-        </Container>
+        </TabContainer>
         <Contents
           currentThread={currentThread}
+          sortArray={sortArray}
+          currentSort={currentSort}
           onReload={this.handleReload}
           onCreateThread={this.handleCreateThread}
           onCreateComment={this.handleCreateComment}
+          onSort={this.handleSort}
         />
         </Div>
     );
@@ -126,11 +132,11 @@ class Top extends Component {
 }
 const mapStateToProps = (store) => ({
   userName: store.Top.userName,
-  isCategoryTabVisible: store.Top.isCategoryTabVisible,
-  categoryArray: store.Top.categoryArray,
-  threadName: store.Top.threadName,
-  currentCategory: store.Top.currentCategory,
   currentThread: store.Top.currentThread,
+  categoryArray: store.Top.categoryArray,
+  currentCategory: store.Top.currentCategory,
+  sortArray: store.Top.sortArray,
+  currentSort: store.Top.currentSort,
 })
 
 const mapDispatchToProps = (dispatch) => ({
