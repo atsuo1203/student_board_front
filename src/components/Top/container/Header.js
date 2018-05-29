@@ -2,12 +2,16 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {AppBar, FlatButton} from 'material-ui';
+
+import CategoryTab from './CategoryTab'
 import {Title, RightUserName, RightButton, RightButtonText} from './style/HeaderStyle'
 
 class Header extends Component {
   static propTypes = {
-    onToggle: PropTypes.func,
-    userName: PropTypes.string
+    userName: PropTypes.string.isRequired,
+    categoryArray: PropTypes.array.isRequired,
+    currentCategory: PropTypes.object.isRequired,
+    onClickMenu: PropTypes.func.isRequired,
   }
 
   handleClickUserName = () => {
@@ -21,7 +25,7 @@ class Header extends Component {
   handleClickTile = () => {
     // TODO
     // helpページのような所へ飛ばす
-    window.open('http://www.google.com','userProfile')
+    // window.open('http://www.google.com','userProfile')
   }
 
   rightObject = () => {
@@ -45,6 +49,7 @@ class Header extends Component {
   }
 
   render() {
+    const {categoryArray, currentCategory, onClickMenu} = this.props
     return (
       <MuiThemeProvider>
         <div>
@@ -52,8 +57,13 @@ class Header extends Component {
             title={<span>学生限定掲示板</span>}
             titleStyle={Title}
             onTitleClick={this.handleClickTile}
+            iconElementLeft={<CategoryTab
+              categoryArray={categoryArray}
+              onClickMenu={onClickMenu}
+              currentCategory={currentCategory}
+              />}
+            iconStyleLeft={{position: 'relative',left: '-20px',}}
             iconElementRight={this.rightObject()}
-            onLeftIconButtonClick={this.props.onToggle}
           />
         </div>
       </MuiThemeProvider>
