@@ -1,4 +1,5 @@
 import CategoryModel from '../../models/CategoryModel'
+import SortModel from '../../models/SortModel'
 const initializeState = {
   // ユーザ関係
   userName: "名前はまだない",
@@ -7,6 +8,9 @@ const initializeState = {
   // カテゴリ関係
   categoryArray: [new CategoryModel({id: '1', name: '雑談'})],
   currentCategory: new CategoryModel({id: '1', name: '雑談'}),
+  // ソート関係
+  sortArray: [new SortModel({id: '1', name: 'ID昇順'})],
+  currentSort: new SortModel({id: '1', name: 'ID昇順'}),
 }
 
 export default (state=initializeState, action) => {
@@ -25,6 +29,11 @@ export default (state=initializeState, action) => {
       return Object.assign({}, state, {categoryArray: action.payload})
     case "SET_CURRENT_CATEGORY":
       return Object.assign({}, state, {currentCategory: action.payload})
+    // ソート関係
+    case "SET_SORT_ARRAY":
+      return Object.assign({}, state, {sortArray: action.payload})
+    case "SET_CURRENT_SORT":
+      return Object.assign({}, state, {currentSort: action.payload})
     default:
       return state;
   }

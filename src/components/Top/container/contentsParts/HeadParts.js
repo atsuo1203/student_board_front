@@ -51,29 +51,29 @@ export class CreateButton extends Component {
 
 export class SortButton extends Component {
   static propTypes = {
+    sortArray: PropTypes.array.isRequired,
+    currentSort: PropTypes.object.isRequired,
     onSort: PropTypes.func.isRequired,
   }
   render() {
-    const {onSort} = this.props
+    const {sortArray, currentSort, onSort} = this.props
+    const menuItemList = []
+    sortArray.forEach(sortModel => {
+      menuItemList.push(<MenuItem
+        key={sortModel.id}
+        value={sortModel.id}
+        primaryText={sortModel.name}
+        onClick={() => onSort(sortModel)}
+      />)
+    });
     return (
       <DropDownMenu
-        value={1}
+        value={currentSort.id}
         style={{transform: 'scale(0.9)', position: 'relative', top: '5px'}}
         underlineStyle={{background: '#000000'}}
         iconStyle={{fill: '#000000'}}
       >
-        <MenuItem
-          key={1}
-          value={1}
-          primaryText={'ID順'}
-          onClick={() => onSort(1)}
-        />
-        <MenuItem
-          key={2}
-          value={2}
-          primaryText={'人気順'}
-          onClick={() => onSort(2)}
-        />
+        {menuItemList}
       </DropDownMenu>
     );
   }

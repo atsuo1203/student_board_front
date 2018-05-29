@@ -27,9 +27,25 @@ function setCurrentCategory(category){
   }
 }
 
+function setSortArray(sortArray){
+  return {
+    type: "SET_SORT_ARRAY",
+    payload: sortArray,
+  }
+}
+
+function setCurrentSort(currentSort){
+  return {
+    type: "SET_CURRENT_SORT",
+    payload: currentSort,
+  }
+}
+
 export default ({
   setUserName,
   setCurrentThread,
   setCategoryArray,
   setCurrentCategory,
+  setSortArray,
+  setCurrentSort,
 })
