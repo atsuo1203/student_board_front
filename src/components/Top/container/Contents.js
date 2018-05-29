@@ -3,8 +3,10 @@ import PropTypes from 'prop-types';
 import {AppBar} from 'material-ui';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-import {ContentsDiv, appBarStyle} from './style/ContentsStyle'
+import {ContentsDiv, InContentsDiv, appBarStyle} from './style/ContentsStyle'
 import {ReloadButton, CreateButton, SortButton} from './contentsParts/HeadParts'
+import ThreadContents from './contentsParts/ThreadContents'
+import ArticleContents from './contentsParts/ArticleContents'
 
 class Contents extends Component {
   static propTypes = {
@@ -21,6 +23,9 @@ class Contents extends Component {
       onCreateThread, onCreateComment, onSort} = this.props
     const label = currentThread.isCategory ? "スレッド新規作成" : "コメント新規作成"
     const onCreate = currentThread.isCategory ? onCreateThread : onCreateComment
+    const inContents = currentThread.isCategory ?
+      (<ThreadContents/>) :
+      (<ArticleContents/>)
     return (
       <MuiThemeProvider>
         <ContentsDiv>
@@ -34,7 +39,9 @@ class Contents extends Component {
               </div>}
             iconStyleRight={{position: 'relative', top: '-20px'}}
           />
-          hoge
+        <InContentsDiv >
+          {inContents}
+        </InContentsDiv>
         </ContentsDiv>
       </MuiThemeProvider>
     );

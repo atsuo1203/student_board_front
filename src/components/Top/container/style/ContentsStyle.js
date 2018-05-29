@@ -6,8 +6,8 @@ export const ContentsDiv = styled.div`
   margin-bottom: 3px;
 `;
 
-export const inContentsDiv = styled.div`
-  mergin 3px;
+export const InContentsDiv = styled.div`
+  margin: 3px;
 `;
 
 export const appBarStyle = {
