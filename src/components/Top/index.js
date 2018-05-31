@@ -19,8 +19,10 @@ class Top extends Component {
     const {actions} = this.props
     const categoryArray = this.makeCategoryArray()
     const sortArray = this.makeSortArray()
+    const threadArrays = this.makeThreadArrays()
     actions.setCategoryArray(categoryArray)
     actions.setSortArray(sortArray)
+    actions.setThreadArrays(threadArrays)
   }
   makeCategoryArray = () => {
     const categoryArray = [
@@ -43,19 +45,32 @@ class Top extends Component {
     ]
     return sortArray
   }
-  makeThreadList = () => {
-    const threadArray = [
+  makeThreadArrays = () => {
+    const threadArrays = {
+      '1': [
       new ThreadModel({id: 'thread_1', title: 'vipからきました',
-      date: '2018/05/28(月) 21:07:50.001', categoryId: 1,
-      commentCount: 100, speed: 1000,}),
+      date: '2018/05/28(月) 21:07:50.001', categoryId: '1',
+      commentCount: '100', speed: '1000', index: 1}),
       new ThreadModel({id: 'thread_2', title: 'なんjから来ました',
-      date: '2018/05/29(火) 21:07:50.001', categoryId: 1,
-      commentCount: 100, speed: 1000,}),
+      date: '2018/05/29(火) 21:07:50.001', categoryId: '1',
+      commentCount: '100', speed: '1000', index: 2}),
       new ThreadModel({id: 'thread_3', title: '生き物苦手版サイコー',
-      date: '2018/05/30(水) 21:07:50.001', categoryId: 1,
-      commentCount: 100, speed: 1000,}),
-    ]
-    return threadArray
+      date: '2018/05/30(水) 21:07:50.001', categoryId: '1',
+      commentCount: '100', speed: '1000', index: 3}),
+      ],
+      '2': [
+      new ThreadModel({id: 'thread_4', title: 'pythonこそ最強',
+      date: '2018/05/28(月) 21:07:50.001', categoryId: '2',
+      commentCount: '100', speed: 1000, index: 1}),
+      new ThreadModel({id: 'thread_5', title: 'レポートダルすぎ',
+      date: '2018/05/29(火) 21:07:50.001', categoryId: '2',
+      commentCount: '100', speed: 1000, index: 2}),
+      new ThreadModel({id: 'thread_6', title: '電大の授業タノシイ、タノシイ、',
+      date: '2018/05/30(水) 21:07:50.001', categoryId: '2',
+      commentCount: '100', speed: 1000, index: 3}),
+      ],
+    }
+    return threadArrays
   }
   handleClickMenu = (categoryId) => {
     const {actions, categoryArray} = this.props

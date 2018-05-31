@@ -5,6 +5,13 @@ function setUserName(name){
   }
 }
 
+function setThreadArrays(threadArrays){
+  return {
+    type: "SET_THREAD_ARRAYS",
+    payload: threadArrays,
+  }
+}
+
 function setCurrentThread(isCategory, threadID){
   return {
     type: "SET_CURRENT_THREAD",
@@ -43,6 +50,7 @@ function setCurrentSort(currentSort){
 
 export default ({
   setUserName,
+  setThreadArrays,
   setCurrentThread,
   setCategoryArray,
   setCurrentCategory,
