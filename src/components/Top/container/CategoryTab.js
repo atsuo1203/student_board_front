@@ -15,7 +15,7 @@ class CategoryTab extends Component {
     categoryArray.forEach(category => {
       result.push(<MenuItem
         key={category.id}
-        value={category.id}
+        value={String(category.id)}
         primaryText={category.name}
         onClick={() => onClickMenu(category.id)}
         />)
@@ -23,7 +23,7 @@ class CategoryTab extends Component {
     return (
       <MuiThemeProvider>
         <DropDownMenu
-          value={currentCategory.id}
+          value={String(currentCategory.id)}
           style={{position: 'relative', left: '7px',}}
         >
           {result}

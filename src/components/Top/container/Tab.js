@@ -11,7 +11,7 @@ import {titleStyle, deleteButtonStyle} from './style/TabStyle'
 class Tab extends Component {
   static propTypes = {
     threadName: PropTypes.string.isRequired,
-    threadID: PropTypes.string.isRequired,
+    threadID: PropTypes.any.isRequired,
     currentThread: PropTypes.object.isRequired,
     isCategoryThread: PropTypes.bool,
     onDelete: PropTypes.func,
