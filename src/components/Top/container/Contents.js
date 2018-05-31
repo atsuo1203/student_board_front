@@ -10,6 +10,7 @@ import ArticleContents from './contentsParts/ArticleContents'
 
 class Contents extends Component {
   static propTypes = {
+    aCategoryThreadArray: PropTypes.array.isRequired,
     currentThread: PropTypes.object.isRequired,
     sortArray: PropTypes.array.isRequired,
     currentSort: PropTypes.object.isRequired,
@@ -19,12 +20,12 @@ class Contents extends Component {
     onSort: PropTypes.func.isRequired,
   }
   render() {
-    const {currentThread, currentSort, onReload, sortArray,
+    const {aCategoryThreadArray, currentThread, currentSort, onReload, sortArray,
       onCreateThread, onCreateComment, onSort} = this.props
     const label = currentThread.isCategory ? "スレッド新規作成" : "コメント新規作成"
     const onCreate = currentThread.isCategory ? onCreateThread : onCreateComment
     const inContents = currentThread.isCategory ?
-      (<ThreadContents/>) :
+      (<ThreadContents threads={aCategoryThreadArray}/>) :
       (<ArticleContents/>)
     return (
       <MuiThemeProvider>

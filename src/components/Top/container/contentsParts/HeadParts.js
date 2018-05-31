@@ -60,15 +60,15 @@ export class SortButton extends Component {
     const menuItemList = []
     sortArray.forEach(sortModel => {
       menuItemList.push(<MenuItem
-        key={sortModel.id}
-        value={sortModel.id}
+        key={String(sortModel.id)}
+        value={String(sortModel.id)}
         primaryText={sortModel.name}
         onClick={() => onSort(sortModel)}
       />)
     });
     return (
       <DropDownMenu
-        value={currentSort.id}
+        value={String(currentSort.id)}
         style={{transform: 'scale(0.9)', position: 'relative', top: '5px'}}
         underlineStyle={{background: '#000000'}}
         iconStyle={{fill: '#000000'}}

@@ -2,7 +2,7 @@ import {Record} from 'immutable';
 
 const SortRecord = Record(
   {
-    id: '1',
+    id: 1,
     name: 'ID順',
   }
 );
