@@ -17,12 +17,12 @@ import {Div, TabContainer} from './style'
 class Top extends Component {
   componentWillMount () {
     const {actions} = this.props
-    const categoryArray = this.makeCategoryList()
-    const sortArray = this.makeSortList()
+    const categoryArray = this.makeCategoryArray()
+    const sortArray = this.makeSortArray()
     actions.setCategoryArray(categoryArray)
     actions.setSortArray(sortArray)
   }
-  makeCategoryList = () => {
+  makeCategoryArray = () => {
     const categoryArray = [
       new CategoryModel({id: '1', name: '雑談'}),
       new CategoryModel({id: '2', name: '勉強'}),
@@ -32,7 +32,7 @@ class Top extends Component {
     ]
     return categoryArray
   }
-  makeSortList = () => {
+  makeSortArray = () => {
     const sortArray = [
       new SortModel({id: '1', name: 'ID昇順'}),
       new SortModel({id: '2', name: 'ID降順'}),
