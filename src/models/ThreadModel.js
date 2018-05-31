@@ -8,6 +8,7 @@ const ThreadRecord = Record(
     categoryId: 1,
     commentCount: 100,
     speed: 1000,
+    index: 1,  // スレッドの番号 dbには入っていないので、画面側で振り直す
   }
 );
 
