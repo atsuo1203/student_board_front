@@ -18,7 +18,7 @@ class ThreadContents extends Component {
     const countObj = (<CountStyle>{`コメント: ${thread.commentCount}`}</CountStyle>)
     return (
       <FlatButton
-        style={{position: 'relative', width: '100%'}}
+        style={{position: 'relative', width: '100%', margin: '3px'}}
         children={
         <ChildrenStyle key={thread.id}>
           {idObj}
@@ -45,8 +45,6 @@ class ThreadContents extends Component {
   }
 
   render() {
-    const {threads} = this.props
-    console.log(threads[0].index)
     return (
       <MuiThemeProvider >
         {this.threadObjs()}
