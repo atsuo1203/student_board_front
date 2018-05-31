@@ -7,9 +7,12 @@ import {IdStyle, TitleStyle, SpeedStyle, CountStyle, ChildrenStyle} from './styl
 
 class ThreadContents extends Component {
   static propTypes = {
+    threads: PropTypes.array.isRequired,
   }
 
   render() {
+    const {threads} = this.props
+    console.log(threads)
     const idObj = (<IdStyle>{1}</IdStyle>)
     const titleObj = (<TitleStyle>{'title'}</TitleStyle>)
     const speedObj = (<SpeedStyle>{'勢い: 3000'}</SpeedStyle>)

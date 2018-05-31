@@ -104,7 +104,9 @@ class Top extends Component {
   }
   render() {
     const {userName, categoryArray, sortArray,
-      currentCategory, currentThread, currentSort} = this.props
+      currentCategory, currentThread, currentSort, threadArrays} = this.props
+    // 現在のカテゴリのスレッドリスト
+    const aCategoryThreadArray = threadArrays[currentCategory.id]
     return (
       <Div>
         <Header
@@ -132,6 +134,7 @@ class Top extends Component {
           />
         </TabContainer>
         <Contents
+          aCategoryThreadArray={aCategoryThreadArray}
           currentThread={currentThread}
           sortArray={sortArray}
           currentSort={currentSort}
@@ -151,6 +154,7 @@ const mapStateToProps = (store) => ({
   currentCategory: store.Top.currentCategory,
   sortArray: store.Top.sortArray,
   currentSort: store.Top.currentSort,
+  threadArrays: store.Top.threadArrays,
 })
 
 const mapDispatchToProps = (dispatch) => ({
