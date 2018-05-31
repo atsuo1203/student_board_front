@@ -25,7 +25,7 @@ class Header extends Component {
   handleClickTile = () => {
     // TODO
     // helpページのような所へ飛ばす
-    // window.open('http://www.google.com','userProfile')
+    window.open('http://www.google.com','help')
   }
 
   rightObject = () => {
@@ -62,7 +62,7 @@ class Header extends Component {
               onClickMenu={onClickMenu}
               currentCategory={currentCategory}
               />}
-            iconStyleLeft={{position: 'relative',left: '-20px',}}
+            iconStyleLeft={{position: 'relative',left: '-20px',zIndex: 9999}}
             iconElementRight={this.rightObject()}
           />
         </div>
