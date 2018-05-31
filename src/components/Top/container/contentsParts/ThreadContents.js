@@ -10,27 +10,46 @@ class ThreadContents extends Component {
     threads: PropTypes.array.isRequired,
   }
 
+  threadObj = (thread) => {
+    console.log(thread)
+    const idObj = (<IdStyle>{thread.index}</IdStyle>)
+    const titleObj = (<TitleStyle>{thread.title}</TitleStyle>)
+    const speedObj = (<SpeedStyle>{`勢い: ${thread.speed}`}</SpeedStyle>)
+    const countObj = (<CountStyle>{`コメント: ${thread.commentCount}`}</CountStyle>)
+    return (
+      <FlatButton
+        style={{position: 'relative', width: '100%'}}
+        children={
+        <ChildrenStyle key={thread.id}>
+          {idObj}
+          {titleObj}
+          {speedObj}
+          {countObj}
+        </ChildrenStyle>}
+        backgroundColor='#7ca6ff'
+        hoverColor='#7cb6ff'
+      />
+    )
+  }
+
+  threadObjs = () => {
+    const {threads} = this.props
+    if (threads === undefined){
+      return (<div></div>)
+    }
+    var result = []
+    threads.forEach(thread => {
+      result.push(this.threadObj(thread))
+    });
+    return result
+  }
+
   render() {
     const {threads} = this.props
-    console.log(threads)
-    const idObj = (<IdStyle>{1}</IdStyle>)
-    const titleObj = (<TitleStyle>{'title'}</TitleStyle>)
-    const speedObj = (<SpeedStyle>{'勢い: 3000'}</SpeedStyle>)
-    const countObj = (<CountStyle>{'コメント: 600'}</CountStyle>)
+    console.log(threads[0].index)
     return (
       <MuiThemeProvider >
-        <FlatButton
-          style={{position: 'relative', width: '100%'}}
-          children={
-          <ChildrenStyle key={1}>
-            {idObj}
-            {titleObj}
-            {speedObj}
-            {countObj}
-          </ChildrenStyle>}
-          backgroundColor='#7ca6ff'
-          hoverColor='#7cb6ff'
-        />
+        {this.threadObjs()}
       </MuiThemeProvider>
     );
   }

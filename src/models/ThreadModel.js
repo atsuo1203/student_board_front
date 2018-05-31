@@ -31,4 +31,7 @@ export default class ThreadModel extends ThreadRecord {
   getSpeed() {
     return this.speed
   }
+  getIndex() {
+    return this.index
+  }
 }
