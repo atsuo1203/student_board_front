@@ -27,7 +27,7 @@ class ThreadContents extends Component {
             {countObj}
           </ChildrenStyle>}
           backgroundColor='#7ca6ff'
-          hoverColor='#7cc6ff'
+          hoverColor='#7cb6ff'
         />
       </MuiThemeProvider>
     );
