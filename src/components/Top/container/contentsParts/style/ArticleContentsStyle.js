@@ -10,3 +10,11 @@ export const Div = styled.div`
   height: 75vh;
   overflow: auto;
 `
+
+export const Title = styled.span`
+  margin-top: 3px;
+  margin-left: 3px;
+  margin-right: 3px;
+  font-size: 250%;
+  word-wrap: break-word;
+`

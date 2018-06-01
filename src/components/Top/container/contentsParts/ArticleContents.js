@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import {Div} from './style/ArticleContentsStyle'
+import {Div, Title} from './style/ArticleContentsStyle'
 
 class ArticleContents extends Component {
   static propTypes = {
@@ -10,7 +10,7 @@ class ArticleContents extends Component {
   render() {
     return (
       <Div>
-        Article
+        <Title>Title</Title>
       </Div>
     );
   }
