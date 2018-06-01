@@ -7,11 +7,10 @@ import {IdStyle, TitleStyle, SpeedStyle, CountStyle, ChildrenStyle} from './styl
 
 class ThreadContents extends Component {
   static propTypes = {
-    threads: PropTypes.array.isRequired,
+    threads: PropTypes.array,
   }
 
   threadObj = (thread) => {
-    console.log(thread)
     const idObj = (<IdStyle>{thread.index}</IdStyle>)
     const titleObj = (<TitleStyle>{thread.title}</TitleStyle>)
     const speedObj = (<SpeedStyle>{`勢い: ${thread.speed}`}</SpeedStyle>)
@@ -19,6 +18,7 @@ class ThreadContents extends Component {
     return (
       <FlatButton
         style={{position: 'relative', width: '100%', margin: '3px'}}
+        key={thread.id}
         children={
         <ChildrenStyle key={thread.id}>
           {idObj}
@@ -47,7 +47,9 @@ class ThreadContents extends Component {
   render() {
     return (
       <MuiThemeProvider >
+        <div>
         {this.threadObjs()}
+        </div>
       </MuiThemeProvider>
     );
   }

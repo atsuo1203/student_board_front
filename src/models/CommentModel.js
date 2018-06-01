@@ -2,11 +2,11 @@ import {Record} from 'immutable';
 
 const CommentRecord = Record(
   {
-    id: 1
-    nickName: 'たかし'
-    text: 'お前ら反論してみろ'
+    id: 1,
+    nickName: 'たかし',
+    text: 'お前ら反論してみろ',
     date: '2018/05/28(月) 21:07:50.001',
-    threadId: 'thread_id'
+    threadId: 'thread_id',
     userId: 1,
   }
 );

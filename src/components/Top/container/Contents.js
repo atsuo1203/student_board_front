@@ -10,7 +10,7 @@ import ArticleContents from './contentsParts/ArticleContents'
 
 class Contents extends Component {
   static propTypes = {
-    aCategoryThreadArray: PropTypes.array.isRequired,
+    aCategoryThreadArray: PropTypes.array,
     currentThread: PropTypes.object.isRequired,
     sortArray: PropTypes.array.isRequired,
     currentSort: PropTypes.object.isRequired,
