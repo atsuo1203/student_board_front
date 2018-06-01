@@ -27,6 +27,9 @@ class Contents extends Component {
     const inContents = currentThread.isCategory ?
       (<ThreadContents threads={aCategoryThreadArray}/>) :
       (<ArticleContents/>)
+    const sortButton = currentThread.isCategory ?
+      (<SortButton sortArray={sortArray} currentSort={currentSort} onSort={onSort}/>) :
+      (null)
     return (
       <MuiThemeProvider>
         <ContentsDiv>
@@ -34,11 +37,11 @@ class Contents extends Component {
             style={appBarStyle}
             iconElementLeft={<CreateButton
               label={label} currentThread={currentThread} onCreate={onCreate}/> }
-            iconElementRight={<div>
-              <SortButton sortArray={sortArray} currentSort={currentSort} onSort={onSort}/>
+            iconElementRight={<div style={{display: 'flex', flexDirection: 'row'}}>
+              {sortButton}
               <ReloadButton currentThread={currentThread} onReload={onReload}/>
               </div>}
-            iconStyleRight={{position: 'relative', top: '-20px'}}
+            iconStyleRight={{display: 'flex', flexDirection: 'row'}}
           />
         <InContentsDiv >
           {inContents}

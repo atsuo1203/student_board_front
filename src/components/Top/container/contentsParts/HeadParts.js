@@ -69,7 +69,7 @@ export class SortButton extends Component {
     return (
       <DropDownMenu
         value={String(currentSort.id)}
-        style={{transform: 'scale(0.9)', position: 'relative', top: '5px'}}
+        style={{transform: 'scale(0.9)', position: 'relative', top: '-15px'}}
         underlineStyle={{background: '#000000'}}
         iconStyle={{fill: '#000000'}}
       >
