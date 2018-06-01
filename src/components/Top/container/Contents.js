@@ -35,6 +35,7 @@ class Contents extends Component {
         <ContentsDiv>
           <AppBar
             style={appBarStyle}
+            titleStyle={{position: 'relative', transform: 'scale(0.01)'}}
             iconElementLeft={<CreateButton
               label={label} currentThread={currentThread} onCreate={onCreate}/> }
             iconElementRight={<div style={{display: 'flex', flexDirection: 'row'}}>
