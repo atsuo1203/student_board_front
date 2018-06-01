@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import Comment from './Comment'
+
 import {Div, Title} from './style/ArticleContentsStyle'
 
 class ArticleContents extends Component {
@@ -11,6 +13,7 @@ class ArticleContents extends Component {
     return (
       <Div>
         <Title>Title</Title>
+        <Comment/>
       </Div>
     );
   }
