@@ -48,6 +48,13 @@ function setCurrentSort(currentSort){
   }
 }
 
+function setArticles(articles){
+  return {
+    type: "SET_ARTICLES",
+    payload: articles,
+  }
+}
+
 export default ({
   setUserName,
   setThreadArrays,
@@ -56,4 +63,5 @@ export default ({
   setCurrentCategory,
   setSortArray,
   setCurrentSort,
+  setArticles,
 })
