@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import {Div, HeaderDiv,
-  HeaderID, HeaderName, HeaderDate} from './style/CommentStyle'
+  HeaderID, HeaderName, HeaderDate,
+  CommentDiv} from './style/CommentStyle'
 
 class Comment extends Component {
   static propTypes = {
@@ -12,8 +13,8 @@ class Comment extends Component {
     return(
       <HeaderDiv>
         <HeaderID>{1}</HeaderID>:
-        <HeaderName>たかし</HeaderName>
-        <HeaderDate>2018/06/01(金) 08:24:41.26</HeaderDate>
+        <HeaderName>{'たかし'}</HeaderName>
+        <HeaderDate>{'2018/06/01(金) 08:24:41.26'}</HeaderDate>
       </HeaderDiv>
     )
 
@@ -21,8 +22,9 @@ class Comment extends Component {
 
   commentParts = () => {
     return (
-      <div>
-      </div>
+      <CommentDiv>
+        {'我こそは最強なり'}
+      </CommentDiv>
     )
   }
 
@@ -30,6 +32,7 @@ class Comment extends Component {
     return (
       <Div>
         {this.headerParts()}
+        {this.commentParts()}
       </Div>
     );
   }

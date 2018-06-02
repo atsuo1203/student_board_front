@@ -12,7 +12,7 @@ export const Div = styled.div`
   border-radius: 5px;
 `
 
-export const Title = styled.span`
+export const Title = styled.div`
   margin-top: 3px;
   margin-left: 5px;
   margin-right: 3px;

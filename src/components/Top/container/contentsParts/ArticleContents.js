@@ -12,7 +12,7 @@ class ArticleContents extends Component {
   render() {
     return (
       <Div>
-        <Title>Title</Title>
+        <Title>{'Vipから来ました'}</Title>
         <Comment/>
       </Div>
     );
