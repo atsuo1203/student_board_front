@@ -26,22 +26,22 @@ class Top extends Component {
   }
   makeCategoryArray = () => {
     const categoryArray = [
-      new CategoryModel({id: '1', name: '雑談'}),
-      new CategoryModel({id: '2', name: '勉強'}),
-      new CategoryModel({id: '3', name: '恋愛'}),
-      new CategoryModel({id: '4', name: '部活'}),
-      new CategoryModel({id: '5', name: '進路'}),
+      new CategoryModel({id: 1, name: '雑談'}),
+      new CategoryModel({id: 2, name: '勉強'}),
+      new CategoryModel({id: 3, name: '恋愛'}),
+      new CategoryModel({id: 4, name: '部活'}),
+      new CategoryModel({id: 5, name: '進路'}),
     ]
     return categoryArray
   }
   makeSortArray = () => {
     const sortArray = [
-      new SortModel({id: '1', name: 'ID昇順'}),
-      new SortModel({id: '2', name: 'ID降順'}),
-      new SortModel({id: '3', name: '人気昇順'}),
-      new SortModel({id: '4', name: '人気降順'}),
-      new SortModel({id: '5', name: 'コメント数昇順'}),
-      new SortModel({id: '6', name: 'コメント数降順'}),
+      new SortModel({id: 1, name: 'ID昇順'}),
+      new SortModel({id: 2, name: 'ID降順'}),
+      new SortModel({id: 3, name: '人気昇順'}),
+      new SortModel({id: 4, name: '人気降順'}),
+      new SortModel({id: 5, name: 'コメント数昇順'}),
+      new SortModel({id: 6, name: 'コメント数降順'}),
     ]
     return sortArray
   }
