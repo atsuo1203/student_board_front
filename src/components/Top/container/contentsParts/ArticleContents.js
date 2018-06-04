@@ -17,7 +17,7 @@ class ArticleContents extends Component {
       return (
         <Div>
           <Title>{currentArticle.title}</Title>
-          <Comment comment={currentArticle.comments}/>
+          <Comment comments={currentArticle.comments}/>
         </Div>
       )
     } else {

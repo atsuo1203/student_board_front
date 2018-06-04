@@ -32,7 +32,7 @@ export const HeaderDate = styled.span`
   color: #000000
 `
 
-export const CommentDiv  = styled.div`
+export const TextDiv  = styled.div`
   margin-left: 8px;
   margin-right: 8px;
   word-wrap: break-word;

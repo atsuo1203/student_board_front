@@ -1,4 +1,3 @@
-import ArticleModel  from '../../models/ArticleModel'
 import CategoryModel from '../../models/CategoryModel'
 import SortModel from '../../models/SortModel'
 import ThreadModel  from '../../models/ThreadModel'

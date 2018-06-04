@@ -3,46 +3,55 @@ import PropTypes from 'prop-types';
 
 import {Div, HeaderDiv,
   HeaderID, HeaderName, HeaderDate,
-  CommentDiv} from './style/CommentStyle'
+  TextDiv} from './style/CommentStyle'
 
 class Comment extends Component {
   static propTypes = {
-    comments: PropTypes.array.isRequired,
+    comments: PropTypes.array,
   }
 
-  headerParts = () => {
+  headerParts = (comment) => {
     return(
       <HeaderDiv>
-        <HeaderID>{1}</HeaderID>:
-        <HeaderName>{'たかし'}</HeaderName>
-        <HeaderDate>{'2018/06/01(金) 08:24:41.26'}</HeaderDate>
+        <HeaderID>{comment.id}</HeaderID>:
+        <HeaderName>{comment.nickName}</HeaderName>
+        <HeaderDate>{comment.date}</HeaderDate>
       </HeaderDiv>
     )
 
   }
 
-  textParts = () => {
+  textParts = (comment) => {
     return (
-      <CommentDiv>
-        {'我こそは最強なり'}
-      </CommentDiv>
+      <TextDiv>
+        {comment.text}
+      </TextDiv>
     )
   }
 
-  commentObj = () => {
+  commentObj = (comment) => {
     return(
-      <Div>
-        {this.headerParts()}
-        {this.textParts()}
+      <Div key={comment.id}>
+        {this.headerParts(comment)}
+        {this.textParts(comment)}
       </Div>
     )
   }
 
+  commentObjs = () => {
+    const {comments} = this.props
+    if (comments === undefined) { return(<div></div>) }
+    const result = []
+    comments.forEach(comment => {
+      result.push(this.commentObj(comment))
+    })
+    return result
+  }
 
   render() {
     return (
       <div>
-        {this.commentObj()}
+        {this.commentObjs()}
       </div>
     );
   }
