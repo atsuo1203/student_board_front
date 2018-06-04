@@ -128,7 +128,15 @@ class Top extends Component {
     actions.setCurrentThread(true, category.id)
   }
   handleDelete = (threadId) => {
-    console.log(threadId)
+    const {actions, articleArray, currentCategory} = this.props
+    var _articleArray = articleArray
+    _articleArray.forEach((article, index, array) => {
+      if (article.id === threadId) {
+        array.splice(index, 1)
+      }
+    })
+    actions.setArticleArray(_articleArray)
+    actions.setCurrentThread(true, currentCategory.id)
   }
   handleSelectTab = (isCategory, threadId) => {
     const {actions} = this.props
