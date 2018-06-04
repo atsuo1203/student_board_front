@@ -10,7 +10,7 @@ import ArticleContents from './contentsParts/ArticleContents'
 
 class Contents extends Component {
   static propTypes = {
-    aCategoryThreadArray: PropTypes.array.isRequired,
+    aCategoryThreadArray: PropTypes.array,
     currentThread: PropTypes.object.isRequired,
     sortArray: PropTypes.array.isRequired,
     currentSort: PropTypes.object.isRequired,
@@ -18,27 +18,33 @@ class Contents extends Component {
     onCreateComment: PropTypes.func.isRequired,
     onReload: PropTypes.func.isRequired,
     onSort: PropTypes.func.isRequired,
+    addArticle: PropTypes.func.isRequired,
+    currentArticle: PropTypes.object,
   }
   render() {
     const {aCategoryThreadArray, currentThread, currentSort, onReload, sortArray,
-      onCreateThread, onCreateComment, onSort} = this.props
+      onCreateThread, onCreateComment, onSort, addArticle, currentArticle} = this.props
     const label = currentThread.isCategory ? "スレッド新規作成" : "コメント新規作成"
     const onCreate = currentThread.isCategory ? onCreateThread : onCreateComment
     const inContents = currentThread.isCategory ?
-      (<ThreadContents threads={aCategoryThreadArray}/>) :
-      (<ArticleContents/>)
+      (<ThreadContents threads={aCategoryThreadArray} addArticle={addArticle}/>) :
+      (<ArticleContents currentArticle={currentArticle}/>)
+    const sortButton = currentThread.isCategory ?
+      (<SortButton sortArray={sortArray} currentSort={currentSort} onSort={onSort}/>) :
+      (null)
     return (
       <MuiThemeProvider>
         <ContentsDiv>
           <AppBar
             style={appBarStyle}
+            titleStyle={{position: 'relative', transform: 'scale(0.01)'}}
             iconElementLeft={<CreateButton
               label={label} currentThread={currentThread} onCreate={onCreate}/> }
-            iconElementRight={<div>
-              <SortButton sortArray={sortArray} currentSort={currentSort} onSort={onSort}/>
+            iconElementRight={<div style={{display: 'flex', flexDirection: 'row'}}>
+              {sortButton}
               <ReloadButton currentThread={currentThread} onReload={onReload}/>
               </div>}
-            iconStyleRight={{position: 'relative', top: '-20px'}}
+            iconStyleRight={{display: 'flex', flexDirection: 'row'}}
           />
         <InContentsDiv >
           {inContents}

@@ -7,21 +7,16 @@ const initializeState = {
   userName: "名前はまだない",
   // スレッド関係
   // categoryIdをkeyにするdict[array]
-  threadArrays: {1: [new ThreadModel({id: 'thread_id',
-    title: "vipからきました",
-    date: '2018/05/28(月) 21:07:50.001',
-    categoryId: '1',
-    commentCount: 100,
-    speed: 1000,
-    index: 1,
-  })]},
-  currentThread: {isCategory: true, threadID: 1},
+  threadArrays: {1: [new ThreadModel()]},
+  currentThread: {isCategory: true, threadId: 1},
   // カテゴリ関係
   categoryArray: [new CategoryModel({id: 1, name: '雑談'})],
   currentCategory: new CategoryModel({id: 1, name: '雑談'}),
   // ソート関係
   sortArray: [new SortModel({id: 1, name: 'ID昇順'})],
   currentSort: new SortModel({id: 1, name: 'ID昇順'}),
+  // 記事関係 [new ArticleModel()] となる予定
+  articleArray:  []
 }
 
 export default (state=initializeState, action) => {
@@ -35,7 +30,7 @@ export default (state=initializeState, action) => {
     case "SET_CURRENT_THREAD":
       return Object.assign({}, state, {currentThread: {
         isCategory: action.isCategory,
-        threadID: action.threadID
+        threadId: action.threadId
       }})
     // カテゴリ関係
     case "SET_CATEGORY_ARRAY":
@@ -47,6 +42,8 @@ export default (state=initializeState, action) => {
       return Object.assign({}, state, {sortArray: action.payload})
     case "SET_CURRENT_SORT":
       return Object.assign({}, state, {currentSort: action.payload})
+    case "SET_ARTICLE_ARRAY":
+      return Object.assign({}, state, {articleArray: action.payload})
     default:
       return state;
   }

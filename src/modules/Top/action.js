@@ -12,11 +12,11 @@ function setThreadArrays(threadArrays){
   }
 }
 
-function setCurrentThread(isCategory, threadID){
+function setCurrentThread(isCategory, threadId){
   return {
     type: "SET_CURRENT_THREAD",
     isCategory: isCategory,
-    threadID: threadID,
+    threadId: threadId,
   }
 }
 
@@ -48,6 +48,13 @@ function setCurrentSort(currentSort){
   }
 }
 
+function setArticleArray(articleArray){
+  return {
+    type: "SET_ARTICLE_ARRAY",
+    payload: articleArray,
+  }
+}
+
 export default ({
   setUserName,
   setThreadArrays,
@@ -56,4 +63,5 @@ export default ({
   setCurrentCategory,
   setSortArray,
   setCurrentSort,
+  setArticleArray,
 })
