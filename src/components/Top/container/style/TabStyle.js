@@ -23,9 +23,9 @@ export const deleteButtonStyle = {
   },
   small: {
     position: 'relative',
-    top: '4px',
-    width: 20,
-    height: 20,
+    top: '-4px',
+    width: 36,
+    height: 36,
     padding: 0,
   },
 }
