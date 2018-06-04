@@ -24,7 +24,7 @@ export default class CommentModel extends CommentRecord {
   getDate() {
     return this.date
   }
-  getThreadId() {
+  getthreadId() {
     return this.threadId
   }
   getUserId() {

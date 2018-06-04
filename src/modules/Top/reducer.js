@@ -8,7 +8,7 @@ const initializeState = {
   // スレッド関係
   // categoryIdをkeyにするdict[array]
   threadArrays: {1: [new ThreadModel()]},
-  currentThread: {isCategory: true, threadID: 1},
+  currentThread: {isCategory: true, threadId: 1},
   // カテゴリ関係
   categoryArray: [new CategoryModel({id: 1, name: '雑談'})],
   currentCategory: new CategoryModel({id: 1, name: '雑談'}),
@@ -30,7 +30,7 @@ export default (state=initializeState, action) => {
     case "SET_CURRENT_THREAD":
       return Object.assign({}, state, {currentThread: {
         isCategory: action.isCategory,
-        threadID: action.threadID
+        threadId: action.threadId
       }})
     // カテゴリ関係
     case "SET_CATEGORY_ARRAY":

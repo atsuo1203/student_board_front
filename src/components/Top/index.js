@@ -127,12 +127,12 @@ class Top extends Component {
     actions.setCurrentCategory(category)
     actions.setCurrentThread(true, category.id)
   }
-  handleDelete = (threadID) => {
-    console.log(threadID)
+  handleDelete = (threadId) => {
+    console.log(threadId)
   }
-  handleSelectTab = (isCategory, threadID) => {
+  handleSelectTab = (isCategory, threadId) => {
     const {actions} = this.props
-    actions.setCurrentThread(isCategory, threadID)
+    actions.setCurrentThread(isCategory, threadId)
   }
   handleCreateThread = (currentThread) => {
     console.log('handleCreateThread')
@@ -156,7 +156,7 @@ class Top extends Component {
       tabs.push(<Tab
         key={article.title}
         threadName={article.title}
-        threadID={article.id}
+        threadId={article.id}
         currentThread={currentThread}
         isCategoryThread={false}
         onDelete={this.handleDelete}
@@ -173,7 +173,7 @@ class Top extends Component {
     const aCategoryThreadArray = threadArrays[currentCategory.id]
     // 現在の記事
     const currentArticle = (articleArray.length === 0) ? null :
-      articleArray.filter(article => String(currentThread.threadID) === String(article.id))[0]
+      articleArray.filter(article => String(currentThread.threadId) === String(article.id))[0]
     return (
       <Div>
         <Header
@@ -185,7 +185,7 @@ class Top extends Component {
         <TabContainer>
           <Tab
             threadName={currentCategory.name}
-            threadID={currentCategory.id}
+            threadId={currentCategory.id}
             currentThread={currentThread}
             isCategoryThread={true}
             onDelete={this.handleDelete}

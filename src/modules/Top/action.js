@@ -12,11 +12,11 @@ function setThreadArrays(threadArrays){
   }
 }
 
-function setCurrentThread(isCategory, threadID){
+function setCurrentThread(isCategory, threadId){
   return {
     type: "SET_CURRENT_THREAD",
     isCategory: isCategory,
-    threadID: threadID,
+    threadId: threadId,
   }
 }
 
