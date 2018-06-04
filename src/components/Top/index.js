@@ -76,7 +76,7 @@ class Top extends Component {
   }
   // TODO: 選択された時にAPI通信を行い、Articleの配列に追加して行く予定
   handleAddArticle = (threadId) => {
-    const {articleArray, actions} = this.props
+    const {articleArray, actions, currentCategory} = this.props
     // 既にその記事を開いていた場合
     var isExistArticle = false
     articleArray.forEach(article => {
@@ -84,14 +84,12 @@ class Top extends Component {
         isExistArticle = true
       }
     })
-    if (isExistArticle) {
-      actions.setCurrentThread(false, threadId)
-    } else {
+    if (!isExistArticle) {
       const article = this.getArticle(threadId)
       articleArray.push(article)
       actions.setArticleArray(articleArray)
-      actions.setCurrentThread(false, threadId)
     }
+      actions.setCurrentThread(true, currentCategory.id)
   }
   // TODO:
   // 現在は決め打ちだが、
