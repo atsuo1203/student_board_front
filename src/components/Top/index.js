@@ -97,7 +97,7 @@ class Top extends Component {
   getArticle = (threadId) => {
     const article = new ArticleModel({
       id: threadId,
-      title: 'Vipから来ました',
+      title: threadId,
       comments: [
         new CommentModel({
           id: 1,
@@ -154,6 +154,7 @@ class Top extends Component {
     const tabs = []
     articleArray.forEach(article => {
       tabs.push(<Tab
+        key={article.title}
         threadName={article.title}
         threadID={article.id}
         currentThread={currentThread}
@@ -168,9 +169,11 @@ class Top extends Component {
     const {userName, categoryArray, sortArray,
       currentCategory, currentThread, currentSort,
       threadArrays, articleArray} = this.props
-    console.log(articleArray)
     // 現在のカテゴリのスレッドリスト
     const aCategoryThreadArray = threadArrays[currentCategory.id]
+    // 現在の記事
+    const currentArticle = (articleArray.length === 0) ? null :
+      articleArray.filter(article => String(currentThread.threadID) === String(article.id))[0]
     return (
       <Div>
         <Header
@@ -200,6 +203,7 @@ class Top extends Component {
           onCreateComment={this.handleCreateComment}
           onSort={this.handleSort}
           addArticle={this.handleAddArticle}
+          currentArticle={currentArticle}
         />
         </Div>
     );

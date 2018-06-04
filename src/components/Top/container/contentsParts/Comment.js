@@ -7,6 +7,7 @@ import {Div, HeaderDiv,
 
 class Comment extends Component {
   static propTypes = {
+    comments: PropTypes.array.isRequired,
   }
 
   headerParts = () => {

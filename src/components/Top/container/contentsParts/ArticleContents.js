@@ -7,14 +7,32 @@ import {Div, Title} from './style/ArticleContentsStyle'
 
 class ArticleContents extends Component {
   static propTypes = {
+    currentArticle: PropTypes.object,
+  }
+
+  articleObj = () => {
+    const {currentArticle} = this.props
+    console.log(currentArticle)
+    if (currentArticle) {
+      return (
+        <Div>
+          <Title>{currentArticle.title}</Title>
+          <Comment comment={currentArticle.comments}/>
+        </Div>
+      )
+    } else {
+      return (
+        <div>
+        </div>
+      )
+    }
   }
 
   render() {
     return (
-      <Div>
-        <Title>{'Vipから来ました'}</Title>
-        <Comment/>
-      </Div>
+      <div>
+        {this.articleObj()}
+      </div>
     );
   }
 }
