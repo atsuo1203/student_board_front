@@ -8,9 +8,11 @@ import {IdStyle, TitleStyle, SpeedStyle, CountStyle, ChildrenStyle} from './styl
 class ThreadContents extends Component {
   static propTypes = {
     threads: PropTypes.array,
+    addArticle: PropTypes.func.isRequired,
   }
 
   threadObj = (thread) => {
+    const {addArticle} = this.props
     const idObj = (<IdStyle>{thread.index}</IdStyle>)
     const titleObj = (<TitleStyle>{thread.title}</TitleStyle>)
     const speedObj = (<SpeedStyle>{`勢い: ${thread.speed}`}</SpeedStyle>)
@@ -19,6 +21,7 @@ class ThreadContents extends Component {
       <FlatButton
         style={{position: 'relative', width: '100%', margin: '3px'}}
         key={thread.id}
+        onClick={() => addArticle(thread.id)}
         children={
         <ChildrenStyle key={thread.id}>
           {idObj}

@@ -48,10 +48,10 @@ function setCurrentSort(currentSort){
   }
 }
 
-function setArticles(articles){
+function setArticleArray(articleArray){
   return {
-    type: "SET_ARTICLES",
-    payload: articles,
+    type: "SET_ARTICLE_ARRAY",
+    payload: articleArray,
   }
 }
 
@@ -63,5 +63,5 @@ export default ({
   setCurrentCategory,
   setSortArray,
   setCurrentSort,
-  setArticles,
+  setArticleArray,
 })

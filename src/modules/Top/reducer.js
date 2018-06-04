@@ -16,8 +16,8 @@ const initializeState = {
   // ソート関係
   sortArray: [new SortModel({id: 1, name: 'ID昇順'})],
   currentSort: new SortModel({id: 1, name: 'ID昇順'}),
-  // 記事関係
-  articles: {'thread_id': new ArticleModel()}
+  // 記事関係 [new ArticleModel()] となる予定
+  articleArray:  []
 }
 
 export default (state=initializeState, action) => {
@@ -43,8 +43,8 @@ export default (state=initializeState, action) => {
       return Object.assign({}, state, {sortArray: action.payload})
     case "SET_CURRENT_SORT":
       return Object.assign({}, state, {currentSort: action.payload})
-    case "SET_ARTICLES":
-      return Object.assign({}, state, {articles: action.payload})
+    case "SET_ARTICLE_ARRAY":
+      return Object.assign({}, state, {articleArray: action.payload})
     default:
       return state;
   }

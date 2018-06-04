@@ -18,14 +18,15 @@ class Contents extends Component {
     onCreateComment: PropTypes.func.isRequired,
     onReload: PropTypes.func.isRequired,
     onSort: PropTypes.func.isRequired,
+    addArticle: PropTypes.func.isRequired,
   }
   render() {
     const {aCategoryThreadArray, currentThread, currentSort, onReload, sortArray,
-      onCreateThread, onCreateComment, onSort} = this.props
+      onCreateThread, onCreateComment, onSort, addArticle} = this.props
     const label = currentThread.isCategory ? "スレッド新規作成" : "コメント新規作成"
     const onCreate = currentThread.isCategory ? onCreateThread : onCreateComment
     const inContents = currentThread.isCategory ?
-      (<ThreadContents threads={aCategoryThreadArray}/>) :
+      (<ThreadContents threads={aCategoryThreadArray} addArticle={addArticle}/>) :
       (<ArticleContents/>)
     const sortButton = currentThread.isCategory ?
       (<SortButton sortArray={sortArray} currentSort={currentSort} onSort={onSort}/>) :
