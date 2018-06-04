@@ -21,7 +21,7 @@ class Comment extends Component {
 
   }
 
-  commentParts = () => {
+  textParts = () => {
     return (
       <CommentDiv>
         {'我こそは最強なり'}
@@ -29,12 +29,21 @@ class Comment extends Component {
     )
   }
 
-  render() {
-    return (
+  commentObj = () => {
+    return(
       <Div>
         {this.headerParts()}
-        {this.commentParts()}
+        {this.textParts()}
       </Div>
+    )
+  }
+
+
+  render() {
+    return (
+      <div>
+        {this.commentObj()}
+      </div>
     );
   }
 }
