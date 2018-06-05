@@ -2,22 +2,23 @@ import styled from 'styled-components';
 
 export const Title = {
   position: 'relative',
-  left: '-70px',
+  left: '-20px',
   textAlign: "center",
   cursor: "pointer",
 }
 
-export const RightUserName = styled.a`
-  position: absolute;
+export const RightDiv = styled.div`
+  position: relative;
   cursor: pointer;
-  top: 4px;
-  right: 10px
+  width: 93px;
+  left: -1px;
   color: #ffffff;
+  text-align: center;
 `;
 
 export const RightButton = {
   position: 'absolute',
-  top: '25px',
+  top: '30px',
   right: '10px',
 }
 

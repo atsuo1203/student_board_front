@@ -21,7 +21,7 @@ ReactDOM.render(
           <Route exact path='/'
             render={()=><Login/>} />
           <Route path='/top'
-            render={()=><Top name="タカシ"/>} />
+            render={()=><Top name="18FMI33"/>} />
         </Switch>
       </BrowserRouter>
     </MuiThemeProvider>
