@@ -18,8 +18,10 @@ ReactDOM.render(
     <MuiThemeProvider>
       <BrowserRouter>
         <Switch>
-          <Route exact path='/login' component={Login} />
-          <Route path='/top' component={Top} />
+          <Route exact path='/'
+            render={()=><Login/>} />
+          <Route path='/top'
+            render={()=><Top name="タカシ"/>} />
         </Switch>
       </BrowserRouter>
     </MuiThemeProvider>

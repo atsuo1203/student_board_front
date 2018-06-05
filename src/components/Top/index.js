@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
+import PropTypes from 'prop-types';
 
 import TopAction from '../../modules/Top/action'
 
@@ -17,11 +18,15 @@ import {Div, TabContainer} from './style'
 import CommentModel from '../../models/CommentModel';
 
 class Top extends Component {
+  static propTypes = {
+    name: PropTypes.string.isRequired,
+  }
   componentWillMount () {
-    const {actions} = this.props
+    const {actions, name} = this.props
     const categoryArray = this.getCategoryArray()
     const sortArray = this.getSortArray()
     const threadArrays = this.getThreadArrays()
+    actions.setUserName(name)
     actions.setCategoryArray(categoryArray)
     actions.setSortArray(sortArray)
     actions.setThreadArrays(threadArrays)
