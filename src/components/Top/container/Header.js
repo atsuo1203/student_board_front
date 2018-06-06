@@ -4,7 +4,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {AppBar, FlatButton} from 'material-ui';
 
 import CategoryTab from './CategoryTab'
-import {Title, RightUserName, RightButton, RightButtonText} from './style/HeaderStyle'
+import {Title, RightDiv, RightButton, RightButtonText} from './style/HeaderStyle'
 
 class Header extends Component {
   static propTypes = {
@@ -12,14 +12,11 @@ class Header extends Component {
     categoryArray: PropTypes.array.isRequired,
     currentCategory: PropTypes.object.isRequired,
     onClickMenu: PropTypes.func.isRequired,
+    onClickLogout: PropTypes.func.isRequired,
   }
 
   handleClickUserName = () => {
     window.open('http://www.google.com','userProfile')
-  }
-
-  handleClieckLogoutButton = () => {
-    console.log('hogehgoe')
   }
 
   handleClickTile = () => {
@@ -29,20 +26,20 @@ class Header extends Component {
   }
 
   rightObject = () => {
-    const {userName} = this.props
+    const {userName, onClickLogout} = this.props
     const logoutButton = (
       <FlatButton
         style={RightButton}
         label="logout"
         labelStyle={RightButtonText}
-        onClick={this.handleClieckLogoutButton}
+        onClick={() => onClickLogout()}
       />
     )
     return (
       <div>
-        <RightUserName onClick={this.handleClickUserName}>
+        <RightDiv onClick={this.handleClickUserName}>
           {userName}
-         </RightUserName>
+         </RightDiv>
         {logoutButton}
       </div>
     )

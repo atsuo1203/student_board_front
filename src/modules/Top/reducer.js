@@ -4,7 +4,7 @@ import ThreadModel  from '../../models/ThreadModel'
 
 const initializeState = {
   // ユーザ関係
-  userName: "名前はまだない",
+  userName: "",
   // スレッド関係
   // categoryIdをkeyにするdict[array]
   threadArrays: {1: [new ThreadModel()]},

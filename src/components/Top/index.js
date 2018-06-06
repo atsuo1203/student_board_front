@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
+import PropTypes from 'prop-types';
+import { withRouter } from "react-router-dom";
 
 import TopAction from '../../modules/Top/action'
 
@@ -17,11 +19,15 @@ import {Div, TabContainer} from './style'
 import CommentModel from '../../models/CommentModel';
 
 class Top extends Component {
+  static propTypes = {
+    name: PropTypes.string.isRequired,
+  }
   componentWillMount () {
-    const {actions} = this.props
+    const {actions, name} = this.props
     const categoryArray = this.getCategoryArray()
     const sortArray = this.getSortArray()
     const threadArrays = this.getThreadArrays()
+    actions.setUserName(name)
     actions.setCategoryArray(categoryArray)
     actions.setSortArray(sortArray)
     actions.setThreadArrays(threadArrays)
@@ -157,6 +163,9 @@ class Top extends Component {
     const {actions} = this.props
     actions.setCurrentSort(sortModel)
   }
+  handleLogout = () => {
+    this.props.history.push('/')
+  }
   makeTabs = () => {
     const {currentThread, articleArray} = this.props
     const tabs = []
@@ -189,6 +198,7 @@ class Top extends Component {
           categoryArray={categoryArray}
           currentCategory={currentCategory}
           onClickMenu={this.handleClickMenu}
+          onClickLogout={this.handleLogout}
           />
         <TabContainer>
           <Tab
@@ -232,4 +242,4 @@ const mapDispatchToProps = (dispatch) => ({
   actions: bindActionCreators(TopAction, dispatch)
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Top);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Top));
