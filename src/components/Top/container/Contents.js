@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {AppBar} from 'material-ui';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-import {ContentsDiv, InContentsDiv, appBarStyle} from './style/ContentsStyle'
+import {ContentsDiv, InContentsDiv, appBarStyle} from '../../../style/Top/container/ContentsStyle'
 import {ReloadButton, CreateButton, SortButton} from './contentsParts/HeadParts'
 import ThreadContents from './contentsParts/ThreadContents'
 import ArticleContents from './contentsParts/ArticleContents'

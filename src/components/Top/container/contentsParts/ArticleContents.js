@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import Comment from './Comment'
 
-import {Div, Title} from './style/ArticleContentsStyle'
+import {Div, Title} from '../../../../style/Top/container/contentsParts/ArticleContentsStyle'
 
 class ArticleContents extends Component {
   static propTypes = {

@@ -6,7 +6,7 @@ import IconButton from 'material-ui/IconButton';
 import Delete from 'material-ui/svg-icons/action/delete';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-import {titleStyle, deleteButtonStyle} from './style/TabStyle'
+import {titleStyle, deleteButtonStyle} from '../../../style/Top/container/TabStyle'
 
 class Tab extends Component {
   static propTypes = {

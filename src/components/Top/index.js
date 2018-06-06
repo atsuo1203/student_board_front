@@ -15,7 +15,7 @@ import CategoryModel from '../../models/CategoryModel'
 import SortModel from '../../models/SortModel'
 import ThreadModel from '../../models/ThreadModel'
 
-import {Div, TabContainer} from './style'
+import {Div, TabContainer} from '../../style/Top'
 import CommentModel from '../../models/CommentModel';
 
 class Top extends Component {
