@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
+import { withRouter } from "react-router-dom";
 
 import TopAction from '../../modules/Top/action'
 
@@ -162,6 +163,9 @@ class Top extends Component {
     const {actions} = this.props
     actions.setCurrentSort(sortModel)
   }
+  handleLogout = () => {
+    this.props.history.push('/')
+  }
   makeTabs = () => {
     const {currentThread, articleArray} = this.props
     const tabs = []
@@ -194,6 +198,7 @@ class Top extends Component {
           categoryArray={categoryArray}
           currentCategory={currentCategory}
           onClickMenu={this.handleClickMenu}
+          onClickLogout={this.handleLogout}
           />
         <TabContainer>
           <Tab
@@ -237,4 +242,4 @@ const mapDispatchToProps = (dispatch) => ({
   actions: bindActionCreators(TopAction, dispatch)
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Top);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Top));

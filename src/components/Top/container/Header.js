@@ -12,14 +12,11 @@ class Header extends Component {
     categoryArray: PropTypes.array.isRequired,
     currentCategory: PropTypes.object.isRequired,
     onClickMenu: PropTypes.func.isRequired,
+    onClickLogout: PropTypes.func.isRequired,
   }
 
   handleClickUserName = () => {
     window.open('http://www.google.com','userProfile')
-  }
-
-  handleClieckLogoutButton = () => {
-    console.log('hogehgoe')
   }
 
   handleClickTile = () => {
@@ -29,13 +26,13 @@ class Header extends Component {
   }
 
   rightObject = () => {
-    const {userName} = this.props
+    const {userName, onClickLogout} = this.props
     const logoutButton = (
       <FlatButton
         style={RightButton}
         label="logout"
         labelStyle={RightButtonText}
-        onClick={this.handleClieckLogoutButton}
+        onClick={() => onClickLogout()}
       />
     )
     return (
