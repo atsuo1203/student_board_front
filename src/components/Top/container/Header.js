@@ -4,7 +4,8 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {AppBar, FlatButton} from 'material-ui';
 
 import CategoryTab from './CategoryTab'
-import {Title, RightDiv, RightButton, RightButtonText} from './style/HeaderStyle'
+import {Title, RightDiv, RightButton, RightButtonText}
+from '../../../style/Top/container/HeaderStyle'
 
 class Header extends Component {
   static propTypes = {

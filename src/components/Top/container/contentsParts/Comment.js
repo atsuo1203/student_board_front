@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import {Div, HeaderDiv,
   HeaderID, HeaderName, HeaderDate,
-  TextDiv} from './style/CommentStyle'
+  TextDiv} from '../../../../style/Top/container/contentsParts/CommentStyle'
 
 class Comment extends Component {
   static propTypes = {
