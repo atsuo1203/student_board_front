@@ -21,6 +21,7 @@ class Login extends Component {
   handleLogin = () => {
     const {email, password} = this.props
     console.log(email, password)
+    this.props.history.push('./top')
   }
 
   render() {
@@ -46,4 +47,4 @@ const mapDispatchToProps = (dispatch) => ({
   actions: bindActionCreators(LoginAction, dispatch)
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Login));
