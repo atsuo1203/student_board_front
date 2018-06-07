@@ -12,9 +12,10 @@ class LoginForm extends Component {
     onChangeEmail: PropTypes.func.isRequired,
     onChangePassword: PropTypes.func.isRequired,
     onClickLogin: PropTypes.func.isRequired,
+    onClickCreateAccount: PropTypes.func.isRequired,
   }
   render() {
-    const {onChangeEmail, onChangePassword, onClickLogin} = this.props
+    const {onChangeEmail, onChangePassword, onClickLogin, onClickCreateAccount} = this.props
     return (
       <MuiThemeProvider>
         <Form>
@@ -32,6 +33,14 @@ class LoginForm extends Component {
             backgroundColor="#a4c639"
             hoverColor="#8AA62F"
             onClick={() => onClickLogin()}
+            style={{position: 'relative', margin: '3px'}}
+          /><br />
+          <FlatButton
+            label="アカウント新規作成"
+            backgroundColor="#a4c639"
+            hoverColor="#8AA62F"
+            onClick={() => onClickCreateAccount()}
+            style={{position: 'relative', margin: '3px'}}
           /><br />
           パスワードを忘れた
         </Form>

@@ -24,6 +24,10 @@ class Login extends Component {
     this.props.history.push('./top')
   }
 
+  handleCreateAccount = () => {
+    this.props.history.push('./preRegister')
+  }
+
   render() {
     return (
       <div>
@@ -32,6 +36,7 @@ class Login extends Component {
           onChangeEmail={this.handleSetEmail}
           onChangePassword={this.handleSetPassword}
           onClickLogin={this.handleLogin}
+          onClickCreateAccount={this.handleCreateAccount}
         />
       </div>
     );
