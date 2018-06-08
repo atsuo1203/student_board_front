@@ -22,15 +22,15 @@ class Top extends Component {
   static propTypes = {
     name: PropTypes.string.isRequired,
   }
-  componentWillMount () {
+  async componentWillMount () {
     const {actions, name} = this.props
     const categoryArray = this.getCategoryArray()
     const sortArray = this.getSortArray()
     const threadArrays = this.getThreadArrays()
     actions.setUserName(name)
-    actions.setCategoryArray(categoryArray)
-    actions.setSortArray(sortArray)
-    actions.setThreadArrays(threadArrays)
+    // actions.setCategoryArray(categoryArray)
+    // actions.setSortArray(sortArray)
+    // actions.setThreadArrays(threadArrays)
   }
   getCategoryArray = () => {
     const categoryArray = [
