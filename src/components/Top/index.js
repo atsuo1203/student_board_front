@@ -158,6 +158,8 @@ class Top extends Component {
   }
   handleReload = (currentThread) => {
     console.log(currentThread)
+    const {actions} = this.props
+    actions.setHogehoge('saga!')
   }
   handleSort = (sortModel) => {
     const {actions} = this.props

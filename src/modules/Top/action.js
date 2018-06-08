@@ -55,6 +55,13 @@ function setArticleArray(articleArray){
   }
 }
 
+function setHogehoge(hogehoge){
+  return {
+    type: "SET_HOGEHOGE",
+    payload: hogehoge,
+  }
+}
+
 export default ({
   setUserName,
   setThreadArrays,
@@ -64,4 +71,5 @@ export default ({
   setSortArray,
   setCurrentSort,
   setArticleArray,
+  setHogehoge,
 })
