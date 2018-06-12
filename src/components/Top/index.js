@@ -23,24 +23,15 @@ class Top extends Component {
     name: PropTypes.string.isRequired,
   }
   async componentWillMount () {
+    console.log('componentWillMount')
     const {actions, name} = this.props
-    const categoryArray = this.getCategoryArray()
+    actions.getCategoryArray()
     const sortArray = this.getSortArray()
     const threadArrays = this.getThreadArrays()
     actions.setUserName(name)
     // actions.setCategoryArray(categoryArray)
     // actions.setSortArray(sortArray)
     // actions.setThreadArrays(threadArrays)
-  }
-  getCategoryArray = () => {
-    const categoryArray = [
-      new CategoryModel({id: 1, name: '雑談'}),
-      new CategoryModel({id: 2, name: '勉強'}),
-      new CategoryModel({id: 3, name: '恋愛'}),
-      new CategoryModel({id: 4, name: '部活'}),
-      new CategoryModel({id: 5, name: '進路'}),
-    ]
-    return categoryArray
   }
   getSortArray = () => {
     const sortArray = [
@@ -158,8 +149,6 @@ class Top extends Component {
   }
   handleReload = (currentThread) => {
     console.log(currentThread)
-    const {actions} = this.props
-    actions.setHogehoge('saga!')
   }
   handleSort = (sortModel) => {
     const {actions} = this.props

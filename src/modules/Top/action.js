@@ -55,10 +55,9 @@ function setArticleArray(articleArray){
   }
 }
 
-function setHogehoge(hogehoge){
+function getCategoryArray(){
   return {
-    type: "SET_HOGEHOGE",
-    payload: hogehoge,
+    type: "GET_CATEGORY_ARRAY",
   }
 }
 
@@ -71,5 +70,5 @@ export default ({
   setSortArray,
   setCurrentSort,
   setArticleArray,
-  setHogehoge,
+  getCategoryArray,
 })
