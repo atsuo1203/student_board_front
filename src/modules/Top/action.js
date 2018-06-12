@@ -61,6 +61,12 @@ function getCategoryArray(){
   }
 }
 
+function getSortArray(){
+  return {
+    type: "GET_SORT_ARRAY",
+  }
+}
+
 export default ({
   setUserName,
   setThreadArrays,
@@ -71,4 +77,5 @@ export default ({
   setCurrentSort,
   setArticleArray,
   getCategoryArray,
+  getSortArray
 })

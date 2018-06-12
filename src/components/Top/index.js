@@ -26,23 +26,10 @@ class Top extends Component {
     console.log('componentWillMount')
     const {actions, name} = this.props
     actions.getCategoryArray()
-    const sortArray = this.getSortArray()
+    actions.getSortArray()
     const threadArrays = this.getThreadArrays()
     actions.setUserName(name)
-    // actions.setCategoryArray(categoryArray)
-    // actions.setSortArray(sortArray)
-    // actions.setThreadArrays(threadArrays)
-  }
-  getSortArray = () => {
-    const sortArray = [
-      new SortModel({id: 1, name: 'ID昇順'}),
-      new SortModel({id: 2, name: 'ID降順'}),
-      new SortModel({id: 3, name: '人気昇順'}),
-      new SortModel({id: 4, name: '人気降順'}),
-      new SortModel({id: 5, name: 'コメント数昇順'}),
-      new SortModel({id: 6, name: 'コメント数降順'}),
-    ]
-    return sortArray
+    actions.setThreadArrays(threadArrays)
   }
   getThreadArrays = () => {
     const threadArrays = {

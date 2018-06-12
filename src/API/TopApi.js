@@ -4,12 +4,23 @@ import request from 'superagent';
 export default class TopApi {
 
   /**
-   *  カテゴリ一覧を取得
+   *  get
    */
+  // categories
   static async getCategories() {
     // TODO: headerを取得してつける
     try {
       return request.get(DEV_URL+'/categories');
+    } catch (e) {
+      throw e;
+    }
+  }
+
+  // sorts
+  static async getSorts() {
+    // TODO: headerを取得してつける
+    try {
+      return request.get(DEV_URL+'/sorts');
     } catch (e) {
       throw e;
     }
