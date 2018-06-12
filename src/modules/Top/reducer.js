@@ -7,7 +7,8 @@ const initializeState = {
   userName: "",
   // スレッド関係
   // categoryIdをkeyにするdict[array]
-  threadArrays: {1: [new ThreadModel()]},
+  // 例 {1: [new ThreadModel()]}
+  threadArrays: {},
   currentThread: {isCategory: true, threadId: 1},
   // カテゴリ関係
   categoryArray: [new CategoryModel({id: 1, name: '雑談'})],
