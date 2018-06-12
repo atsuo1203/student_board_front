@@ -1,5 +1,6 @@
 import {fork, take, put, call} from 'redux-saga/effects';
-import request from 'superagent';
+
+import TopApi from '../../API/TopApi'
 
 import TopAction from './action';
 import CategoryModel from '../../models/CategoryModel';
@@ -21,7 +22,7 @@ function* getCategoryArray() {
       {id: 5, name: '進路'},
     ]
     try {
-      const response = yield call(categoryRequest)
+      const response = yield call(TopApi.getTest)
       console.log(response.body)
       var categoryArray = []
       dataList.forEach(data => {
@@ -34,8 +35,4 @@ function* getCategoryArray() {
       window.confirm('データの取得に失敗しました。ページの更新を行ってください')
     }
   }
-}
-
-async function categoryRequest() {
-  return await request.get('https://jsonplaceholder.typicode.com/posts/1')
 }
