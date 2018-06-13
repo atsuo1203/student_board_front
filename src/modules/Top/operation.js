@@ -78,19 +78,18 @@ function* getSortArray() {
 function* getThreadArray() {
   while (true) {
     const action = yield take('GET_THREAD_ARRAY')
-    console.log('getThreadArray!')
     const categoryId = action.categoryId
     const page = action.page
     const sortId = action.sortId
     const dataList = [
-      {id: 'thread_1'+String(categoryId), title: 'vipからきました',
-      date: '2018/05/28(月) 21:07:50.001', categoryId: 1,
+      {id: 'thread_1'+String(categoryId)+String(page)+String(sortId), title: 'vipからきました',
+      date: '2018/05/28(月) 21:07:50.001', categoryId: categoryId,
       commentCount: 100, speed: 1000},
-      {id: 'thread_2'+String(categoryId), title: 'なんjから来ました',
-      date: '2018/05/29(火) 21:07:50.001', categoryId: 1,
+      {id: 'thread_2'+String(categoryId)+String(page)+String(sortId), title: 'なんjから来ました',
+      date: '2018/05/29(火) 21:07:50.001', categoryId: categoryId,
       commentCount: 100, speed: 1000},
-      {id: 'thread_3'+String(categoryId), title: '生き物苦手版サイコー',
-      date: '2018/05/30(水) 21:07:50.001', categoryId: 1,
+      {id: 'thread_3'+String(categoryId)+String(page)+String(sortId), title: '生き物苦手版サイコー',
+      date: '2018/05/30(水) 21:07:50.001', categoryId: categoryId,
       commentCount: 100, speed: 1000},
     ]
     try {

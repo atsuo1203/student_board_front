@@ -14,20 +14,24 @@ class Contents extends Component {
     currentThread: PropTypes.object.isRequired,
     sortArray: PropTypes.array.isRequired,
     currentSort: PropTypes.object.isRequired,
+    currentPage: PropTypes.number.isRequired,
     onCreateThread: PropTypes.func.isRequired,
     onCreateComment: PropTypes.func.isRequired,
     onReload: PropTypes.func.isRequired,
     onSort: PropTypes.func.isRequired,
+    onPaging: PropTypes.func.isRequired,
     addArticle: PropTypes.func.isRequired,
     currentArticle: PropTypes.object,
   }
   render() {
-    const {aCategoryThreadArray, currentThread, currentSort, onReload, sortArray,
-      onCreateThread, onCreateComment, onSort, addArticle, currentArticle} = this.props
+    const {aCategoryThreadArray, currentThread, currentSort, currentPage,
+      onReload, sortArray, onCreateThread, onCreateComment, onSort, onPaging,
+      addArticle, currentArticle} = this.props
     const label = currentThread.isCategory ? "スレッド新規作成" : "コメント新規作成"
     const onCreate = currentThread.isCategory ? onCreateThread : onCreateComment
     const inContents = currentThread.isCategory ?
-      (<ThreadContents threads={aCategoryThreadArray} addArticle={addArticle}/>) :
+      (<ThreadContents threads={aCategoryThreadArray}
+        addArticle={addArticle} currentPage={currentPage} onPaging={onPaging}/>) :
       (<ArticleContents currentArticle={currentArticle}/>)
     const sortButton = currentThread.isCategory ?
       (<SortButton sortArray={sortArray} currentSort={currentSort} onSort={onSort}/>) :

@@ -12,6 +12,8 @@ class ThreadContents extends Component {
   static propTypes = {
     threads: PropTypes.array,
     addArticle: PropTypes.func.isRequired,
+    currentPage: PropTypes.number.isRequired,
+    onPaging: PropTypes.func.isRequired,
   }
 
   threadObj = (thread) => {
@@ -51,10 +53,13 @@ class ThreadContents extends Component {
   }
 
   render() {
+    const {currentPage, onPaging} = this.props
     return (
       <MuiThemeProvider >
+        <div>
         {this.threadObjs()}
-        <ThreadFooterParts/>
+        <ThreadFooterParts currentPage={currentPage} onPaging={onPaging}/>
+        </div>
       </MuiThemeProvider>
     );
   }
