@@ -79,8 +79,9 @@ class Top extends Component {
     console.log(currentThread)
   }
   handleSort = (sortModel) => {
-    const {actions} = this.props
+    const {actions, currentCategory} = this.props
     actions.setCurrentSort(sortModel)
+    actions.getThreadArray(currentCategory.id, 1, sortModel.id)
   }
   handleLogout = () => {
     this.props.history.push('/')

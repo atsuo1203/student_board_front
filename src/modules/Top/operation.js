@@ -78,6 +78,7 @@ function* getSortArray() {
 function* getThreadArray() {
   while (true) {
     const action = yield take('GET_THREAD_ARRAY')
+    console.log('getThreadArray!')
     const categoryId = action.categoryId
     const page = action.page
     const sortId = action.sortId
