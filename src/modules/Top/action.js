@@ -55,6 +55,17 @@ function setArticleArray(articleArray){
   }
 }
 
+function setCurrentPage(page){
+  return {
+    type: "SET_CURRENT_PAGE",
+    payload: page,
+  }
+}
+
+
+/*
+ * API関連
+*/
 function getCategoryArray(){
   return {
     type: "GET_CATEGORY_ARRAY",
@@ -92,6 +103,7 @@ export default ({
   setSortArray,
   setCurrentSort,
   setArticleArray,
+  setCurrentPage,
   getCategoryArray,
   getSortArray,
   getThreadArray,

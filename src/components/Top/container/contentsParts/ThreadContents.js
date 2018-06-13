@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import {FlatButton} from 'material-ui';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
+import ThreadFooterParts from './ThreadFooterParts'
+
 import {IdStyle, TitleStyle, SpeedStyle, CountStyle, ChildrenStyle}
 from '../../../../style/Top/container/contentsParts/ThreadContentsStyle'
 
@@ -10,6 +12,8 @@ class ThreadContents extends Component {
   static propTypes = {
     threads: PropTypes.array,
     addArticle: PropTypes.func.isRequired,
+    currentPage: PropTypes.number.isRequired,
+    onPaging: PropTypes.func.isRequired,
   }
 
   threadObj = (thread) => {
@@ -49,10 +53,12 @@ class ThreadContents extends Component {
   }
 
   render() {
+    const {currentPage, onPaging} = this.props
     return (
       <MuiThemeProvider >
         <div>
         {this.threadObjs()}
+        <ThreadFooterParts currentPage={currentPage} onPaging={onPaging}/>
         </div>
       </MuiThemeProvider>
     );

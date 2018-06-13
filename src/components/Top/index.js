@@ -10,11 +10,7 @@ import Header from './container/Header'
 import Tab from './container/Tab'
 import Contents from './container/Contents'
 
-import ArticleModel from '../../models/ArticleModel'
-import ThreadModel from '../../models/ThreadModel'
-
 import {Div, TabContainer} from '../../style/Top'
-import CommentModel from '../../models/CommentModel';
 
 class Top extends Component {
   static propTypes = {
@@ -44,13 +40,12 @@ class Top extends Component {
     }
   }
   handleClickMenu = (categoryId) => {
-    const {actions, categoryArray, threadArrays, currentSort} = this.props
+    const {actions, categoryArray, currentSort, currentPage} = this.props
     const category = categoryArray.find(c => {
       return (c.id === categoryId )
     })
-    const threadKeys = Object.keys(threadArrays)
     actions.setCurrentCategory(category)
-    actions.getThreadArray(categoryId, 1, currentSort.id)
+    actions.getThreadArray(categoryId, currentPage, currentSort.id)
   }
   handleDelete = (threadId) => {
     const {actions, articleArray, currentCategory} = this.props
@@ -79,12 +74,19 @@ class Top extends Component {
     console.log(currentThread)
   }
   handleSort = (sortModel) => {
-    const {actions, currentCategory} = this.props
+    const {actions, currentCategory, currentPage} = this.props
     actions.setCurrentSort(sortModel)
-    actions.getThreadArray(currentCategory.id, 1, sortModel.id)
+    actions.getThreadArray(currentCategory.id, currentPage, sortModel.id)
   }
   handleLogout = () => {
     this.props.history.push('/')
+  }
+  handlePaging = (page) => {
+    const {actions, currentCategory, currentSort} = this.props
+    if (page > 0) {
+      actions.setCurrentPage(page)
+      actions.getThreadArray(currentCategory.id, page, currentSort.id)
+    }
   }
   makeTabs = () => {
     const {currentThread, articleArray} = this.props
@@ -104,7 +106,7 @@ class Top extends Component {
   }
   render() {
     const {userName, categoryArray, sortArray,
-      currentCategory, currentThread, currentSort,
+      currentCategory, currentThread, currentSort, currentPage,
       threadArrays, articleArray} = this.props
     // 現在のカテゴリのスレッドリスト
     const aCategoryThreadArray = threadArrays[currentCategory.id]
@@ -136,10 +138,12 @@ class Top extends Component {
           currentThread={currentThread}
           sortArray={sortArray}
           currentSort={currentSort}
+          currentPage={currentPage}
           onReload={this.handleReload}
           onCreateThread={this.handleCreateThread}
           onCreateComment={this.handleCreateComment}
           onSort={this.handleSort}
+          onPaging={this.handlePaging}
           addArticle={this.handleAddArticle}
           currentArticle={currentArticle}
         />
@@ -154,6 +158,7 @@ const mapStateToProps = (store) => ({
   currentCategory: store.Top.currentCategory,
   sortArray: store.Top.sortArray,
   currentSort: store.Top.currentSort,
+  currentPage: store.Top.currentPage,
   threadArrays: store.Top.threadArrays,
   articleArray: store.Top.articleArray,
 })
