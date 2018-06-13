@@ -12,7 +12,6 @@ class ArticleContents extends Component {
 
   articleObj = () => {
     const {currentArticle} = this.props
-    console.log(currentArticle)
     if (currentArticle) {
       return (
         <Div>
