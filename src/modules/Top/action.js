@@ -67,6 +67,15 @@ function getSortArray(){
   }
 }
 
+function getThreadArray(categoryId, page, sortId){
+  return {
+    type: "GET_THREAD_ARRAY",
+    categoryId: categoryId,
+    page: page,
+    sortId: sortId,
+  }
+}
+
 export default ({
   setUserName,
   setThreadArrays,
@@ -77,5 +86,6 @@ export default ({
   setCurrentSort,
   setArticleArray,
   getCategoryArray,
-  getSortArray
+  getSortArray,
+  getThreadArray,
 })

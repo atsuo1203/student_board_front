@@ -26,6 +26,20 @@ export default class TopApi {
     }
   }
 
+  // threads
+  static async getThreads(category_id, page, sort_id) {
+    // TODO: headerを取得してつける
+    try {
+      return request.get(
+        DEV_URL+'/threads/'+String(category_id)+
+        '?page='+String(page)+
+        '&sort_id'+String(sort_id)
+      );
+    } catch (e) {
+      throw e;
+    }
+  }
+
   /**
    *  テスト用restAPI 通信テスト用
    */

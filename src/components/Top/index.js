@@ -11,8 +11,6 @@ import Tab from './container/Tab'
 import Contents from './container/Contents'
 
 import ArticleModel from '../../models/ArticleModel'
-import CategoryModel from '../../models/CategoryModel'
-import SortModel from '../../models/SortModel'
 import ThreadModel from '../../models/ThreadModel'
 
 import {Div, TabContainer} from '../../style/Top'
@@ -27,9 +25,8 @@ class Top extends Component {
     const {actions, name} = this.props
     actions.getCategoryArray()
     actions.getSortArray()
-    const threadArrays = this.getThreadArrays()
+    actions.getThreadArray(1, 1, 1)
     actions.setUserName(name)
-    actions.setThreadArrays(threadArrays)
   }
   getThreadArrays = () => {
     const threadArrays = {
