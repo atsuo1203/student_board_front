@@ -4,6 +4,7 @@ import {FlatButton} from 'material-ui';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import ThreadFooterParts from './ThreadFooterParts'
+import DialogDefault from './DialogDefault'
 
 import {IdStyle, TitleStyle, SpeedStyle, CountStyle, ChildrenStyle}
 from '../../../../style/Top/container/contentsParts/ThreadContentsStyle'
@@ -59,6 +60,8 @@ class ThreadContents extends Component {
         <div>
         {this.threadObjs()}
         <ThreadFooterParts currentPage={currentPage} onPaging={onPaging}/>
+        <br/>
+        <DialogDefault />
         </div>
       </MuiThemeProvider>
     );
