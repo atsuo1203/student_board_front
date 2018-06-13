@@ -101,12 +101,13 @@ class Top extends Component {
     return article
   }
   handleClickMenu = (categoryId) => {
-    const {actions, categoryArray} = this.props
+    const {actions, categoryArray, threadArrays, currentSort} = this.props
     const category = categoryArray.find(c => {
       return (c.id === categoryId )
     })
+    const threadKeys = Object.keys(threadArrays)
     actions.setCurrentCategory(category)
-    actions.setCurrentThread(true, category.id)
+    actions.getThreadArray(categoryId, 1, currentSort.id)
   }
   handleDelete = (threadId) => {
     const {actions, articleArray, currentCategory} = this.props
