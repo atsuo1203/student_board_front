@@ -3,14 +3,17 @@ import {fork, take, put, call, select} from 'redux-saga/effects';
 import TopApi from '../../API/TopApi'
 
 import TopAction from './action';
+import ArticleModel from '../../models/ArticleModel';
 import CategoryModel from '../../models/CategoryModel';
 import SortModel from '../../models/SortModel';
 import ThreadModel from '../../models/ThreadModel'
+import CommentModel from '../../models/CommentModel';
 
 export function* topOperation() {
   yield fork(getCategoryArray);
   yield fork(getSortArray);
   yield fork(getThreadArray);
+  yield fork(getArticle);
 }
 
 /*
@@ -102,12 +105,68 @@ function* getThreadArray() {
         })
         threadArray.push(thread)
       })
-      console.log('threadArray')
-      console.log(threadArray)
       const threadArrays = yield select(store => store.Top.threadArrays)
       threadArrays[categoryId] = threadArray
       yield put(TopAction.setThreadArrays(threadArrays))
       yield put(TopAction.setCurrentThread(true, categoryId))
+    } catch (error) {
+      console.log(error)
+      window.confirm('データの取得に失敗しました。ページの更新を行ってください')
+    }
+  }
+}
+
+// 記事取得
+function* getArticle() {
+  while (true) {
+    const action = yield take('GET_ARTICLE')
+    const threadId = action.threadId
+    const data =
+    {
+      id: threadId,
+      title: threadId,
+      comments: [
+        {
+          id: 1,
+          nickName: 'たかし',
+          text: 'お前ら反論してみろ' + threadId,
+          date: '2018/05/28(月) 21:07:50.001',
+          threadId: threadId,
+          userId: 1,
+        },
+        {
+          id: 2,
+          nickName: 'ぴろゆき',
+          text: '>>1 キモ',
+          date: '2018/05/28(月) 21:30:50.001',
+          threadId: threadId,
+          userId: 2,
+        },
+      ]
+    }
+    try {
+      // const response = yield call(TopApi.getThread, threadId)
+      const response = yield call(TopApi.getTest)
+      // TODO: dataをresponse.bodyに書き換え
+      const article = new ArticleModel({
+        id: data.id, title: data.title,
+        comments:
+          data.comments.map(comment => {
+            return new CommentModel({
+              id: comment.id,
+              nickName: comment.nickName,
+              text: comment.text,
+              date: comment.date,
+              threadId: comment.threadId,
+              userId: comment.userId,
+            })
+          })
+      })
+      const articleArray = yield select(store => store.Top.articleArray)
+      const currentCategory = yield select(store => store.Top.currentCategory)
+      articleArray.push(article)
+      yield put(TopAction.setArticleArray(articleArray))
+      yield put(TopAction.setCurrentThread(true, currentCategory.id))
     } catch (error) {
       console.log(error)
       window.confirm('データの取得に失敗しました。ページの更新を行ってください')

@@ -28,33 +28,6 @@ class Top extends Component {
     actions.getThreadArray(1, 1, 1)
     actions.setUserName(name)
   }
-  getThreadArrays = () => {
-    const threadArrays = {
-      1: [
-      new ThreadModel({id: 'thread_1', title: 'vipからきました',
-      date: '2018/05/28(月) 21:07:50.001', categoryId: 1,
-      commentCount: 100, speed: 1000, index: 1}),
-      new ThreadModel({id: 'thread_2', title: 'なんjから来ました',
-      date: '2018/05/29(火) 21:07:50.001', categoryId: 1,
-      commentCount: 100, speed: 1000, index: 2}),
-      new ThreadModel({id: 'thread_3', title: '生き物苦手版サイコー',
-      date: '2018/05/30(水) 21:07:50.001', categoryId: 1,
-      commentCount: 100, speed: 1000, index: 3}),
-      ],
-      2: [
-      new ThreadModel({id: 'thread_4', title: 'pythonこそ最強',
-      date: '2018/05/28(月) 21:07:50.001', categoryId: 2,
-      commentCount: 100, speed: 1000, index: 1}),
-      new ThreadModel({id: 'thread_5', title: 'レポートダルすぎ',
-      date: '2018/05/29(火) 21:07:50.001', categoryId: 2,
-      commentCount: 100, speed: 1000, index: 2}),
-      new ThreadModel({id: 'thread_6', title: '電大の授業タノシイ、タノシイ、',
-      date: '2018/05/30(水) 21:07:50.001', categoryId: 2,
-      commentCount: 100, speed: 1000, index: 3}),
-      ],
-    }
-    return threadArrays
-  }
   // TODO: 選択された時にAPI通信を行い、Articleの配列に追加して行く予定
   handleAddArticle = (threadId) => {
     const {articleArray, actions, currentCategory} = this.props
@@ -65,40 +38,10 @@ class Top extends Component {
         isExistArticle = true
       }
     })
+    actions.setCurrentThread(true, currentCategory.id)
     if (!isExistArticle) {
-      const article = this.getArticle(threadId)
-      articleArray.push(article)
-      actions.setArticleArray(articleArray)
+      actions.getArticle(threadId)
     }
-      actions.setCurrentThread(true, currentCategory.id)
-  }
-  // TODO:
-  // 現在は決め打ちだが、
-  // 本当はthread_idを引数に取って、articleをapiにリクエスト
-  getArticle = (threadId) => {
-    const article = new ArticleModel({
-      id: threadId,
-      title: threadId,
-      comments: [
-        new CommentModel({
-          id: 1,
-          nickName: 'たかし',
-          text: 'お前ら反論してみろ',
-          date: '2018/05/28(月) 21:07:50.001',
-          threadId: threadId,
-          userId: 1,
-        }),
-        new CommentModel({
-          id: 2,
-          nickName: 'ぴろゆき',
-          text: '>>1 キモ',
-          date: '2018/05/28(月) 21:30:50.001',
-          threadId: threadId,
-          userId: 1,
-        }),
-      ]
-    })
-    return article
   }
   handleClickMenu = (categoryId) => {
     const {actions, categoryArray, threadArrays, currentSort} = this.props

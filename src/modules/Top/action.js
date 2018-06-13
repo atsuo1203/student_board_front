@@ -76,6 +76,13 @@ function getThreadArray(categoryId, page, sortId){
   }
 }
 
+function getArticle(threadId){
+  return {
+    type: "GET_ARTICLE",
+    threadId: threadId,
+  }
+}
+
 export default ({
   setUserName,
   setThreadArrays,
@@ -88,4 +95,5 @@ export default ({
   getCategoryArray,
   getSortArray,
   getThreadArray,
+  getArticle,
 })
