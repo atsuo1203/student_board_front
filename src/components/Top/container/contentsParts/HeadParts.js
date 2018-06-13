@@ -31,14 +31,14 @@ export class ReloadButton extends Component {
 export class CreateButton extends Component {
   static propTypes = {
     currentThread: PropTypes.object.isRequired,
-    onCreate: PropTypes.func.isRequired,
     label: PropTypes.string.isRequired,
+    changeDialog: PropTypes.func.isRequired,
   }
   render() {
-    const {currentThread, onCreate, label} = this.props
+    const {label, changeDialog} = this.props
     return (
       <RaisedButton
-        onClick={() => onCreate(currentThread)}
+        onClick={() => changeDialog(true)}
         label={label}
         labelPosition={'before'}
         primary={true}

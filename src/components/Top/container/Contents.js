@@ -7,6 +7,7 @@ import {ContentsDiv, InContentsDiv, appBarStyle} from '../../../style/Top/contai
 import {ReloadButton, CreateButton, SortButton} from './contentsParts/HeadParts'
 import ThreadContents from './contentsParts/ThreadContents'
 import ArticleContents from './contentsParts/ArticleContents'
+import DialogDefault from './contentsParts/DialogDefault';
 
 class Contents extends Component {
   static propTypes = {
@@ -33,7 +34,6 @@ class Contents extends Component {
     const onCreate = currentThread.isCategory ? onCreateThread : onCreateComment
     const inContents = currentThread.isCategory ?
       (<ThreadContents threads={aCategoryThreadArray}
-        isDialogOpen={isDialogOpen} changeDialog={changeDialog}
         addArticle={addArticle} currentPage={currentPage} onPaging={onPaging}/>) :
       (<ArticleContents currentArticle={currentArticle}/>)
     const sortButton = currentThread.isCategory ?
@@ -46,7 +46,9 @@ class Contents extends Component {
             style={appBarStyle}
             titleStyle={{position: 'relative', transform: 'scale(0.01)'}}
             iconElementLeft={<CreateButton
-              label={label} currentThread={currentThread} onCreate={onCreate}/> }
+              label={label} currentThread={currentThread} onCreate={onCreate}
+              isDialogOpen={isDialogOpen} changeDialog={changeDialog}
+            />}
             iconElementRight={<div style={{display: 'flex', flexDirection: 'row'}}>
               {sortButton}
               <ReloadButton currentThread={currentThread} onReload={onReload}/>
@@ -56,6 +58,7 @@ class Contents extends Component {
         <InContentsDiv >
           {inContents}
         </InContentsDiv>
+        <DialogDefault isDialogOpen={isDialogOpen} changeDialog={changeDialog} />
         </ContentsDiv>
       </MuiThemeProvider>
     );

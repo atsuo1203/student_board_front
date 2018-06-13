@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {Dialog, FlatButton, RaisedButton} from 'material-ui';
+import {Dialog, FlatButton} from 'material-ui';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 // import {Div, Title} from '../../../../style/Top/container/contentsParts/ArticleContentsStyle'
@@ -28,7 +28,6 @@ class DialogDefault extends Component {
     return (
       <MuiThemeProvider >
       <div>
-        <RaisedButton label="Dialog" onClick={() => changeDialog(true)} />
         <Dialog
           title="Dialog With Actions"
           actions={actions}

@@ -4,7 +4,6 @@ import {FlatButton} from 'material-ui';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import ThreadFooterParts from './ThreadFooterParts'
-import DialogDefault from './DialogDefault'
 
 import {IdStyle, TitleStyle, SpeedStyle, CountStyle, ChildrenStyle}
 from '../../../../style/Top/container/contentsParts/ThreadContentsStyle'
@@ -15,8 +14,6 @@ class ThreadContents extends Component {
     addArticle: PropTypes.func.isRequired,
     currentPage: PropTypes.number.isRequired,
     onPaging: PropTypes.func.isRequired,
-    isDialogOpen: PropTypes.bool.isRequired,
-    changeDialog: PropTypes.func.isRequired,
   }
 
   threadObj = (thread) => {
@@ -56,14 +53,12 @@ class ThreadContents extends Component {
   }
 
   render() {
-    const {currentPage, onPaging, isDialogOpen, changeDialog} = this.props
+    const {currentPage, onPaging} = this.props
     return (
       <MuiThemeProvider >
         <div>
         {this.threadObjs()}
         <ThreadFooterParts currentPage={currentPage} onPaging={onPaging}/>
-        <br/>
-        <DialogDefault isDialogOpen={isDialogOpen} changeDialog={changeDialog}/>
         </div>
       </MuiThemeProvider>
     );
