@@ -19,6 +19,8 @@ const initializeState = {
   articleArray:  [],
   // ページ関係
   currentPage: 1,
+  // ダイアログ関係
+  isDialogOpen: false,
 }
 
 export default (state=initializeState, action) => {
@@ -49,6 +51,8 @@ export default (state=initializeState, action) => {
     //ページ関係
     case "SET_CURRENT_PAGE":
       return Object.assign({}, state, {currentPage: action.payload})
+    case "SET_IS_DIALOG_OPEN":
+      return Object.assign({}, state, {isDialogOpen: action.payload})
     default:
       return state;
   }

@@ -62,6 +62,12 @@ function setCurrentPage(page){
   }
 }
 
+function setIsDialogOpen(isDialogOpen){
+  return {
+    type: "SET_IS_DIALOG_OPEN",
+    payload: isDialogOpen,
+  }
+}
 
 /*
  * API関連
@@ -104,6 +110,7 @@ export default ({
   setCurrentSort,
   setArticleArray,
   setCurrentPage,
+  setIsDialogOpen,
   getCategoryArray,
   getSortArray,
   getThreadArray,

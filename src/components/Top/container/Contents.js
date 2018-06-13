@@ -22,15 +22,18 @@ class Contents extends Component {
     onPaging: PropTypes.func.isRequired,
     addArticle: PropTypes.func.isRequired,
     currentArticle: PropTypes.object,
+    isDialogOpen: PropTypes.bool.isRequired,
+    changeDialog: PropTypes.func.isRequired,
   }
   render() {
     const {aCategoryThreadArray, currentThread, currentSort, currentPage,
       onReload, sortArray, onCreateThread, onCreateComment, onSort, onPaging,
-      addArticle, currentArticle} = this.props
+      addArticle, currentArticle, isDialogOpen, changeDialog} = this.props
     const label = currentThread.isCategory ? "スレッド新規作成" : "コメント新規作成"
     const onCreate = currentThread.isCategory ? onCreateThread : onCreateComment
     const inContents = currentThread.isCategory ?
       (<ThreadContents threads={aCategoryThreadArray}
+        isDialogOpen={isDialogOpen} changeDialog={changeDialog}
         addArticle={addArticle} currentPage={currentPage} onPaging={onPaging}/>) :
       (<ArticleContents currentArticle={currentArticle}/>)
     const sortButton = currentThread.isCategory ?

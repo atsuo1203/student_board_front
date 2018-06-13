@@ -7,44 +7,34 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 class DialogDefault extends Component {
   static propTypes = {
+    isDialogOpen: PropTypes.bool.isRequired,
+    changeDialog: PropTypes.func.isRequired,
   }
 
-  state = {
-    open: false,
-  };
-
-  handleOpen = () => {
-    this.setState({open: true});
-  };
-
-  handleClose = () => {
-    this.setState({open: false});
-  };
-
   render() {
+    const {isDialogOpen, changeDialog} = this.props
     const actions = [
       <FlatButton
         label="Cancel"
         primary={true}
-        onClick={this.handleClose}
+        onClick={() => changeDialog(false)}
       />,
       <FlatButton
         label="Submit"
         primary={true}
-        keyboardFocused={true}
-        onClick={this.handleClose}
+        onClick={() => changeDialog(false)}
       />
     ]
     return (
       <MuiThemeProvider >
       <div>
-        <RaisedButton label="Dialog" onClick={this.handleOpen} />
+        <RaisedButton label="Dialog" onClick={() => changeDialog(true)} />
         <Dialog
           title="Dialog With Actions"
           actions={actions}
           modal={false}
-          open={this.state.open}
-          onRequestClose={this.handleClose}
+          open={isDialogOpen}
+          onRequestClose={() => changeDialog(false)}
         >
           The actions in this window were passed in as an array of React objects.
         </Dialog>

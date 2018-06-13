@@ -88,6 +88,10 @@ class Top extends Component {
       actions.getThreadArray(currentCategory.id, page, currentSort.id)
     }
   }
+  handleChangeDialog = (isDialogOpen) => {
+    const {actions} = this.props
+    actions.setIsDialogOpen(isDialogOpen)
+  }
   makeTabs = () => {
     const {currentThread, articleArray} = this.props
     const tabs = []
@@ -107,7 +111,7 @@ class Top extends Component {
   render() {
     const {userName, categoryArray, sortArray,
       currentCategory, currentThread, currentSort, currentPage,
-      threadArrays, articleArray} = this.props
+      threadArrays, articleArray, isDialogOpen} = this.props
     // 現在のカテゴリのスレッドリスト
     const aCategoryThreadArray = threadArrays[currentCategory.id]
     // 現在の記事
@@ -146,6 +150,8 @@ class Top extends Component {
           onPaging={this.handlePaging}
           addArticle={this.handleAddArticle}
           currentArticle={currentArticle}
+          isDialogOpen={isDialogOpen}
+          changeDialog={this.handleChangeDialog}
         />
         </Div>
     );
@@ -161,6 +167,7 @@ const mapStateToProps = (store) => ({
   currentPage: store.Top.currentPage,
   threadArrays: store.Top.threadArrays,
   articleArray: store.Top.articleArray,
+  isDialogOpen: store.Top.isDialogOpen,
 })
 
 const mapDispatchToProps = (dispatch) => ({

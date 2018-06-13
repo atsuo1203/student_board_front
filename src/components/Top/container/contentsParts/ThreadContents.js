@@ -15,6 +15,8 @@ class ThreadContents extends Component {
     addArticle: PropTypes.func.isRequired,
     currentPage: PropTypes.number.isRequired,
     onPaging: PropTypes.func.isRequired,
+    isDialogOpen: PropTypes.bool.isRequired,
+    changeDialog: PropTypes.func.isRequired,
   }
 
   threadObj = (thread) => {
@@ -54,14 +56,14 @@ class ThreadContents extends Component {
   }
 
   render() {
-    const {currentPage, onPaging} = this.props
+    const {currentPage, onPaging, isDialogOpen, changeDialog} = this.props
     return (
       <MuiThemeProvider >
         <div>
         {this.threadObjs()}
         <ThreadFooterParts currentPage={currentPage} onPaging={onPaging}/>
         <br/>
-        <DialogDefault />
+        <DialogDefault isDialogOpen={isDialogOpen} changeDialog={changeDialog}/>
         </div>
       </MuiThemeProvider>
     );
