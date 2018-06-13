@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import {FlatButton} from 'material-ui';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
+import ThreadFooterParts from './ThreadFooterParts'
+
 import {IdStyle, TitleStyle, SpeedStyle, CountStyle, ChildrenStyle}
 from '../../../../style/Top/container/contentsParts/ThreadContentsStyle'
 
@@ -51,9 +53,8 @@ class ThreadContents extends Component {
   render() {
     return (
       <MuiThemeProvider >
-        <div>
         {this.threadObjs()}
-        </div>
+        <ThreadFooterParts/>
       </MuiThemeProvider>
     );
   }
