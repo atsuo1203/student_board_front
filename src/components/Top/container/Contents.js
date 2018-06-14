@@ -8,6 +8,7 @@ import {ReloadButton, CreateButton, SortButton} from './contentsParts/HeadParts'
 import ThreadContents from './contentsParts/ThreadContents'
 import ArticleContents from './contentsParts/ArticleContents'
 import DialogDefault from './contentsParts/DialogDefault';
+import DialogThread from './contentsParts/DialogThread';
 
 class Contents extends Component {
   static propTypes = {
@@ -39,6 +40,9 @@ class Contents extends Component {
     const sortButton = currentThread.isCategory ?
       (<SortButton sortArray={sortArray} currentSort={currentSort} onSort={onSort}/>) :
       (null)
+    const dialogChild = currentThread.isCategory ?
+      (<DialogThread />):
+      (<div></div>)
     return (
       <MuiThemeProvider>
         <ContentsDiv>
@@ -58,7 +62,8 @@ class Contents extends Component {
         <InContentsDiv >
           {inContents}
         </InContentsDiv>
-        <DialogDefault onCreate={onCreate} isDialogOpen={isDialogOpen} onChangeDialog={onChangeDialog} />
+        <DialogDefault onCreate={onCreate} isDialogOpen={isDialogOpen}
+          onChangeDialog={onChangeDialog} dialogChild={dialogChild} label={label}/>
         </ContentsDiv>
       </MuiThemeProvider>
     );

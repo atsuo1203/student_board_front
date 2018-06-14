@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 import {Dialog, FlatButton} from 'material-ui';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-import DialogThread from './DialogThread'
-
 class DialogDefault extends Component {
   static propTypes = {
     isDialogOpen: PropTypes.bool.isRequired,
     onChangeDialog: PropTypes.func.isRequired,
     onCreate: PropTypes.func.isRequired,
+    dialogChild: PropTypes.object.isRequired,
+    label: PropTypes.string.isRequired,
   }
 
   handleSubmit = () => {
@@ -19,7 +19,7 @@ class DialogDefault extends Component {
   }
 
   render() {
-    const {isDialogOpen, onChangeDialog} = this.props
+    const {isDialogOpen, onChangeDialog, dialogChild, label} = this.props
     const actions = [
       <FlatButton
         label="キャンセル"
@@ -36,13 +36,13 @@ class DialogDefault extends Component {
       <MuiThemeProvider >
       <div>
         <Dialog
-          title="Dialog With Actions"
+          title={label}
           actions={actions}
           modal={false}
           open={isDialogOpen}
           onRequestClose={() => onChangeDialog(false)}
           style={{textAlign: 'center'}}
-          children={<DialogThread />}
+          children={dialogChild}
         >
         </Dialog>
       </div>

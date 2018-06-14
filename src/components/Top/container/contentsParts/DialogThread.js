@@ -16,6 +16,7 @@ class DialogThread extends Component {
         /><br/>
         <TextField
           hintText="コメントを入力してください。このコメントが記事の初めのコメントになります。"
+          hintStyle={{position:'relative' ,textAlign: 'top', textAlign: 'left', marginTop: '10px'}}
           multiLine={true}
           style={{position: 'relative', width: '100%'}}
           rows={8}
