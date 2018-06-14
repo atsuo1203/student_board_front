@@ -29,19 +29,24 @@ class Header extends Component {
 
   rightObject = () => {
     const {userName, onClickLogout, toProfile} = this.props
+    const profileButton = (
+      <FlatButton
+        label="プロフィール画面へ"
+        labelStyle={RightButtonText}
+        onClick={toProfile}
+      />
+    )
     const logoutButton = (
       <FlatButton
         style={RightButton}
         label="logout"
         labelStyle={RightButtonText}
-        onClick={() => onClickLogout()}
+        onClick={onClickLogout}
       />
     )
     return (
       <div>
-        <RightDiv onClick={toProfile}>
-          {userName}
-         </RightDiv>
+        {profileButton}
         {logoutButton}
       </div>
     )

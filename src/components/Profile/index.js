@@ -39,6 +39,9 @@ class Profile extends Component {
       <div>
         <CommonHeader title='ユーザ情報編集'/>
         <ProfileForm
+          onChangeNickName={this.handleChangeNickName}
+          onChangeTwitter={this.handleChangeTwitter}
+          onChangeMyProfile={this.handleChangeMyProfile}
           onClickDecision={this.handleDecision}
         />
       </div>
