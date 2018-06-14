@@ -9,6 +9,7 @@ import ThreadContents from './contentsParts/ThreadContents'
 import ArticleContents from './contentsParts/ArticleContents'
 import DialogDefault from './contentsParts/DialogDefault';
 import DialogThread from './contentsParts/DialogThread';
+import DialogArticle from './contentsParts/DialogArticle';
 
 class Contents extends Component {
   static propTypes = {
@@ -47,7 +48,7 @@ class Contents extends Component {
       (null)
     const dialogChild = currentThread.isCategory ?
       (<DialogThread onChangeTitle={onChangeDialogThreadTitle} onChangeComment={onChangeDialogThreadComment}/>)
-      : (<div></div>)
+      : (<DialogArticle onChangeComment={onChangeDialogArticleComment}/>)
     return (
       <MuiThemeProvider>
         <ContentsDiv>
