@@ -8,6 +8,7 @@ import createSagaMiddleware from "redux-saga";
 
 import Register from './components/Register';
 import PreRegister from './components/PreRegister';
+import Profile from './components/Profile';
 import Login from './components/Login';
 import Top from './components/Top';
 import {rootSaga} from './sagas';
@@ -34,6 +35,8 @@ ReactDOM.render(
             render={()=><PreRegister/>} />
           <Route path='/register'
             render={()=><Register/>} />
+          <Route path='/profile'
+            render={()=><Profile/>} />
         </Switch>
       </BrowserRouter>
     </MuiThemeProvider>

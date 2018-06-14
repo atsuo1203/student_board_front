@@ -14,6 +14,7 @@ class Header extends Component {
     currentCategory: PropTypes.object.isRequired,
     onClickMenu: PropTypes.func.isRequired,
     onClickLogout: PropTypes.func.isRequired,
+    toProfile: PropTypes.func.isRequired,
   }
 
   handleClickUserName = () => {
@@ -27,7 +28,7 @@ class Header extends Component {
   }
 
   rightObject = () => {
-    const {userName, onClickLogout} = this.props
+    const {userName, onClickLogout, toProfile} = this.props
     const logoutButton = (
       <FlatButton
         style={RightButton}
@@ -38,7 +39,7 @@ class Header extends Component {
     )
     return (
       <div>
-        <RightDiv onClick={this.handleClickUserName}>
+        <RightDiv onClick={toProfile}>
           {userName}
          </RightDiv>
         {logoutButton}
