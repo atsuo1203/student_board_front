@@ -46,7 +46,7 @@ class Contents extends Component {
             style={appBarStyle}
             titleStyle={{position: 'relative', transform: 'scale(0.01)'}}
             iconElementLeft={<CreateButton
-              label={label} currentThread={currentThread} onCreate={onCreate}
+              label={label} currentThread={currentThread}
               isDialogOpen={isDialogOpen} changeDialog={changeDialog}
             />}
             iconElementRight={<div style={{display: 'flex', flexDirection: 'row'}}>
@@ -58,7 +58,7 @@ class Contents extends Component {
         <InContentsDiv >
           {inContents}
         </InContentsDiv>
-        <DialogDefault isDialogOpen={isDialogOpen} changeDialog={changeDialog} />
+        <DialogDefault onCreate={onCreate} isDialogOpen={isDialogOpen} changeDialog={changeDialog} />
         </ContentsDiv>
       </MuiThemeProvider>
     );

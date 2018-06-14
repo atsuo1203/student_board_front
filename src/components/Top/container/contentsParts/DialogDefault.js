@@ -9,6 +9,13 @@ class DialogDefault extends Component {
   static propTypes = {
     isDialogOpen: PropTypes.bool.isRequired,
     changeDialog: PropTypes.func.isRequired,
+    onCreate: PropTypes.func.isRequired,
+  }
+
+  handleSubmit = () => {
+    const {changeDialog, onCreate} = this.props
+    changeDialog(false)
+    onCreate('hogehoge')
   }
 
   render() {
@@ -22,7 +29,7 @@ class DialogDefault extends Component {
       <FlatButton
         label="Submit"
         primary={true}
-        onClick={() => changeDialog(false)}
+        onClick={this.handleSubmit}
       />
     ]
     return (
