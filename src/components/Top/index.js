@@ -63,12 +63,14 @@ class Top extends Component {
     actions.setCurrentThread(isCategory, threadId)
   }
   handleCreateThread = (currentThread) => {
+    const {dialogThreadTitle, dialogThreadComment} = this.props
     console.log('handleCreateThread')
-    console.log(currentThread)
+    console.log(currentThread, dialogThreadTitle, dialogThreadComment)
   }
   handleCreateComment = (currentThread) => {
+    const {dialogArticleComment} = this.props
     console.log('handleCreateComment')
-    console.log(currentThread)
+    console.log(currentThread, dialogArticleComment)
   }
   handleReload = (currentThread) => {
     console.log(currentThread)
@@ -87,6 +89,22 @@ class Top extends Component {
       actions.setCurrentPage(page)
       actions.getThreadArray(currentCategory.id, page, currentSort.id)
     }
+  }
+  handleOnChangeDialog = (isDialogOpen) => {
+    const {actions} = this.props
+    actions.setIsDialogOpen(isDialogOpen)
+  }
+  handleOnChangeDialogThreadTitle = (event) => {
+    const {actions} = this.props
+    actions.setDialogThreadTitle(event.target.value)
+  }
+  handleOnChangeDialogThreadComment = (event) => {
+    const {actions} = this.props
+    actions.setDialogThreadComment(event.target.value)
+  }
+  handleOnChangeDialogArticleComment = (event) => {
+    const {actions} = this.props
+    actions.setDialogArticleComment(event.target.value)
   }
   makeTabs = () => {
     const {currentThread, articleArray} = this.props
@@ -107,7 +125,7 @@ class Top extends Component {
   render() {
     const {userName, categoryArray, sortArray,
       currentCategory, currentThread, currentSort, currentPage,
-      threadArrays, articleArray} = this.props
+      threadArrays, articleArray, isDialogOpen} = this.props
     // 現在のカテゴリのスレッドリスト
     const aCategoryThreadArray = threadArrays[currentCategory.id]
     // 現在の記事
@@ -146,6 +164,11 @@ class Top extends Component {
           onPaging={this.handlePaging}
           addArticle={this.handleAddArticle}
           currentArticle={currentArticle}
+          isDialogOpen={isDialogOpen}
+          onChangeDialog={this.handleOnChangeDialog}
+          onChangeDialogThreadTitle={this.handleOnChangeDialogThreadTitle}
+          onChangeDialogThreadComment={this.handleOnChangeDialogThreadComment}
+          onChangeDialogArticleComment={this.handleOnChangeDialogArticleComment}
         />
         </Div>
     );
@@ -161,6 +184,10 @@ const mapStateToProps = (store) => ({
   currentPage: store.Top.currentPage,
   threadArrays: store.Top.threadArrays,
   articleArray: store.Top.articleArray,
+  isDialogOpen: store.Top.isDialogOpen,
+  dialogThreadTitle: store.Top.dialogThreadTitle,
+  dialogThreadComment: store.Top.dialogThreadComment,
+  dialogArticleComment: store.Top.dialogArticleComment,
 })
 
 const mapDispatchToProps = (dispatch) => ({

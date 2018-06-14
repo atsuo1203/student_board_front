@@ -62,6 +62,33 @@ function setCurrentPage(page){
   }
 }
 
+function setIsDialogOpen(isDialogOpen){
+  return {
+    type: "SET_IS_DIALOG_OPEN",
+    payload: isDialogOpen,
+  }
+}
+
+function setDialogThreadTitle(dialogThreadTitle){
+  return {
+    type: "SET_DIALOG_THREAD_TITLE",
+    payload: dialogThreadTitle,
+  }
+}
+
+function setDialogThreadComment(dialogThreadComment){
+  return {
+    type: "SET_DIALOG_THREAD_COMMENT",
+    payload: dialogThreadComment,
+  }
+}
+
+function setDialogArticleComment(dialogArticleComment){
+  return {
+    type: "SET_DIALOG_ARTICLE_COMMENT",
+    payload: dialogArticleComment,
+  }
+}
 
 /*
  * API関連
@@ -104,6 +131,10 @@ export default ({
   setCurrentSort,
   setArticleArray,
   setCurrentPage,
+  setIsDialogOpen,
+  setDialogThreadTitle,
+  setDialogThreadComment,
+  setDialogArticleComment,
   getCategoryArray,
   getSortArray,
   getThreadArray,
