@@ -24,12 +24,12 @@ class Contents extends Component {
     addArticle: PropTypes.func.isRequired,
     currentArticle: PropTypes.object,
     isDialogOpen: PropTypes.bool.isRequired,
-    changeDialog: PropTypes.func.isRequired,
+    onChangeDialog: PropTypes.func.isRequired,
   }
   render() {
     const {aCategoryThreadArray, currentThread, currentSort, currentPage,
       onReload, sortArray, onCreateThread, onCreateComment, onSort, onPaging,
-      addArticle, currentArticle, isDialogOpen, changeDialog} = this.props
+      addArticle, currentArticle, isDialogOpen, onChangeDialog} = this.props
     const label = currentThread.isCategory ? "スレッド新規作成" : "コメント新規作成"
     const onCreate = currentThread.isCategory ? onCreateThread : onCreateComment
     const inContents = currentThread.isCategory ?
@@ -47,7 +47,7 @@ class Contents extends Component {
             titleStyle={{position: 'relative', transform: 'scale(0.01)'}}
             iconElementLeft={<CreateButton
               label={label} currentThread={currentThread}
-              isDialogOpen={isDialogOpen} changeDialog={changeDialog}
+              isDialogOpen={isDialogOpen} onChangeDialog={onChangeDialog}
             />}
             iconElementRight={<div style={{display: 'flex', flexDirection: 'row'}}>
               {sortButton}
@@ -58,7 +58,7 @@ class Contents extends Component {
         <InContentsDiv >
           {inContents}
         </InContentsDiv>
-        <DialogDefault onCreate={onCreate} isDialogOpen={isDialogOpen} changeDialog={changeDialog} />
+        <DialogDefault onCreate={onCreate} isDialogOpen={isDialogOpen} onChangeDialog={onChangeDialog} />
         </ContentsDiv>
       </MuiThemeProvider>
     );

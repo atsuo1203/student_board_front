@@ -32,13 +32,13 @@ export class CreateButton extends Component {
   static propTypes = {
     currentThread: PropTypes.object.isRequired,
     label: PropTypes.string.isRequired,
-    changeDialog: PropTypes.func.isRequired,
+    onChangeDialog: PropTypes.func.isRequired,
   }
   render() {
-    const {label, changeDialog} = this.props
+    const {label, onChangeDialog} = this.props
     return (
       <RaisedButton
-        onClick={() => changeDialog(true)}
+        onClick={() => onChangeDialog(true)}
         label={label}
         labelPosition={'before'}
         primary={true}

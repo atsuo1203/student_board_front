@@ -88,7 +88,7 @@ class Top extends Component {
       actions.getThreadArray(currentCategory.id, page, currentSort.id)
     }
   }
-  handleChangeDialog = (isDialogOpen) => {
+  handleOnChangeDialog = (isDialogOpen) => {
     const {actions} = this.props
     actions.setIsDialogOpen(isDialogOpen)
   }
@@ -151,7 +151,7 @@ class Top extends Component {
           addArticle={this.handleAddArticle}
           currentArticle={currentArticle}
           isDialogOpen={isDialogOpen}
-          changeDialog={this.handleChangeDialog}
+          onChangeDialog={this.handleOnChangeDialog}
         />
         </Div>
     );
