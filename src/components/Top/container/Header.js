@@ -4,12 +4,11 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {AppBar, FlatButton} from 'material-ui';
 
 import CategoryTab from './CategoryTab'
-import {Title, RightDiv, RightButton, RightButtonText}
+import {Title, ButtonContainer, RightButtonText}
 from '../../../style/Top/container/HeaderStyle'
 
 class Header extends Component {
   static propTypes = {
-    userName: PropTypes.string.isRequired,
     categoryArray: PropTypes.array.isRequired,
     currentCategory: PropTypes.object.isRequired,
     onClickMenu: PropTypes.func.isRequired,
@@ -28,7 +27,7 @@ class Header extends Component {
   }
 
   rightObject = () => {
-    const {userName, onClickLogout, toProfile} = this.props
+    const {onClickLogout, toProfile} = this.props
     const profileButton = (
       <FlatButton
         label="プロフィール画面へ"
@@ -38,17 +37,17 @@ class Header extends Component {
     )
     const logoutButton = (
       <FlatButton
-        style={RightButton}
         label="logout"
         labelStyle={RightButtonText}
         onClick={onClickLogout}
       />
     )
     return (
-      <div>
+      <ButtonContainer>
         {profileButton}
+        <br/>
         {logoutButton}
-      </div>
+      </ButtonContainer>
     )
   }
 
