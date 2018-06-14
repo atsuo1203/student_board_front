@@ -106,6 +106,9 @@ class Top extends Component {
     const {actions} = this.props
     actions.setDialogArticleComment(event.target.value)
   }
+  handleToProfile = () => {
+    this.props.history.push('/profile')
+  }
   makeTabs = () => {
     const {currentThread, articleArray} = this.props
     const tabs = []
@@ -139,6 +142,7 @@ class Top extends Component {
           currentCategory={currentCategory}
           onClickMenu={this.handleClickMenu}
           onClickLogout={this.handleLogout}
+          toProfile={this.handleToProfile}
           />
         <TabContainer>
           <Tab

@@ -16,6 +16,13 @@ export const RightDiv = styled.div`
   text-align: center;
 `;
 
+export const ButtonContainer = styled.div`
+  position: relative;
+  color: #ffffff;
+  text-align: center;
+  margin-top: -10px;
+`
+
 export const RightButton = {
   position: 'absolute',
   top: '30px',
