@@ -63,12 +63,14 @@ class Top extends Component {
     actions.setCurrentThread(isCategory, threadId)
   }
   handleCreateThread = (currentThread) => {
+    const {dialogThreadTitle, dialogThreadComment} = this.props
     console.log('handleCreateThread')
-    console.log(currentThread)
+    console.log(currentThread, dialogThreadTitle, dialogThreadComment)
   }
   handleCreateComment = (currentThread) => {
+    const {dialogArticleComment} = this.props
     console.log('handleCreateComment')
-    console.log(currentThread)
+    console.log(currentThread, dialogArticleComment)
   }
   handleReload = (currentThread) => {
     console.log(currentThread)
@@ -91,6 +93,18 @@ class Top extends Component {
   handleOnChangeDialog = (isDialogOpen) => {
     const {actions} = this.props
     actions.setIsDialogOpen(isDialogOpen)
+  }
+  handleOnChangeDialogThreadTitle = (event) => {
+    const {actions} = this.props
+    actions.setDialogThreadTitle(event.target.value)
+  }
+  handleOnChangeDialogThreadComment = (event) => {
+    const {actions} = this.props
+    actions.setDialogThreadComment(event.target.value)
+  }
+  handleOnChangeDialogArticleComment = (event) => {
+    const {actions} = this.props
+    actions.setDialogArticleComment(event.target.value)
   }
   makeTabs = () => {
     const {currentThread, articleArray} = this.props
@@ -152,6 +166,9 @@ class Top extends Component {
           currentArticle={currentArticle}
           isDialogOpen={isDialogOpen}
           onChangeDialog={this.handleOnChangeDialog}
+          onChangeDialogThreadTitle={this.handleOnChangeDialogThreadTitle}
+          onChangeDialogThreadComment={this.handleOnChangeDialogThreadComment}
+          onChangeDialogArticleComment={this.handleOnChangeDialogArticleComment}
         />
         </Div>
     );
@@ -168,6 +185,9 @@ const mapStateToProps = (store) => ({
   threadArrays: store.Top.threadArrays,
   articleArray: store.Top.articleArray,
   isDialogOpen: store.Top.isDialogOpen,
+  dialogThreadTitle: store.Top.dialogThreadTitle,
+  dialogThreadComment: store.Top.dialogThreadComment,
+  dialogArticleComment: store.Top.dialogArticleComment,
 })
 
 const mapDispatchToProps = (dispatch) => ({

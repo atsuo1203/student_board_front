@@ -21,6 +21,9 @@ const initializeState = {
   currentPage: 1,
   // ダイアログ関係
   isDialogOpen: false,
+  dialogThreadTitle: "",
+  dialogThreadComment: "",
+  dialogArticleComment: "",
 }
 
 export default (state=initializeState, action) => {
@@ -48,11 +51,18 @@ export default (state=initializeState, action) => {
       return Object.assign({}, state, {currentSort: action.payload})
     case "SET_ARTICLE_ARRAY":
       return Object.assign({}, state, {articleArray: action.payload})
-    //ページ関係
+    // ページ関係
     case "SET_CURRENT_PAGE":
       return Object.assign({}, state, {currentPage: action.payload})
+    // ダイアログ関係
     case "SET_IS_DIALOG_OPEN":
       return Object.assign({}, state, {isDialogOpen: action.payload})
+    case "SET_DIALOG_THREAD_TITLE":
+      return Object.assign({}, state, {dialogThreadTitle: action.payload})
+    case "SET_DIALOG_THREAD_COMMENT":
+      return Object.assign({}, state, {dialogThreadComment: action.payload})
+    case "SET_DIALOG_ARTICLE_COMMENT":
+      return Object.assign({}, state, {dialogArticleComment: action.payload})
     default:
       return state;
   }

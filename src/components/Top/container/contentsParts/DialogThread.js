@@ -5,14 +5,19 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 class DialogThread extends Component {
   static propTypes = {
+    onChangeTitle: PropTypes.func.isRequired,
+    onChangeComment: PropTypes.func.isRequired,
   }
 
   render() {
+    const {onChangeTitle, onChangeComment} = this.props
     return (
       <MuiThemeProvider >
+        <div>
         <TextField
           hintText="スレッドのタイトルを入力してください。"
           style={{position: 'relative', width: '100%'}}
+          onChange={onChangeTitle}
         /><br/>
         <TextField
           hintText="コメントを入力してください。このコメントが記事の初めのコメントになります。"
@@ -21,7 +26,9 @@ class DialogThread extends Component {
           style={{position: 'relative', width: '100%'}}
           rows={8}
           cols={20}
+          onChange={onChangeComment}
         /><br/>
+        </div>
       </MuiThemeProvider>
     );
   }

@@ -8,14 +8,15 @@ class DialogDefault extends Component {
     isDialogOpen: PropTypes.bool.isRequired,
     onChangeDialog: PropTypes.func.isRequired,
     onCreate: PropTypes.func.isRequired,
+    currentThread: PropTypes.object.isRequired,
     dialogChild: PropTypes.object.isRequired,
     label: PropTypes.string.isRequired,
   }
 
   handleSubmit = () => {
-    const {onChangeDialog, onCreate} = this.props
+    const {onChangeDialog, onCreate, currentThread} = this.props
     onChangeDialog(false)
-    onCreate('hogehoge')
+    onCreate(currentThread)
   }
 
   render() {
