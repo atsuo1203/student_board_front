@@ -1,7 +1,7 @@
 import {DEV_URL, TEST_URL} from './endpoint'
 import request from 'superagent';
 
-export default class TopApi {
+export default class LoginApi {
 
   /**
    *  get
