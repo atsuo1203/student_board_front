@@ -27,14 +27,12 @@ export default class TopApi {
   }
 
   // threads
-  static async getThreads(category_id, page, sort_id) {
+  static async getThreads(categoryId, page, sortId) {
     // TODO: headerを取得してつける
     try {
-      return request.get(
-        DEV_URL+'/threads/'+String(category_id)+
-        '?page='+String(page)+
-        '&sort_id'+String(sort_id)
-      );
+      return request
+        .get(DEV_URL+'/threads/'+String(categoryId))
+        .query({page: page, sort_id: sortId})
     } catch (e) {
       throw e;
     }

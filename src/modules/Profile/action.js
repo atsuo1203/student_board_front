@@ -5,10 +5,10 @@ function setNickName(nickName){
   }
 }
 
-function setTwitter(twitter){
+function setTwitterName(twitterName){
   return {
-    type: "SET_TWITTER",
-    payload: twitter,
+    type: "SET_TWITTER_NAME",
+    payload: twitterName,
   }
 }
 
@@ -21,6 +21,6 @@ function setMyProfile(myProfile){
 
 export default ({
   setNickName,
-  setTwitter,
+  setTwitterName,
   setMyProfile,
 })
