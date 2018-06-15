@@ -6,11 +6,7 @@ import {Provider} from 'react-redux'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import createSagaMiddleware from "redux-saga";
 
-import Register from './components/Register';
-import PreRegister from './components/PreRegister';
-import Profile from './components/Profile';
-import Login from './components/Login';
-import Top from './components/Top';
+import App from './components'
 import {rootSaga} from './sagas';
 import reducers from './reducers'
 
@@ -27,16 +23,7 @@ ReactDOM.render(
     <MuiThemeProvider>
       <BrowserRouter>
         <Switch>
-          <Route exact path='/'
-            render={()=><Login/>} />
-          <Route path='/top'
-            render={()=><Top/>} />
-          <Route path='/preRegister'
-            render={()=><PreRegister/>} />
-          <Route path='/register'
-            render={()=><Register/>} />
-          <Route path='/profile'
-            render={()=><Profile/>} />
+          <Route path='/' render={()=><App/>} />
         </Switch>
       </BrowserRouter>
     </MuiThemeProvider>
