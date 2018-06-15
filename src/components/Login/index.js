@@ -24,15 +24,17 @@ class Login extends Component {
     console.log(email, password)
     // TODO レスポンスから取る
     const data = {webToken: 'hogehogeWebToken'}
-    try {
-      // TODO LoginApi.getLoginに変更
-      const responce = LoginApi.getTest()
-      console.log(responce.body)
-      localStorage.setItem('webToken', data.webToken)
-      this.props.history.push('./top')
-    } catch (error) {
-      window.confirm('ログインに失敗しました。ユーザ名かパスワードが合っているか確認してください')
-    }
+    // TODO LoginApi.getTest()をLoginApi.getLogin()に変更
+    LoginApi.getTest()
+      .then(responce => {
+        console.log(responce)
+        localStorage.setItem('webToken', data.webToken)
+        this.props.history.push('./top')
+      })
+      .catch(error => {
+        console.log(error)
+        window.confirm('ログインに失敗しました。ユーザ名かパスワードが合っているか確認してください')
+      })
   }
 
   handleCreateAccount = () => {
