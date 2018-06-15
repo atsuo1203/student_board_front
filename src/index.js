@@ -30,7 +30,7 @@ ReactDOM.render(
           <Route exact path='/'
             render={()=><Login/>} />
           <Route path='/top'
-            render={()=><Top name="18FMI33"/>} />
+            render={()=><Top/>} />
           <Route path='/preRegister'
             render={()=><PreRegister/>} />
           <Route path='/register'

@@ -2,8 +2,6 @@ import CategoryModel from '../../models/CategoryModel'
 import SortModel from '../../models/SortModel'
 
 const initializeState = {
-  // ユーザ関係
-  userName: "",
   // スレッド関係
   // categoryIdをkeyにするdict[array]
   // 例 {1: [new ThreadModel()]}
@@ -28,9 +26,6 @@ const initializeState = {
 
 export default (state=initializeState, action) => {
   switch (action.type) {
-    // ユーザ関係
-    case "SET_USER_NAME":
-      return Object.assign({}, state, {userName: action.payload})
     // スレッド関係
     case "SET_THREAD_ARRAYS":
       return Object.assign({}, state, {threadArrays: action.payload})
