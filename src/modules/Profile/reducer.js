@@ -13,6 +13,12 @@ export default (state=initializeState, action) => {
       return Object.assign({}, state, {twitterName: action.payload})
     case "SET_MY_PROFILE":
       return Object.assign({}, state, {myProfile: action.payload})
+    case "SET_PROFILE":
+      return Object.assign({}, state, {
+        nickName: action.nickName,
+        twitterName: action.twitterName,
+        myProfile: action.myProfile,
+      })
     default:
       return state;
   }

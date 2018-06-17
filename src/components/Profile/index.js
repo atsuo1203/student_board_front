@@ -8,9 +8,9 @@ import CommonHeader from '../common/CommonHeader'
 import ProfileForm  from './ProfileForm'
 
 class Profile extends Component {
-  componentWillMount() {
-    // TODO
-    // ユーザ情報をsetする
+  async componentWillMount() {
+    const {actions} = this.props
+    actions.getProfile()
   }
 
   handleChangeNickName = (event) => {
@@ -29,16 +29,20 @@ class Profile extends Component {
   }
 
   handleDecision = () => {
-    const {nickName, twitterName, myProfile} = this.props
-    console.log(nickName, twitterName, myProfile)
+    const {actions, nickName, twitterName, myProfile} = this.props
+    actions.putProfile(nickName, twitterName, myProfile)
     this.props.history.push('./top')
   }
 
   render() {
+    const {nickName, twitterName, myProfile} = this.props
     return (
       <div>
         <CommonHeader title='ユーザ情報編集'/>
         <ProfileForm
+          nickName={nickName}
+          twitterName={twitterName}
+          myProfile={myProfile}
           onChangeNickName={this.handleChangeNickName}
           onChangeTwitter={this.handleChangeTwitter}
           onChangeMyProfile={this.handleChangeMyProfile}

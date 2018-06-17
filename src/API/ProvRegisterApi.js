@@ -22,7 +22,6 @@ export default class ProvRegisterApi {
    *  テスト用restAPI 通信テスト用
    */
   static async getTest(email) {
-    console.log(email)
     try {
       return request.get(TEST_URL+'/posts/1');
     } catch (e) {

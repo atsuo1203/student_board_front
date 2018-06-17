@@ -9,36 +9,44 @@ import {Form} from '../../style/Profile'
 
 class ProfileForm extends Component {
   static propTypes = {
+    nickName: PropTypes.string.isRequired,
+    twitterName: PropTypes.string.isRequired,
+    myProfile: PropTypes.string.isRequired,
     onChangeNickName: PropTypes.func.isRequired,
     onChangeTwitter: PropTypes.func.isRequired,
     onChangeMyProfile: PropTypes.func.isRequired,
     onClickDecision: PropTypes.func.isRequired,
   }
   render() {
-    const {onClickDecision, onChangeNickName, onChangeTwitter, onChangeMyProfile} = this.props
+    const {
+      nickName, twitterName, myProfile,
+      onClickDecision, onChangeNickName, onChangeTwitter, onChangeMyProfile} = this.props
     return (
       <MuiThemeProvider>
         <Form>
           <TextField
             hintText="ニックネーム"
+            value={nickName}
             onChange={onChangeNickName}
           /><br />
           <TextField
             hintText="Twitterアカウント(任意)"
+            value={twitterName}
             onChange={onChangeTwitter}
           /><br />
           <TextField
             hintText="自己プロフィール(任意)"
+            value={myProfile}
             multiLine={true}
             rows={8}
             cols={20}
             onChange={onChangeMyProfile}
           /><br />
           <FlatButton
-            label="決定"
+            label="編集完了"
             backgroundColor="#a4c639"
             hoverColor="#8AA62F"
-            onClick={() => onClickDecision()}
+            onClick={onClickDecision}
           /><br />
         </Form>
       </MuiThemeProvider>

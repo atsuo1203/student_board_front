@@ -13,7 +13,6 @@ import {Div, TabContainer} from '../../style/Top'
 
 class Top extends Component {
   async componentWillMount () {
-    console.log('componentWillMount')
     const {actions} = this.props
     actions.getCategoryArray()
     actions.getSortArray()
@@ -63,15 +62,15 @@ class Top extends Component {
   }
   handleCreateThread = () => {
     const {actions, currentCategory, dialogThreadTitle, dialogThreadComment} = this.props
-    console.log('createThread')
     actions.postThread(currentCategory.id, dialogThreadTitle, dialogThreadComment)
   }
   handleCreateComment = () => {
     const {actions, currentThread, dialogArticleComment} = this.props
     actions.postComment(currentThread.threadId, dialogArticleComment)
   }
-  handleReload = (currentThread) => {
-    console.log(currentThread)
+  handleReload = () => {
+    const {actions, currentCategory, currentPage, currentSort} = this.props
+    actions.getThreadArray(currentCategory.threadId, currentPage, currentSort.id)
   }
   handleSort = (sortModel) => {
     const {actions, currentCategory, currentPage} = this.props
