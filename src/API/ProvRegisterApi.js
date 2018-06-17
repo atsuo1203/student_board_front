@@ -8,11 +8,11 @@ export default class ProvRegisterApi {
    */
   // auth
   // 登録を行う
-  static async postProvRegister(password, nickName, twitterName, profile) {
+  static async postProvRegister(email) {
     try {
       return request
         .post(DEV_URL+'/auth/prov_register')
-        .send({password: password, nickName: nickName, twitterName: twitterName, profile: profile})
+        .send({email: email})
     } catch (e) {
       throw e;
     }
@@ -21,8 +21,8 @@ export default class ProvRegisterApi {
   /**
    *  テスト用restAPI 通信テスト用
    */
-  static async getTest(password, nickName, twitterName, profile) {
-    console.log(password, nickName, twitterName, profile)
+  static async getTest(email) {
+    console.log(email)
     try {
       return request.get(TEST_URL+'/posts/1');
     } catch (e) {
