@@ -2,22 +2,22 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 import { withRouter } from "react-router-dom";
-import PreRegisterAction from '../../modules/PreRegister/action'
+import ProvRegisterAction from '../../modules/ProvRegister/action'
 
 import CommonHeader from '../common/CommonHeader'
-import PreRegisterForm from './PreRegisterForm'
+import ProvRegisterForm from './ProvRegisterForm'
 
-class PreRegister extends Component {
+class ProvRegister extends Component {
   handleSetEmail = (e) => {
     const {actions} = this.props
     actions.setEmail(e.target.value)
   }
 
-  handleClickPreRegister = () => {
+  handleClickProvRegister = () => {
     console.log()
   }
 
-  handleClickPreRegister = () => {
+  handleClickProvRegister = () => {
     const {email} = this.props
     console.log(email)
     this.props.history.push('./register')
@@ -27,9 +27,9 @@ class PreRegister extends Component {
     return (
       <div>
         <CommonHeader title='仮登録ページ'/>
-        <PreRegisterForm
+        <ProvRegisterForm
           onChangeEmail={this.handleSetEmail}
-          onClickPreRegister={this.handleClickPreRegister}
+          onClickProvRegister={this.handleClickProvRegister}
         />
       </div>
     );
@@ -37,11 +37,11 @@ class PreRegister extends Component {
 }
 
 const mapStateToProps = (store) => ({
-  email: store.PreRegister.email,
+  email: store.ProvRegister.email,
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  actions: bindActionCreators(PreRegisterAction, dispatch)
+  actions: bindActionCreators(ProvRegisterAction, dispatch)
 })
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PreRegister));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ProvRegister));

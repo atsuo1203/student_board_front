@@ -38,7 +38,7 @@ class Login extends Component {
   }
 
   handleCreateAccount = () => {
-    this.props.history.push('./preRegister')
+    this.props.history.push('./provRegister')
   }
 
   render() {
