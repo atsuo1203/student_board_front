@@ -13,7 +13,6 @@ import RegisterForm  from './RegisterForm'
 class Register extends Component {
   handleLogin = () => {
     const {password, secondPassword, nickName, twitterName, profile} = this.props
-    console.log(password, secondPassword)
     if ((password === "") || (password === undefined) || (password.length < 8)) {
       window.confirm('passwrodは英数字を用いた8文字となります')
       return

@@ -22,7 +22,6 @@ export default class RegisterApi {
    *  テスト用restAPI 通信テスト用
    */
   static async getTest(password, nickName, twitterName, profile) {
-    console.log(password, nickName, twitterName, profile)
     try {
       return request.get(TEST_URL+'/posts/1');
     } catch (e) {

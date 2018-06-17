@@ -30,7 +30,7 @@ class Header extends Component {
     const {onClickLogout, toProfile} = this.props
     const profileButton = (
       <FlatButton
-        label="プロフィール画面へ"
+        label="プロフィール編集"
         labelStyle={RightButtonText}
         onClick={toProfile}
       />
