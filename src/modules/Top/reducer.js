@@ -11,7 +11,7 @@ const initializeState = {
   // ソート関係
   sortArray: [new SortModel({id: 1, name: 'ID昇順'})],
   currentSort: new SortModel({id: 1, name: 'ID昇順'}),
-  // 記事関係 [new ArticleModel()] となる予定
+  // 記事関係 [new ThreadModel()] となる予定
   articleArray:  [],
   // ページ関係
   currentPage: 1,

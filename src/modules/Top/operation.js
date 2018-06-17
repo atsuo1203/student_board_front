@@ -3,7 +3,6 @@ import {fork, take, put, call, select} from 'redux-saga/effects';
 import TopApi from '../../API/TopApi'
 
 import TopAction from './action';
-import ArticleModel from '../../models/ArticleModel';
 import CategoryModel from '../../models/CategoryModel';
 import SortModel from '../../models/SortModel';
 import ThreadModel from '../../models/ThreadModel'
