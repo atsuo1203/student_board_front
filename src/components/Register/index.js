@@ -14,12 +14,20 @@ class Register extends Component {
   handleLogin = () => {
     const {password, secondPassword, nickName, twitterName, profile} = this.props
     console.log(password, secondPassword)
-    if ((password === "") || (password === undefined)) {
+    if ((password === "") || (password === undefined) || (password.length < 8)) {
       window.confirm('passwrodは英数字を用いた8文字となります')
       return
     }
     if ((password !== secondPassword)) {
       window.confirm('passwordが一致しません。もう一度入力してください')
+      return
+    }
+    if (twitterName.match(/@/)){
+      window.confirm('twitterのアカウント名は\n@以降の文字列を入力してください')
+      return
+    }
+    if (profile.length > 150) {
+      window.confirm('プロフィールは150字まででお願いします')
       return
     }
     // TODO getTest() を postRegister(password, nickName, twitterName, profile) に書き換え
