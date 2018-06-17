@@ -4,18 +4,43 @@ import { bindActionCreators } from 'redux';
 import { withRouter } from "react-router-dom";
 import RegisterAction from '../../modules/Register/action'
 
+import RegisterApi from '../../API/RegisterApi'
+import LoginApi from '../../API/LoginApi'
+
 import CommonHeader from '../common/CommonHeader'
 import RegisterForm  from './RegisterForm'
 
 class Register extends Component {
   handleLogin = () => {
     const {password, secondPassword, nickName, twitterName, profile} = this.props
-    console.log('password', password)
-    console.log('secondPassword', secondPassword)
-    console.log('nickName', nickName)
-    console.log('twitterName', twitterName)
-    console.log('profile', profile)
-    this.props.history.push('./top')
+    console.log(password, secondPassword)
+    if ((password === "") || (password === undefined)) {
+      window.confirm('passwrodは英数字を用いた8文字となります')
+      return
+    }
+    if ((password !== secondPassword)) {
+      window.confirm('passwordが一致しません。もう一度入力してください')
+      return
+    }
+    // TODO getTest() を postRegister(password, nickName, twitterName, profile) に書き換え
+    RegisterApi.getTest(password, nickName, twitterName, profile)
+      .then(response => {
+        console.log(response)
+        // TODO getTest() を getLogin(email, password) に書き換え
+        LoginApi.getTest()
+          .then(res => {
+            console.log(res)
+            // TODO レスポンスから取る
+            const data = {webToken: 'hogehogeWebToken'}
+            localStorage.setItem('webToken', data.webToken)
+            this.props.history.push('./top')
+          })
+          .catch()
+      })
+      .catch(error => {
+        window.confirm('何らか問題が発生したため登録できません')
+        console.log(error)
+      })
   }
 
   handleChangePassword = (event) => {

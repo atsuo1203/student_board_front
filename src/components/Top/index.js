@@ -79,6 +79,7 @@ class Top extends Component {
     actions.getThreadArray(currentCategory.id, currentPage, sortModel.id)
   }
   handleLogout = () => {
+    localStorage.removeItem('webToken');
     this.props.history.push('/')
   }
   handlePaging = (page) => {

@@ -8,9 +8,11 @@ export default class LoginApi {
    */
   // auth
   // ログイン webTokenが返ってくる
-  static async getLogin() {
+  static async getLogin(email, password) {
     try {
-      return request.get(DEV_URL+'/auth/login');
+      return request
+        .get(DEV_URL+'/auth/login')
+        .send({email: email, password: password})
     } catch (e) {
       throw e;
     }
