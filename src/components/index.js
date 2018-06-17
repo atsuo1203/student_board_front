@@ -1,7 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux';
-import { withRouter } from "react-router-dom";
 import { Route, Switch, Redirect } from 'react-router-dom'
 
 import Login from './Login';
@@ -40,12 +37,4 @@ class App extends Component {
   }
 }
 
-// const mapStateToProps = (store) => ({
-// })
-
-// const mapDispatchToProps = (dispatch) => ({
-//   actions: bindActionCreators(LoginAction, dispatch)
-// })
-
-// export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
 export default App;
