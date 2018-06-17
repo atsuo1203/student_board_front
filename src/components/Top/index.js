@@ -68,7 +68,7 @@ class Top extends Component {
   }
   handleCreateComment = () => {
     const {actions, currentThread, dialogArticleComment} = this.props
-    actions.postComment(currentThread.id, dialogArticleComment)
+    actions.postComment(currentThread.threadId, dialogArticleComment)
   }
   handleReload = (currentThread) => {
     console.log(currentThread)

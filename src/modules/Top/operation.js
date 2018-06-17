@@ -14,6 +14,7 @@ export function* topOperation() {
   yield fork(getSortArray);
   yield fork(getThreadArray);
   yield fork(postThread);
+  yield fork(postComment);
 }
 
 /*
@@ -120,11 +121,15 @@ function* getThreadArray() {
         const thread = new ThreadModel({
           id: data.id, title: data.title, date: data.date,
           categoryId: data.categoryId, commentCount: data.commentCount,
-          speed: data.speed, comments: data.comments, index: index+1,
+          speed: data.speed, index: index+1,
+          comments: data.comments.map(comment => {
+            return new CommentModel({
+              id: comment.id, nickName: comment.nickName, text: comment.text,
+              date: comment.date, threadId: comment.threadId, userId: comment.userId,})
+          }),
         })
         threadArray.push(thread)
       })
-      console.log(threadArray)
       yield put(TopAction.setThreadArray(threadArray))
       yield put(TopAction.setCurrentThread(true, categoryId))
     } catch (error) {
@@ -145,10 +150,10 @@ function* postThread() {
     const commentText = action.commentText
     const thread4 = 'thread_4'
     const data = {
-      id: thread4, title: '今2chを見ているのは',
+      id: thread4, title: title,
       date: '2018/05/28(月) 21:07:50.001', categoryId: categoryId, commentCount: 100, speed: 1000,
       comments: [
-        {id: 1, nickName: 'ケンジ', text: 'ひろゆきと俺とお前だけだ' + categoryId, date: '2018/05/28(月) 21:07:50.001',
+        {id: 1, nickName: 'ケンジ', text: commentText, date: '2018/05/28(月) 21:07:50.001',
          threadId: thread4, userId: 3, }]
     }
     try {
@@ -164,6 +169,46 @@ function* postThread() {
       threadArray.unshift(thread)
       yield put(TopAction.setThreadArray(threadArray))
       yield put(TopAction.setCurrentThread(true, categoryId))
+    } catch (error) {
+      console.log(error)
+      window.confirm('データの取得に失敗しました。ページの更新を行ってください')
+    }
+  }
+}
+
+// thread
+function* postComment() {
+  while (true) {
+    const action = yield take('POST_COMMENT')
+    const threadId = action.threadId
+    const commentText = action.commentText
+    const data = {
+      id: 3, nickName: 'たかし', text: commentText, date: '2018/05/28(月) 21:07:50.001',
+      threadId: threadId, userId: 1,
+    }
+    try {
+      // const response = yield call(TopApi.getThreads, categoryId, title, commentText)
+      const response = yield call(TopApi.getTest)
+      // TODO: dataをresponse.bodyに書き換え
+      const comment = new CommentModel({
+        id: data.id, nickName: data.nickName, text: data.text,
+        date: data.date, threadId: data.threadId, userId: data.userId,
+      })
+      const articleArray = yield select(store => store.Top.articleArray)
+      articleArray.forEach(article => {
+        if (article.threadId === threadId) {
+          article.comments.push(comment)
+        }
+      });
+      const threadArray = yield select(store => store.Top.threadArray)
+      threadArray.forEach(thread => {
+        if (thread.id === threadId) {
+          thread.comments.push(comment)
+        }
+      });
+      yield put(TopAction.setArticleArray(articleArray))
+      yield put(TopAction.setThreadArray(threadArray))
+      yield put(TopAction.setCurrentThread(false, threadId))
     } catch (error) {
       console.log(error)
       window.confirm('データの取得に失敗しました。ページの更新を行ってください')
