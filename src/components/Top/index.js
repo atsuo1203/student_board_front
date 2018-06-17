@@ -107,6 +107,10 @@ class Top extends Component {
   handleToProfile = () => {
     this.props.history.push('/profile')
   }
+  handleOnClickUserName = (userId) => {
+    console.log('click userName')
+    console.log(userId)
+  }
   makeTabs = () => {
     const {currentThread, articleArray} = this.props
     const tabs = []
@@ -172,6 +176,7 @@ class Top extends Component {
           dialogThreadTitle={dialogThreadTitle}
           dialogThreadComment={dialogThreadComment}
           dialogArticleComment={dialogArticleComment}
+          onClickUserName={this.handleOnClickUserName}
         />
         </Div>
     );
