@@ -20,7 +20,7 @@ class Profile extends Component {
 
   handleChangeTwitter = (event) => {
     const {actions} = this.props
-    actions.setTwitter(event.target.value)
+    actions.setTwitterName(event.target.value)
   }
 
   handleChangeMyProfile = (event) => {
@@ -29,8 +29,8 @@ class Profile extends Component {
   }
 
   handleDecision = () => {
-    const {nickName, twitter, myProfile} = this.props
-    console.log(nickName, twitter, myProfile)
+    const {nickName, twitterName, myProfile} = this.props
+    console.log(nickName, twitterName, myProfile)
     this.props.history.push('./top')
   }
 
@@ -51,7 +51,7 @@ class Profile extends Component {
 
 const mapStateToProps = (store) => ({
   nickName: store.Profile.nickName,
-  twitter: store.Profile.twitter,
+  twitterName: store.Profile.twitterName,
   myProfile: store.Profile.myProfile,
 })
 

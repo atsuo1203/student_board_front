@@ -1,10 +1,3 @@
-function setUserName(name){
-  return {
-    type: "SET_USER_NAME",
-    payload: name,
-  }
-}
-
 function setThreadArrays(threadArrays){
   return {
     type: "SET_THREAD_ARRAYS",
@@ -122,7 +115,6 @@ function getArticle(threadId){
 }
 
 export default ({
-  setUserName,
   setThreadArrays,
   setCurrentThread,
   setCategoryArray,

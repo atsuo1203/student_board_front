@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
-import PropTypes from 'prop-types';
 import { withRouter } from "react-router-dom";
 
 import TopAction from '../../modules/Top/action'
@@ -13,16 +12,12 @@ import Contents from './container/Contents'
 import {Div, TabContainer} from '../../style/Top'
 
 class Top extends Component {
-  static propTypes = {
-    name: PropTypes.string.isRequired,
-  }
   async componentWillMount () {
     console.log('componentWillMount')
-    const {actions, name} = this.props
+    const {actions} = this.props
     actions.getCategoryArray()
     actions.getSortArray()
     actions.getThreadArray(1, 1, 1)
-    actions.setUserName(name)
   }
   // TODO: 選択された時にAPI通信を行い、Articleの配列に追加して行く予定
   handleAddArticle = (threadId) => {
@@ -126,7 +121,7 @@ class Top extends Component {
     return tabs
   }
   render() {
-    const {userName, categoryArray, sortArray,
+    const {categoryArray, sortArray,
       currentCategory, currentThread, currentSort, currentPage,
       threadArrays, articleArray, isDialogOpen} = this.props
     // 現在のカテゴリのスレッドリスト
@@ -137,7 +132,6 @@ class Top extends Component {
     return (
       <Div>
         <Header
-          userName={userName}
           categoryArray={categoryArray}
           currentCategory={currentCategory}
           onClickMenu={this.handleClickMenu}
@@ -179,7 +173,6 @@ class Top extends Component {
   }
 }
 const mapStateToProps = (store) => ({
-  userName: store.Top.userName,
   currentThread: store.Top.currentThread,
   categoryArray: store.Top.categoryArray,
   currentCategory: store.Top.currentCategory,

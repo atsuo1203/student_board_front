@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 import { withRouter } from "react-router-dom";
-import LoginAction from '../../modules/Login/action'
 
+import LoginApi from '../../API/LoginApi'
+import LoginAction from '../../modules/Login/action'
 import CommonHeader from '../common/CommonHeader'
 import LoginForm from './LoginForm'
 
@@ -21,7 +22,19 @@ class Login extends Component {
   handleLogin = () => {
     const {email, password} = this.props
     console.log(email, password)
-    this.props.history.push('./top')
+    // TODO レスポンスから取る
+    const data = {webToken: 'hogehogeWebToken'}
+    // TODO LoginApi.getTest()をLoginApi.getLogin()に変更
+    LoginApi.getTest()
+      .then(responce => {
+        console.log(responce)
+        localStorage.setItem('webToken', data.webToken)
+        this.props.history.push('./top')
+      })
+      .catch(error => {
+        console.log(error)
+        window.confirm('ログインに失敗しました。ユーザ名かパスワードが合っているか確認してください')
+      })
   }
 
   handleCreateAccount = () => {
