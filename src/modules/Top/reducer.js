@@ -3,9 +3,7 @@ import SortModel from '../../models/SortModel'
 
 const initializeState = {
   // スレッド関係
-  // categoryIdをkeyにするdict[array]
-  // 例 {1: [new ThreadModel()]}
-  threadArrays: {},
+  threadArray: [],
   currentThread: {isCategory: true, threadId: 1},
   // カテゴリ関係
   categoryArray: [new CategoryModel({id: 1, name: '雑談'})],
@@ -27,8 +25,8 @@ const initializeState = {
 export default (state=initializeState, action) => {
   switch (action.type) {
     // スレッド関係
-    case "SET_THREAD_ARRAYS":
-      return Object.assign({}, state, {threadArrays: action.payload})
+    case "SET_THREAD_ARRAY":
+      return Object.assign({}, state, {threadArray: action.payload})
     case "SET_CURRENT_THREAD":
       return Object.assign({}, state, {currentThread: {
         isCategory: action.isCategory,

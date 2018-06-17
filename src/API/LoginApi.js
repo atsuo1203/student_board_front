@@ -7,7 +7,7 @@ export default class LoginApi {
    *  get
    */
   // auth
-  // ログイン webTokenとuser_idが返ってくる
+  // ログイン webTokenが返ってくる
   static async getLogin() {
     try {
       return request.get(DEV_URL+'/auth/login');

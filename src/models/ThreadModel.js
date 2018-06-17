@@ -1,4 +1,5 @@
 import {Record} from 'immutable';
+import CommentModel from './CommentModel';
 
 const ThreadRecord = Record(
   {
@@ -8,6 +9,7 @@ const ThreadRecord = Record(
     categoryId: 1,
     commentCount: 100,
     speed: 1000,
+    comments: [new CommentModel()],
     index: 1,  // スレッドの番号 dbには入っていないので、画面側で振り直す
   }
 );
@@ -30,6 +32,9 @@ export default class ThreadModel extends ThreadRecord {
   }
   getSpeed() {
     return this.speed
+  }
+  getComments() {
+    return this.comments
   }
   getIndex() {
     return this.index

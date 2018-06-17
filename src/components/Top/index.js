@@ -21,7 +21,7 @@ class Top extends Component {
   }
   // TODO: 選択された時にAPI通信を行い、Articleの配列に追加して行く予定
   handleAddArticle = (threadId) => {
-    const {articleArray, actions, currentCategory} = this.props
+    const {articleArray, actions, currentCategory, threadArray} = this.props
     // 既にその記事を開いていた場合
     var isExistArticle = false
     articleArray.forEach(article => {
@@ -31,7 +31,11 @@ class Top extends Component {
     })
     actions.setCurrentThread(true, currentCategory.id)
     if (!isExistArticle) {
-      actions.getArticle(threadId)
+      const pushedArticle = threadArray.find(thread => {
+        return (thread.id === threadId )
+      })
+      articleArray.push(pushedArticle)
+      actions.setArticleArray(articleArray)
     }
   }
   handleClickMenu = (categoryId) => {
@@ -123,9 +127,7 @@ class Top extends Component {
   render() {
     const {categoryArray, sortArray,
       currentCategory, currentThread, currentSort, currentPage,
-      threadArrays, articleArray, isDialogOpen} = this.props
-    // 現在のカテゴリのスレッドリスト
-    const aCategoryThreadArray = threadArrays[currentCategory.id]
+      threadArray, articleArray, isDialogOpen} = this.props
     // 現在の記事
     const currentArticle = (articleArray.length === 0) ? null :
       articleArray.filter(article => String(currentThread.threadId) === String(article.id))[0]
@@ -150,7 +152,7 @@ class Top extends Component {
           {this.makeTabs()}
         </TabContainer>
         <Contents
-          aCategoryThreadArray={aCategoryThreadArray}
+          threadArray={threadArray}
           currentThread={currentThread}
           sortArray={sortArray}
           currentSort={currentSort}
@@ -179,7 +181,7 @@ const mapStateToProps = (store) => ({
   sortArray: store.Top.sortArray,
   currentSort: store.Top.currentSort,
   currentPage: store.Top.currentPage,
-  threadArrays: store.Top.threadArrays,
+  threadArray: store.Top.threadArray,
   articleArray: store.Top.articleArray,
   isDialogOpen: store.Top.isDialogOpen,
   dialogThreadTitle: store.Top.dialogThreadTitle,
