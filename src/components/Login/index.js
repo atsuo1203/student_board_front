@@ -24,7 +24,7 @@ class Login extends Component {
     console.log(email, password)
     // TODO レスポンスから取る
     const data = {webToken: 'hogehogeWebToken'}
-    // TODO LoginApi.getTest()をLoginApi.getLogin()に変更
+    // TODO LoginApi.getTest()をLoginApi.getLogin(email, password)に変更
     LoginApi.getTest()
       .then(responce => {
         console.log(responce)
