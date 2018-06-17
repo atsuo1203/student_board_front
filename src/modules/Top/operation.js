@@ -86,30 +86,36 @@ function* getThreadArray() {
     const thread2 = 'thread_2' + uniqueKey
     const thread3 = 'thread_3' + uniqueKey
     const dataList = [
-      {id: thread1, title: 'vipからきました',
-      date: '2018/05/28(月) 21:07:50.001', categoryId: categoryId, commentCount: 100, speed: 1000,
-      comments: [
-        {id: 1, nickName: 'たかし', text: 'お前ら反論してみろ' + categoryId, date: '2018/05/28(月) 21:07:50.001',
-         threadId: thread1, userId: 1, },
-        {id: 2, nickName: 'ぴろゆき', text: '>>1 キモ' + categoryId, date: '2018/05/28(月) 21:30:50.001',
-         threadId: thread1, userId: 2, },
-      ],},
-      {id: thread2, title: 'なんjから来ました',
-      date: '2018/05/29(火) 21:07:50.001', categoryId: categoryId, commentCount: 100, speed: 1000,
-      comments: [
-        {id: 1, nickName: 'たかし', text: 'お前ら反論してみろ' + categoryId, date: '2018/05/28(月) 21:07:50.001',
-         threadId: thread2, userId: 1, },
-        {id: 2, nickName: 'ぴろゆき', text: '>>1 キモ', date: '2018/05/28(月) 21:30:50.001',
-         threadId: thread2, userId: 2, },
-      ],},
-      {id: thread3, title: '生き物苦手版サイコー',
-      date: '2018/05/30(水) 21:07:50.001', categoryId: categoryId, commentCount: 100, speed: 1000,
-      comments: [
-        {id: 1, nickName: 'たかし', text: 'お前ら反論してみろ' + categoryId, date: '2018/05/28(月) 21:07:50.001',
-         threadId: thread3, userId: 1, },
-        {id: 2, nickName: 'ぴろゆき', text: '>>1 キモ', date: '2018/05/28(月) 21:30:50.001',
-         threadId: thread3, userId: 2, },
-      ],},
+      {
+        thread: {id: thread1, title: 'vipからきました',
+          date: '2018/05/28(月) 21:07:50.001',
+          categoryId: categoryId, commentCount: 100, speed: 1000,},
+        comments: [
+          {id: 1, nickName: 'たかし', text: 'お前ら反論してみろ' + categoryId, date: '2018/05/28(月) 21:07:50.001',
+           threadId: thread1, userId: 1, },
+          {id: 2, nickName: 'ぴろゆき', text: '>>1 キモ' + categoryId, date: '2018/05/28(月) 21:30:50.001',
+           threadId: thread1, userId: 2, },],
+      },
+      {
+        thread: {id: thread2, title: 'なんjから来ました',
+          date: '2018/05/29(火) 21:07:50.001',
+          categoryId: categoryId, commentCount: 100, speed: 1000,},
+        comments: [
+          {id: 1, nickName: 'たかし', text: 'お前ら反論してみろ' + categoryId, date: '2018/05/28(月) 21:07:50.001',
+           threadId: thread2, userId: 1, },
+          {id: 2, nickName: 'ぴろゆき', text: '>>1 キモ', date: '2018/05/28(月) 21:30:50.001',
+           threadId: thread2, userId: 2, },],
+      },
+      {
+        thread: {id: thread3, title: '生き物苦手版サイコー',
+          date: '2018/05/30(水) 21:07:50.001',
+          categoryId: categoryId, commentCount: 100, speed: 1000,},
+        comments: [
+          {id: 1, nickName: 'たかし', text: 'お前ら反論してみろ' + categoryId, date: '2018/05/28(月) 21:07:50.001',
+           threadId: thread3, userId: 1, },
+          {id: 2, nickName: 'ぴろゆき', text: '>>1 キモ', date: '2018/05/28(月) 21:30:50.001',
+           threadId: thread3, userId: 2, },],
+      },
     ]
     try {
       // const response = yield call(TopApi.getThreads, categoryId, page, sortId)
@@ -118,9 +124,9 @@ function* getThreadArray() {
       // TODO: dataListをresponse.bodyに書き換え
       dataList.forEach((data, index) => {
         const thread = new ThreadModel({
-          id: data.id, title: data.title, date: data.date,
-          categoryId: data.categoryId, commentCount: data.commentCount,
-          speed: data.speed, index: index+1,
+          id: data.thread.id, title: data.thread.title, date: data.thread.date,
+          categoryId: data.thread.categoryId, commentCount: data.thread.commentCount,
+          speed: data.thread.speed, index: index+1,
           comments: data.comments.map(comment => {
             return new CommentModel({
               id: comment.id, nickName: comment.nickName, text: comment.text,
@@ -149,8 +155,8 @@ function* postThread() {
     const commentText = action.commentText
     const thread4 = 'thread_4'
     const data = {
-      id: thread4, title: title,
-      date: '2018/05/28(月) 21:07:50.001', categoryId: categoryId, commentCount: 100, speed: 1000,
+      thread: {id: thread4, title: title,
+      date: '2018/05/28(月) 21:07:50.001', categoryId: categoryId, commentCount: 100, speed: 1000,},
       comments: [
         {id: 1, nickName: 'ケンジ', text: commentText, date: '2018/05/28(月) 21:07:50.001',
          threadId: thread4, userId: 3, }]
@@ -159,10 +165,14 @@ function* postThread() {
       // const response = yield call(TopApi.getThreads, categoryId, title, commentText)
       const response = yield call(TopApi.getTest)
       // TODO: dataをresponse.bodyに書き換え
+      const comment = data.comments[0]
       const thread = new ThreadModel({
-        id: data.id, title: data.title, date: data.date,
-        categoryId: data.categoryId, commentCount: data.commentCount,
-        speed: data.speed, comments: data.comments, index: 'new'
+        id: data.thread.id, title: data.thread.title, date: data.thread.date,
+        categoryId: data.thread.categoryId, commentCount: data.thread.commentCount,
+        speed: data.thread.speed, index: 'new',
+        comments: [new CommentModel({
+          id: comment.id, nickName: comment.nickName, text: comment.text,
+          date: comment.date, threadId: comment.threadId, userId: comment.userId,})]
       })
       const threadArray = yield select(store => store.Top.threadArray)
       threadArray.unshift(thread)
