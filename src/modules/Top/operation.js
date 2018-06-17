@@ -13,7 +13,6 @@ export function* topOperation() {
   yield fork(getCategoryArray);
   yield fork(getSortArray);
   yield fork(getThreadArray);
-  yield fork(getArticle);
 }
 
 /*
@@ -81,16 +80,35 @@ function* getThreadArray() {
     const categoryId = action.categoryId
     const page = action.page
     const sortId = action.sortId
+    const uniqueKey = String(categoryId)+String(page)+String(sortId)
+    const thread1 = 'thread_1' + uniqueKey
+    const thread2 = 'thread_2' + uniqueKey
+    const thread3 = 'thread_3' + uniqueKey
     const dataList = [
-      {id: 'thread_1'+String(categoryId)+String(page)+String(sortId), title: 'vipからきました',
-      date: '2018/05/28(月) 21:07:50.001', categoryId: categoryId,
-      commentCount: 100, speed: 1000},
-      {id: 'thread_2'+String(categoryId)+String(page)+String(sortId), title: 'なんjから来ました',
-      date: '2018/05/29(火) 21:07:50.001', categoryId: categoryId,
-      commentCount: 100, speed: 1000},
-      {id: 'thread_3'+String(categoryId)+String(page)+String(sortId), title: '生き物苦手版サイコー',
-      date: '2018/05/30(水) 21:07:50.001', categoryId: categoryId,
-      commentCount: 100, speed: 1000},
+      {id: thread1, title: 'vipからきました',
+      date: '2018/05/28(月) 21:07:50.001', categoryId: categoryId, commentCount: 100, speed: 1000,
+      comments: [
+        {id: 1, nickName: 'たかし', text: 'お前ら反論してみろ' + categoryId, date: '2018/05/28(月) 21:07:50.001',
+         threadId: thread1, userId: 1, },
+        {id: 2, nickName: 'ぴろゆき', text: '>>1 キモ' + categoryId, date: '2018/05/28(月) 21:30:50.001',
+         threadId: thread1, userId: 2, },
+      ],},
+      {id: thread2, title: 'なんjから来ました',
+      date: '2018/05/29(火) 21:07:50.001', categoryId: categoryId, commentCount: 100, speed: 1000,
+      comments: [
+        {id: 1, nickName: 'たかし', text: 'お前ら反論してみろ' + categoryId, date: '2018/05/28(月) 21:07:50.001',
+         threadId: thread2, userId: 1, },
+        {id: 2, nickName: 'ぴろゆき', text: '>>1 キモ', date: '2018/05/28(月) 21:30:50.001',
+         threadId: thread2, userId: 2, },
+      ],},
+      {id: thread3, title: '生き物苦手版サイコー',
+      date: '2018/05/30(水) 21:07:50.001', categoryId: categoryId, commentCount: 100, speed: 1000,
+      comments: [
+        {id: 1, nickName: 'たかし', text: 'お前ら反論してみろ' + categoryId, date: '2018/05/28(月) 21:07:50.001',
+         threadId: thread3, userId: 1, },
+        {id: 2, nickName: 'ぴろゆき', text: '>>1 キモ', date: '2018/05/28(月) 21:30:50.001',
+         threadId: thread3, userId: 2, },
+      ],},
     ]
     try {
       // const response = yield call(TopApi.getThreads, categoryId, page, sortId)
@@ -101,72 +119,13 @@ function* getThreadArray() {
         const thread = new ThreadModel({
           id: data.id, title: data.title, date: data.date,
           categoryId: data.categoryId, commentCount: data.commentCount,
-          speed: data.speed, index: index+1,
+          speed: data.speed, comments: data.comments, index: index+1,
         })
         threadArray.push(thread)
       })
-      const threadArrays = yield select(store => store.Top.threadArrays)
-      threadArrays[categoryId] = threadArray
-      yield put(TopAction.setThreadArrays(threadArrays))
+      console.log(threadArray)
+      yield put(TopAction.setThreadArray(threadArray))
       yield put(TopAction.setCurrentThread(true, categoryId))
-    } catch (error) {
-      console.log(error)
-      window.confirm('データの取得に失敗しました。ページの更新を行ってください')
-    }
-  }
-}
-
-// 記事取得
-function* getArticle() {
-  while (true) {
-    const action = yield take('GET_ARTICLE')
-    const threadId = action.threadId
-    const data =
-    {
-      id: threadId,
-      title: threadId,
-      comments: [
-        {
-          id: 1,
-          nickName: 'たかし',
-          text: 'お前ら反論してみろ' + threadId,
-          date: '2018/05/28(月) 21:07:50.001',
-          threadId: threadId,
-          userId: 1,
-        },
-        {
-          id: 2,
-          nickName: 'ぴろゆき',
-          text: '>>1 キモ',
-          date: '2018/05/28(月) 21:30:50.001',
-          threadId: threadId,
-          userId: 2,
-        },
-      ]
-    }
-    try {
-      // const response = yield call(TopApi.getThread, threadId)
-      const response = yield call(TopApi.getTest)
-      // TODO: dataをresponse.bodyに書き換え
-      const article = new ArticleModel({
-        id: data.id, title: data.title,
-        comments:
-          data.comments.map(comment => {
-            return new CommentModel({
-              id: comment.id,
-              nickName: comment.nickName,
-              text: comment.text,
-              date: comment.date,
-              threadId: comment.threadId,
-              userId: comment.userId,
-            })
-          })
-      })
-      const articleArray = yield select(store => store.Top.articleArray)
-      const currentCategory = yield select(store => store.Top.currentCategory)
-      articleArray.push(article)
-      yield put(TopAction.setArticleArray(articleArray))
-      yield put(TopAction.setCurrentThread(true, currentCategory.id))
     } catch (error) {
       console.log(error)
       window.confirm('データの取得に失敗しました。ページの更新を行ってください')

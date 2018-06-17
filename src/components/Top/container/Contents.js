@@ -13,7 +13,7 @@ import DialogArticle from './contentsParts/DialogArticle';
 
 class Contents extends Component {
   static propTypes = {
-    aCategoryThreadArray: PropTypes.array,
+    threadArray: PropTypes.array,
     currentThread: PropTypes.object.isRequired,
     sortArray: PropTypes.array.isRequired,
     currentSort: PropTypes.object.isRequired,
@@ -32,7 +32,7 @@ class Contents extends Component {
     onChangeDialogArticleComment: PropTypes.func.isRequired,
   }
   render() {
-    const {aCategoryThreadArray, currentThread, currentSort, currentPage,
+    const {threadArray, currentThread, currentSort, currentPage,
       onReload, sortArray, onCreateThread, onCreateComment, onSort, onPaging,
       addArticle, currentArticle, isDialogOpen, onChangeDialog,
       onChangeDialogThreadTitle, onChangeDialogThreadComment, onChangeDialogArticleComment,
@@ -40,7 +40,7 @@ class Contents extends Component {
     const label = currentThread.isCategory ? "スレッド新規作成" : "コメント新規作成"
     const onCreate = currentThread.isCategory ? onCreateThread : onCreateComment
     const inContents = currentThread.isCategory ?
-      (<ThreadContents threads={aCategoryThreadArray}
+      (<ThreadContents threads={threadArray}
         addArticle={addArticle} currentPage={currentPage} onPaging={onPaging}/>) :
       (<ArticleContents currentArticle={currentArticle}/>)
     const sortButton = currentThread.isCategory ?

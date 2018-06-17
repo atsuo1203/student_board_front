@@ -1,7 +1,7 @@
-function setThreadArrays(threadArrays){
+function setThreadArray(threadArray){
   return {
-    type: "SET_THREAD_ARRAYS",
-    payload: threadArrays,
+    type: "SET_THREAD_ARRAY",
+    payload: threadArray,
   }
 }
 
@@ -107,15 +107,8 @@ function getThreadArray(categoryId, page, sortId){
   }
 }
 
-function getArticle(threadId){
-  return {
-    type: "GET_ARTICLE",
-    threadId: threadId,
-  }
-}
-
 export default ({
-  setThreadArrays,
+  setThreadArray,
   setCurrentThread,
   setCategoryArray,
   setCurrentCategory,
@@ -130,5 +123,4 @@ export default ({
   getCategoryArray,
   getSortArray,
   getThreadArray,
-  getArticle,
 })
