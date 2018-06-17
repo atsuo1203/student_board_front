@@ -30,15 +30,20 @@ class Contents extends Component {
     onChangeDialogThreadTitle: PropTypes.func.isRequired,
     onChangeDialogThreadComment: PropTypes.func.isRequired,
     onChangeDialogArticleComment: PropTypes.func.isRequired,
+    dialogThreadTitle: PropTypes.string.isRequired,
+    dialogThreadComment: PropTypes.string.isRequired,
+    dialogArticleComment: PropTypes.string.isRequired,
   }
   render() {
     const {threadArray, currentThread, currentSort, currentPage,
       onReload, sortArray, onCreateThread, onCreateComment, onSort, onPaging,
       addArticle, currentArticle, isDialogOpen, onChangeDialog,
       onChangeDialogThreadTitle, onChangeDialogThreadComment, onChangeDialogArticleComment,
+      dialogThreadTitle, dialogThreadComment, dialogArticleComment
     } = this.props
     const label = currentThread.isCategory ? "スレッド新規作成" : "コメント新規作成"
     const onCreate = currentThread.isCategory ? onCreateThread : onCreateComment
+    const isThreadDialog = currentThread.isCategory
     const inContents = currentThread.isCategory ?
       (<ThreadContents threads={threadArray}
         addArticle={addArticle} currentPage={currentPage} onPaging={onPaging}/>) :
@@ -70,7 +75,10 @@ class Contents extends Component {
         </InContentsDiv>
         <DialogDefault
           onCreate={onCreate} isDialogOpen={isDialogOpen}
-          onChangeDialog={onChangeDialog} dialogChild={dialogChild} label={label}/>
+          onChangeDialog={onChangeDialog} dialogChild={dialogChild} label={label}
+          dialogThreadTitle={dialogThreadTitle} dialogThreadComment={dialogThreadComment}
+          dialogArticleComment={dialogArticleComment} isThreadDialog={isThreadDialog}
+          />
         </ContentsDiv>
       </MuiThemeProvider>
     );

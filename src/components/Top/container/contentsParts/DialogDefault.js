@@ -10,10 +10,30 @@ class DialogDefault extends Component {
     onCreate: PropTypes.func.isRequired,
     dialogChild: PropTypes.object.isRequired,
     label: PropTypes.string.isRequired,
+    dialogThreadTitle: PropTypes.string.isRequired,
+    dialogThreadComment: PropTypes.string.isRequired,
+    dialogArticleComment: PropTypes.string.isRequired,
+    isThreadDialog: PropTypes.bool.isRequired,
   }
 
   handleSubmit = () => {
-    const {onChangeDialog, onCreate} = this.props
+    const {onChangeDialog, onCreate,
+      dialogThreadTitle, dialogThreadComment, dialogArticleComment, isThreadDialog} = this.props
+    if (isThreadDialog) {
+      if (dialogThreadTitle.length > 40) {
+        window.confirm('タイトルは40文字以内にしてください')
+        return
+      }
+      if (dialogThreadComment.length > 200) {
+        window.confirm('コメントは200文字以内にしてください')
+        return
+      }
+    } else {
+      if (dialogArticleComment.length > 200) {
+        window.confirm('コメントは200文字以内にしてください')
+        return
+      }
+    }
     onChangeDialog(false)
     onCreate()
   }
