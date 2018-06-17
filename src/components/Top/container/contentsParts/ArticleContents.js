@@ -8,15 +8,16 @@ import {Div, Title} from '../../../../style/Top/container/contentsParts/ArticleC
 class ArticleContents extends Component {
   static propTypes = {
     currentArticle: PropTypes.object,
+    onClickUserName: PropTypes.func.isRequired,
   }
 
   articleObj = () => {
-    const {currentArticle} = this.props
+    const {currentArticle, onClickUserName} = this.props
     if (currentArticle) {
       return (
         <Div>
           <Title>{currentArticle.title}</Title>
-          <Comment comments={currentArticle.comments}/>
+          <Comment comments={currentArticle.comments} onClickUserName={onClickUserName}/>
         </Div>
       )
     } else {

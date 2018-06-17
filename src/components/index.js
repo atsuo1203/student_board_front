@@ -5,6 +5,7 @@ import Login from './Login';
 import ProvRegister from './ProvRegister';
 import Register from './Register';
 import Top from './Top';
+import OtherProfile from './OtherProfile';
 import Profile from './Profile';
 
 class App extends Component {
@@ -22,7 +23,8 @@ class App extends Component {
               return (
                 <Switch>
                   <Route path='/top' render={()=><Top/>} />
-                  <Route path='/profile' render={()=><Profile/>} />
+                  <Route exact path='/otherProfile/:userId' render={()=><OtherProfile/>} />
+                  <Route exact path='/profile' render={()=><Profile/>} />
                 </Switch>
               )
             } else {

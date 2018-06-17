@@ -33,13 +33,14 @@ class Contents extends Component {
     dialogThreadTitle: PropTypes.string.isRequired,
     dialogThreadComment: PropTypes.string.isRequired,
     dialogArticleComment: PropTypes.string.isRequired,
+    onClickUserName: PropTypes.func.isRequired,
   }
   render() {
     const {threadArray, currentThread, currentSort, currentPage,
       onReload, sortArray, onCreateThread, onCreateComment, onSort, onPaging,
       addArticle, currentArticle, isDialogOpen, onChangeDialog,
       onChangeDialogThreadTitle, onChangeDialogThreadComment, onChangeDialogArticleComment,
-      dialogThreadTitle, dialogThreadComment, dialogArticleComment
+      dialogThreadTitle, dialogThreadComment, dialogArticleComment, onClickUserName
     } = this.props
     const label = currentThread.isCategory ? "スレッド新規作成" : "コメント新規作成"
     const onCreate = currentThread.isCategory ? onCreateThread : onCreateComment
@@ -47,7 +48,7 @@ class Contents extends Component {
     const inContents = currentThread.isCategory ?
       (<ThreadContents threads={threadArray}
         addArticle={addArticle} currentPage={currentPage} onPaging={onPaging}/>) :
-      (<ArticleContents currentArticle={currentArticle}/>)
+      (<ArticleContents currentArticle={currentArticle} onClickUserName={onClickUserName}/>)
     const sortButton = currentThread.isCategory ?
       (<SortButton sortArray={sortArray} currentSort={currentSort} onSort={onSort}/>) :
       (null)

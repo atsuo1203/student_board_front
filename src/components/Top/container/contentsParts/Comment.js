@@ -8,13 +8,16 @@ import {Div, HeaderDiv,
 class Comment extends Component {
   static propTypes = {
     comments: PropTypes.array,
+    onClickUserName: PropTypes.func.isRequired,
   }
 
   headerParts = (comment) => {
+    const {onClickUserName} = this.props
     return(
       <HeaderDiv>
         <HeaderID>{comment.id}</HeaderID>:
-        <HeaderName>{comment.nickName}</HeaderName>
+        <HeaderName onClick={() => onClickUserName(comment.userId)}>
+          {comment.nickName}</HeaderName>
         <HeaderDate>{comment.date}</HeaderDate>
       </HeaderDiv>
     )
