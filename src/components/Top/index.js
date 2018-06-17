@@ -61,15 +61,14 @@ class Top extends Component {
     const {actions} = this.props
     actions.setCurrentThread(isCategory, threadId)
   }
-  handleCreateThread = (currentThread) => {
-    const {dialogThreadTitle, dialogThreadComment} = this.props
-    console.log('handleCreateThread')
-    console.log(currentThread, dialogThreadTitle, dialogThreadComment)
+  handleCreateThread = () => {
+    const {actions, currentCategory, dialogThreadTitle, dialogThreadComment} = this.props
+    console.log('createThread')
+    actions.postThread(currentCategory.id, dialogThreadTitle, dialogThreadComment)
   }
-  handleCreateComment = (currentThread) => {
-    const {dialogArticleComment} = this.props
-    console.log('handleCreateComment')
-    console.log(currentThread, dialogArticleComment)
+  handleCreateComment = () => {
+    const {actions, currentThread, dialogArticleComment} = this.props
+    actions.postComment(currentThread.id, dialogArticleComment)
   }
   handleReload = (currentThread) => {
     console.log(currentThread)

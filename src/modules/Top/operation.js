@@ -13,11 +13,12 @@ export function* topOperation() {
   yield fork(getCategoryArray);
   yield fork(getSortArray);
   yield fork(getThreadArray);
+  yield fork(postThread);
 }
 
 /*
-ここから下、主に初期で読み込むもの
-*/
+ * get
+ */
 // categoryArrayを取得してset
 function* getCategoryArray() {
   while (true) {
@@ -124,6 +125,43 @@ function* getThreadArray() {
         threadArray.push(thread)
       })
       console.log(threadArray)
+      yield put(TopAction.setThreadArray(threadArray))
+      yield put(TopAction.setCurrentThread(true, categoryId))
+    } catch (error) {
+      console.log(error)
+      window.confirm('データの取得に失敗しました。ページの更新を行ってください')
+    }
+  }
+}
+/*
+ * post
+ */
+// thread
+function* postThread() {
+  while (true) {
+    const action = yield take('POST_THREAD')
+    const categoryId = action.categoryId
+    const title = action.title
+    const commentText = action.commentText
+    const thread4 = 'thread_4'
+    const data = {
+      id: thread4, title: '今2chを見ているのは',
+      date: '2018/05/28(月) 21:07:50.001', categoryId: categoryId, commentCount: 100, speed: 1000,
+      comments: [
+        {id: 1, nickName: 'ケンジ', text: 'ひろゆきと俺とお前だけだ' + categoryId, date: '2018/05/28(月) 21:07:50.001',
+         threadId: thread4, userId: 3, }]
+    }
+    try {
+      // const response = yield call(TopApi.getThreads, categoryId, title, commentText)
+      const response = yield call(TopApi.getTest)
+      // TODO: dataをresponse.bodyに書き換え
+      const thread = new ThreadModel({
+        id: data.id, title: data.title, date: data.date,
+        categoryId: data.categoryId, commentCount: data.commentCount,
+        speed: data.speed, comments: data.comments, index: 'new'
+      })
+      const threadArray = yield select(store => store.Top.threadArray)
+      threadArray.unshift(thread)
       yield put(TopAction.setThreadArray(threadArray))
       yield put(TopAction.setCurrentThread(true, categoryId))
     } catch (error) {
