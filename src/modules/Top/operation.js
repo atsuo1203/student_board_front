@@ -136,7 +136,9 @@ function* getThreadArray() {
         threadArray.push(thread)
       })
       yield put(TopAction.setThreadArray(threadArray))
-      yield put(TopAction.setCurrentThread(true, categoryId))
+      const currentThread = yield select(store => store.Top.currentThread)
+      console.log(currentThread)
+      yield put(TopAction.setCurrentThread(currentThread.isCategory, currentThread.threadId))
     } catch (error) {
       console.log(error)
       window.confirm('データの取得に失敗しました。ページの更新を行ってください')
