@@ -5,14 +5,14 @@ import FlatButton from 'material-ui/FlatButton';
 import TextField from 'material-ui/TextField';
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import {Form} from '../../style/PreRegister'
+import {Form} from '../../style/ProvRegister'
 
-class PreRegisterForm extends Component {
+class ProvRegisterForm extends Component {
   static propTypes = {
-    onClickPreRegister: PropTypes.func.isRequired,
+    onClickProvRegister: PropTypes.func.isRequired,
   }
   render() {
-    const {onChangeEmail, onClickPreRegister} = this.props
+    const {onChangeEmail, onClickProvRegister} = this.props
     return (
       <MuiThemeProvider>
         <Form>
@@ -24,11 +24,11 @@ class PreRegisterForm extends Component {
             label="仮登録"
             backgroundColor="#a4c639"
             hoverColor="#8AA62F"
-            onClick={() => onClickPreRegister()}
+            onClick={() => onClickProvRegister()}
           /><br />
         </Form>
       </MuiThemeProvider>
     );
   }
 }
-export default PreRegisterForm;
+export default ProvRegisterForm;

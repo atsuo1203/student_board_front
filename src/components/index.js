@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom'
 
 import Login from './Login';
-import PreRegister from './PreRegister';
+import ProvRegister from './ProvRegister';
 import Register from './Register';
 import Top from './Top';
 import Profile from './Profile';
@@ -14,7 +14,7 @@ class App extends Component {
       <div>
         <Switch>
           <Route exact path='/' render={()=><Login/>} />
-          <Route path='/preRegister' render={()=><PreRegister/>} />
+          <Route path='/provRegister' render={()=><ProvRegister/>} />
           <Route path='/register' render={()=><Register/>} />
 
           {(() => {
