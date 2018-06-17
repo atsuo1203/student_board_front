@@ -38,10 +38,28 @@ export default class TopApi {
     }
   }
 
-  static async getThread(threadId) {
+  /*
+   * post
+   */
+  // thread
+  static async postThreads(title, categoryId, commentText) {
     // TODO: headerを取得してつける
     try {
-      return request.get(DEV_URL+'/thread/'+String(threadId));
+      return request
+        .post(DEV_URL+'/thread/')
+        .send({title: title, category_id: categoryId, commentText: commentText})
+    } catch (e) {
+      throw e;
+    }
+  }
+
+  // comment
+  static async postComment(threadId, commentText) {
+    // TODO: headerを取得してつける
+    try {
+      return request
+        .post(DEV_URL+'/thread/comment/'+String(threadId))
+        .send({text: commentText})
     } catch (e) {
       throw e;
     }
