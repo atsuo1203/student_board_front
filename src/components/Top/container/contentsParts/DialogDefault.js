@@ -20,8 +20,16 @@ class DialogDefault extends Component {
     const {onChangeDialog, onCreate,
       dialogThreadTitle, dialogThreadComment, dialogArticleComment, isThreadDialog} = this.props
     if (isThreadDialog) {
+      if ((dialogThreadTitle === undefined) || (dialogThreadTitle === "")) {
+        window.confirm('タイトルを入力してください')
+        return
+      }
       if (dialogThreadTitle.length > 40) {
         window.confirm('タイトルは40文字以内にしてください')
+        return
+      }
+      if ((dialogThreadComment === undefined) || (dialogThreadComment === "")) {
+        window.confirm('コメントを入力してください')
         return
       }
       if (dialogThreadComment.length > 200) {
@@ -29,6 +37,10 @@ class DialogDefault extends Component {
         return
       }
     } else {
+      if ((dialogArticleComment === undefined) || (dialogArticleComment === "")) {
+        window.confirm('コメントを入力してください')
+        return
+      }
       if (dialogArticleComment.length > 200) {
         window.confirm('コメントは200文字以内にしてください')
         return
