@@ -23,8 +23,8 @@ class App extends Component {
               return (
                 <Switch>
                   <Route path='/top' render={()=><Top/>} />
-                  <Route path='/otherProfile/:userId' render={()=><OtherProfile/>} />
-                  <Route path='/profile' render={()=><Profile/>} />
+                  <Route exact path='/otherProfile/:userId' render={()=><OtherProfile/>} />
+                  <Route exact path='/profile' render={()=><Profile/>} />
                 </Switch>
               )
             } else {

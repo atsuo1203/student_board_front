@@ -6,7 +6,7 @@ const initializeState = {
 
 export default (state=initializeState, action) => {
   switch (action.type) {
-    case "SET_PROFILE":
+    case "SET_OTHER_PROFILE":
       return Object.assign({}, state, {
         nickName: action.nickName,
         twitterName: action.twitterName,

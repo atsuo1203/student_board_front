@@ -13,14 +13,16 @@ export function* otherProfileOperation() {
 // userOtherProfileを取得して書き換え
 function* getOtherProfile() {
   while (true) {
-    yield take('GET_PROFILE')
+    const action = yield take('GET_OTHER_PROFILE')
+    const userId = action.payload
+    console.log(userId)
     const data = {
       nickName: 'KMR',
       twitterName: '114514_kimura',
-      myOtherProfile: 'なんで見る必要があるんですか'
+      otherProfile: 'なんで見る必要があるんですか'
     }
     try {
-      // const response = yield call(OtherProfileApi.getOtherProfile)
+      // const response = yield call(OtherProfileApi.getOtherProfile, userId)
       const response = yield call(OtherProfileApi.getTest)
       console.log(response)
       const profile = data

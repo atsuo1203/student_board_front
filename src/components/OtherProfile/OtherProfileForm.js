@@ -21,19 +21,28 @@ class OtherProfileForm extends Component {
       <MuiThemeProvider>
         <Form>
           <TextField
-            hintText="ニックネーム"
-            value={nickName}
+            id="nickName"
+            disabled={true}
+            style={{cursor: 'text'}}
+            children={<div>{nickName}</div>}
+            inputStyle={{textAlign: 'left', position: 'relative', top: '10px', color: 'brack'}}
           /><br />
           <TextField
-            hintText="Twitterアカウント(任意)"
-            value={twitterName}
+            id='twitterName'
+            disabled={true}
+            style={{cursor: 'text'}}
+            children={<div>{'@'+twitterName}</div>}
+            inputStyle={{textAlign: 'left', position: 'relative', top: '10px', color: 'brack'}}
           /><br />
           <TextField
-            hintText="自己プロフィール(任意)"
-            value={otherProfile}
+            id='otherProfile'
             multiLine={true}
             rows={8}
             cols={20}
+            disabled={true}
+            style={{cursor: 'text'}}
+            children={<div>{otherProfile}</div>}
+            inputStyle={{textAlign: 'left', position: 'relative', top: '10px', color: 'brack'}}
           /><br />
           <FlatButton
             label="Top画面へ戻る"

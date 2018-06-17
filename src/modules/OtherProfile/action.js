@@ -1,7 +1,7 @@
 // 一括セット
-function setProfile(profile){
+function setOtherProfile(profile){
   return {
-    type: "SET_PROFILE",
+    type: "SET_OTHER_PROFILE",
     nickName: profile.nickName,
     twitterName: profile.twitterName,
     otherProfile: profile.otherProfile,
@@ -11,13 +11,14 @@ function setProfile(profile){
 /*
  * get
  */
-function getProfile(){
+function getOtherProfile(userId){
   return {
-    type: "GET_PROFILE",
+    type: "GET_OTHER_PROFILE",
+    payload: userId,
   }
 }
 
 export default ({
-  setProfile,
-  getProfile,
+  setOtherProfile,
+  getOtherProfile,
 })

@@ -10,25 +10,26 @@ import OtherProfileForm  from './OtherProfileForm'
 
 class OtherProfile extends Component {
   async componentWillMount() {
-    console.log(this.props.match.params.userId)
-    // const userID = this.props.location.props.userId
-    // console.log(userID)
+    const {actions} = this.props
+    const userId = this.props.match.params.userId
+    actions.getOtherProfile(userId)
+  }
+
+  handleDecision = () => {
+    this.props.history.push('/top')
   }
 
   render() {
+    const {nickName, twitterName, otherProfile} = this.props
     return (
       <div>
-        otherProfile
-        {/* <CommonHeader title='ユーザ情報編集'/>
+        <CommonHeader title={nickName+'のプロフィール'}/>
         <OtherProfileForm
           nickName={nickName}
           twitterName={twitterName}
           otherProfile={otherProfile}
-          onChangeNickName={this.handleChangeNickName}
-          onChangeTwitter={this.handleChangeTwitter}
-          onChangeMyOtherProfile={this.handleChangeMyOtherProfile}
           onClickDecision={this.handleDecision}
-        /> */}
+        />
       </div>
     );
   }
