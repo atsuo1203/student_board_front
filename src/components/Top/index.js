@@ -126,7 +126,8 @@ class Top extends Component {
   render() {
     const {categoryArray, sortArray,
       currentCategory, currentThread, currentSort, currentPage,
-      threadArray, articleArray, isDialogOpen} = this.props
+      threadArray, articleArray, isDialogOpen,
+      dialogThreadTitle, dialogThreadComment, dialogArticleComment} = this.props
     // 現在の記事
     const currentArticle = (articleArray.length === 0) ? null :
       articleArray.filter(article => String(currentThread.threadId) === String(article.id))[0]
@@ -168,6 +169,9 @@ class Top extends Component {
           onChangeDialogThreadTitle={this.handleOnChangeDialogThreadTitle}
           onChangeDialogThreadComment={this.handleOnChangeDialogThreadComment}
           onChangeDialogArticleComment={this.handleOnChangeDialogArticleComment}
+          dialogThreadTitle={dialogThreadTitle}
+          dialogThreadComment={dialogThreadComment}
+          dialogArticleComment={dialogArticleComment}
         />
         </Div>
     );
