@@ -109,7 +109,7 @@ class Top extends Component {
   }
   handleOnClickUserName = (userId) => {
     console.log('click userName')
-    console.log(userId)
+    this.props.history.push('/otherProfile/' + String(userId))
   }
   makeTabs = () => {
     const {currentThread, articleArray} = this.props
