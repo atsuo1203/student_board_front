@@ -69,7 +69,7 @@ class Contents extends Component {
           {inContents}
         </InContentsDiv>
         <DialogDefault
-          onCreate={onCreate} currentThread={currentThread} isDialogOpen={isDialogOpen}
+          onCreate={onCreate} isDialogOpen={isDialogOpen}
           onChangeDialog={onChangeDialog} dialogChild={dialogChild} label={label}/>
         </ContentsDiv>
       </MuiThemeProvider>

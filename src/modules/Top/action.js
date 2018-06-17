@@ -107,6 +107,23 @@ function getThreadArray(categoryId, page, sortId){
   }
 }
 
+function postThread(categoryId, title, commentText){
+  return {
+    type: "POST_THREAD",
+    categoryId: categoryId,
+    title: title,
+    commentText: commentText
+  }
+}
+
+function postComment(threadId, commentText){
+  return {
+    type: "POST_COMMENT",
+    threadId: threadId,
+    commentText: commentText
+  }
+}
+
 export default ({
   setThreadArray,
   setCurrentThread,
@@ -123,4 +140,6 @@ export default ({
   getCategoryArray,
   getSortArray,
   getThreadArray,
+  postThread,
+  postComment,
 })
