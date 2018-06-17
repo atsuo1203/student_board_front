@@ -186,7 +186,7 @@ function* postComment() {
       threadId: threadId, userId: 1,
     }
     try {
-      // const response = yield call(TopApi.getThreads, categoryId, title, commentText)
+      // const response = yield call(TopApi.postComment, thread_id, commentText)
       const response = yield call(TopApi.getTest)
       // TODO: dataをresponse.bodyに書き換え
       const comment = new CommentModel({
