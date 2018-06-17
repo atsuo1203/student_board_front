@@ -1,5 +1,5 @@
 import Register from './modules/Register/reducer'
-import ProvRegister from './modules/Register/reducer'
+import ProvRegister from './modules/ProvRegister/reducer'
 import Profile from './modules/Profile/reducer'
 import Login from './modules/Login/reducer'
 import Top from './modules/Top/reducer'

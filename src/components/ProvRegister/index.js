@@ -14,12 +14,8 @@ class ProvRegister extends Component {
   }
 
   handleClickProvRegister = () => {
-    console.log()
-  }
-
-  handleClickProvRegister = () => {
     const {email} = this.props
-    console.log(email)
+    console.log('handleEmail', email)
     this.props.history.push('./register')
   }
 
