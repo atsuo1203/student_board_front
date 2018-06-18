@@ -26,6 +26,17 @@ export default class TopApi {
     }
   }
 
+  // thread
+  static async getThread(threadId) {
+    // TODO: headerを取得してつける
+    try {
+      return request
+        .get(DEV_URL+'/thread/'+String(threadId))
+    } catch (e) {
+      throw e;
+    }
+  }
+
   // threads
   static async getThreads(categoryId, page, sortId) {
     // TODO: headerを取得してつける

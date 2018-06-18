@@ -20,7 +20,8 @@ class Contents extends Component {
     currentPage: PropTypes.number.isRequired,
     onCreateThread: PropTypes.func.isRequired,
     onCreateComment: PropTypes.func.isRequired,
-    onReload: PropTypes.func.isRequired,
+    onThreadsReload: PropTypes.func.isRequired,
+    onThreadReload: PropTypes.func.isRequired,
     onSort: PropTypes.func.isRequired,
     onPaging: PropTypes.func.isRequired,
     addArticle: PropTypes.func.isRequired,
@@ -37,7 +38,7 @@ class Contents extends Component {
   }
   render() {
     const {threadArray, currentThread, currentSort, currentPage,
-      onReload, sortArray, onCreateThread, onCreateComment, onSort, onPaging,
+      onThreadsReload, onThreadReload, sortArray, onCreateThread, onCreateComment, onSort, onPaging,
       addArticle, currentArticle, isDialogOpen, onChangeDialog,
       onChangeDialogThreadTitle, onChangeDialogThreadComment, onChangeDialogArticleComment,
       dialogThreadTitle, dialogThreadComment, dialogArticleComment, onClickUserName
@@ -55,6 +56,7 @@ class Contents extends Component {
     const dialogChild = currentThread.isCategory ?
       (<DialogThread onChangeTitle={onChangeDialogThreadTitle} onChangeComment={onChangeDialogThreadComment}/>)
       : (<DialogArticle onChangeComment={onChangeDialogArticleComment}/>)
+    const onReload = currentThread.isCategory ? onThreadsReload : onThreadReload
     return (
       <MuiThemeProvider>
         <ContentsDiv>

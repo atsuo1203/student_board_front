@@ -98,6 +98,13 @@ function getSortArray(){
   }
 }
 
+function getThread(threadId){
+  return {
+    type: "GET_THREAD",
+    payload: threadId,
+  }
+}
+
 function getThreadArray(categoryId, page, sortId){
   return {
     type: "GET_THREAD_ARRAY",
@@ -139,6 +146,7 @@ export default ({
   setDialogArticleComment,
   getCategoryArray,
   getSortArray,
+  getThread,
   getThreadArray,
   postThread,
   postComment,
