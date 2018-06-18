@@ -1,5 +1,6 @@
 import {DEV_URL, TEST_URL} from './endpoint'
 import request from 'superagent';
+import Authorization from './Authorization';
 
 export default class ProfileApi {
   /**
@@ -11,6 +12,7 @@ export default class ProfileApi {
     try {
       return request
         .get(DEV_URL+'/user')
+        .set(Authorization.getAuth())
     } catch (e) {
       throw e;
     }
@@ -25,6 +27,7 @@ export default class ProfileApi {
     try {
       return request
         .put(DEV_URL+'/user')
+        .set(Authorization.getAuthContentType())
         .send({nickName: nickName, twitterName: twitterName, profile: myprofile})
     } catch (e) {
       throw e;
@@ -36,7 +39,7 @@ export default class ProfileApi {
    */
   static async getTest() {
     try {
-      return request.get(TEST_URL+'/posts/1');
+      return request.get(TEST_URL+'/posts/1')
     } catch (e) {
       throw e;
     }
@@ -44,7 +47,7 @@ export default class ProfileApi {
 
   static async putTest(nickName, twitterName, myprofile) {
     try {
-      return request.get(TEST_URL+'/posts/1');
+      return request.get(TEST_URL+'/posts/1')
     } catch (e) {
       throw e;
     }

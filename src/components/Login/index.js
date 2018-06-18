@@ -23,12 +23,12 @@ class Login extends Component {
     const {email, password} = this.props
     console.log(email, password)
     // TODO レスポンスから取る
-    const data = {webToken: 'hogehogeWebToken'}
+    const data = {authorization: 'hogehogeauthorization'}
     // TODO LoginApi.getTest()をLoginApi.getLogin(email, password)に変更
     LoginApi.getTest()
       .then(responce => {
         console.log(responce)
-        localStorage.setItem('webToken', data.webToken)
+        localStorage.setItem('authorization', data.authorization)
         this.props.history.push('./top')
       })
       .catch(error => {

@@ -8,11 +8,12 @@ export default class RegisterApi {
    */
   // auth
   // 登録を行う
-  static async postRegister(password, nickName, twitterName, profile) {
+  static async postRegister(password, nickName, twitterName, profile, token) {
     try {
       return request
         .post(DEV_URL+'/auth/register')
-        .send({password: password, nickName: nickName, twitterName: twitterName, profile: profile})
+        .send({password: password, nickName: nickName,
+          twitterName: twitterName, profile: profile, token: token})
     } catch (e) {
       throw e;
     }
@@ -21,9 +22,9 @@ export default class RegisterApi {
   /**
    *  テスト用restAPI 通信テスト用
    */
-  static async getTest(password, nickName, twitterName, profile) {
+  static async getTest(password, nickName, twitterName, profile, token) {
     try {
-      return request.get(TEST_URL+'/posts/1');
+      return request.get(TEST_URL+'/posts/1')
     } catch (e) {
       throw e;
     }

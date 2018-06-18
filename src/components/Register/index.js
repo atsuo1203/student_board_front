@@ -11,8 +11,13 @@ import CommonHeader from '../common/CommonHeader'
 import RegisterForm  from './RegisterForm'
 
 class Register extends Component {
-  handleLogin = () => {
+  handleRegister = () => {
     const {password, secondPassword, nickName, twitterName, profile} = this.props
+    const search = this.props.location.search
+    if (!search.startsWith("?token=")) {
+      window.confirm('メールに書いてあったURLを使用してください')
+      return
+    }
     if ((password === "") || (password === undefined) || (password.length < 8)) {
       window.confirm('passwrodは英数字を用いた8文字となります')
       return
@@ -29,20 +34,13 @@ class Register extends Component {
       window.confirm('プロフィールは150字まででお願いします')
       return
     }
-    // TODO getTest() を postRegister(password, nickName, twitterName, profile) に書き換え
-    RegisterApi.getTest(password, nickName, twitterName, profile)
+    const token = search.split('?token=')[1]
+    console.log(token)
+    // TODO getTest() を postRegister(password, nickName, twitterName, profile, token) に書き換え
+    RegisterApi.getTest(password, nickName, twitterName, profile, token)
       .then(response => {
         console.log(response)
-        // TODO getTest() を getLogin(email, password) に書き換え
-        LoginApi.getTest()
-          .then(res => {
-            console.log(res)
-            // TODO レスポンスから取る
-            const data = {webToken: 'hogehogeWebToken'}
-            localStorage.setItem('webToken', data.webToken)
-            this.props.history.push('./top')
-          })
-          .catch()
+        this.props.history.push('/')
       })
       .catch(error => {
         window.confirm('何らか問題が発生したため登録できません')
@@ -80,7 +78,7 @@ class Register extends Component {
       <div>
         <CommonHeader title='登録ページ'/>
         <RegisterForm
-          onClickRegister={this.handleLogin}
+          onClickRegister={this.handleRegister}
           onChangePassword={this.handleChangePassword}
           onChangeSecondPassword={this.handleChangeSecondPassword}
           onChangeNickName={this.handleChangeNickName}
