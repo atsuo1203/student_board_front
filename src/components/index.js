@@ -19,7 +19,7 @@ class App extends Component {
           <Route path='/register' render={()=><Register/>} />
 
           {(() => {
-            if (localStorage.webToken) {
+            if (localStorage.authorization) {
               return (
                 <Switch>
                   <Route path='/top' render={()=><Top/>} />

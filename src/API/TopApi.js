@@ -1,5 +1,6 @@
 import {DEV_URL, TEST_URL} from './endpoint'
 import request from 'superagent';
+import Authorization from './Authorization';
 
 export default class TopApi {
 
@@ -10,7 +11,9 @@ export default class TopApi {
   static async getCategories() {
     // TODO: headerを取得してつける
     try {
-      return request.get(DEV_URL+'/categories');
+      return request
+        .get(DEV_URL+'/categories');
+        .set(Authorization.getAuth())
     } catch (e) {
       throw e;
     }
@@ -20,7 +23,9 @@ export default class TopApi {
   static async getSorts() {
     // TODO: headerを取得してつける
     try {
-      return request.get(DEV_URL+'/sorts');
+      return request
+        .get(DEV_URL+'/sorts');
+        .set(Authorization.getAuth())
     } catch (e) {
       throw e;
     }
@@ -32,6 +37,7 @@ export default class TopApi {
     try {
       return request
         .get(DEV_URL+'/thread/'+String(threadId))
+        .set(Authorization.getAuth())
     } catch (e) {
       throw e;
     }
@@ -43,6 +49,7 @@ export default class TopApi {
     try {
       return request
         .get(DEV_URL+'/threads/'+String(categoryId))
+        .set(Authorization.getAuth())
         .query({page: page, sort_id: sortId})
     } catch (e) {
       throw e;
@@ -58,6 +65,7 @@ export default class TopApi {
     try {
       return request
         .post(DEV_URL+'/thread/')
+        .set(Authorization.getAuthContentType())
         .send({title: title, category_id: categoryId, commentText: commentText})
     } catch (e) {
       throw e;
@@ -70,6 +78,7 @@ export default class TopApi {
     try {
       return request
         .post(DEV_URL+'/thread/comment/'+String(threadId))
+        .set(Authorization.getAuthContentType())
         .send({text: commentText})
     } catch (e) {
       throw e;

@@ -38,8 +38,8 @@ class Register extends Component {
           .then(res => {
             console.log(res)
             // TODO レスポンスから取る
-            const data = {webToken: 'hogehogeWebToken'}
-            localStorage.setItem('webToken', data.webToken)
+            const data = {authorization: 'hogehogeauthorization'}
+            localStorage.setItem('authorization', data.authorization)
             this.props.history.push('./top')
           })
           .catch()

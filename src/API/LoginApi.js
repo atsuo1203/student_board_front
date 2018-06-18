@@ -7,7 +7,7 @@ export default class LoginApi {
    *  get
    */
   // auth
-  // ログイン webTokenが返ってくる
+  // ログイン authorizationが返ってくる
   static async getLogin(email, password) {
     try {
       return request
