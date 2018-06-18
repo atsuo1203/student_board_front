@@ -39,7 +39,7 @@ export default class ProfileApi {
    */
   static async getTest() {
     try {
-      return request.get(TEST_URL+'/posts/1');
+      return request.get(TEST_URL+'/posts/1')
     } catch (e) {
       throw e;
     }
@@ -47,7 +47,7 @@ export default class ProfileApi {
 
   static async putTest(nickName, twitterName, myprofile) {
     try {
-      return request.get(TEST_URL+'/posts/1');
+      return request.get(TEST_URL+'/posts/1')
     } catch (e) {
       throw e;
     }

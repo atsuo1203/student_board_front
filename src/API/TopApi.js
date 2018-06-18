@@ -12,7 +12,7 @@ export default class TopApi {
     // TODO: headerを取得してつける
     try {
       return request
-        .get(DEV_URL+'/categories');
+        .get(DEV_URL+'/categories')
         .set(Authorization.getAuth())
     } catch (e) {
       throw e;
@@ -24,7 +24,7 @@ export default class TopApi {
     // TODO: headerを取得してつける
     try {
       return request
-        .get(DEV_URL+'/sorts');
+        .get(DEV_URL+'/sorts')
         .set(Authorization.getAuth())
     } catch (e) {
       throw e;
@@ -90,7 +90,7 @@ export default class TopApi {
    */
   static async getTest() {
     try {
-      return request.get(TEST_URL+'/posts/1');
+      return request.get(TEST_URL+'/posts/1')
     } catch (e) {
       throw e;
     }

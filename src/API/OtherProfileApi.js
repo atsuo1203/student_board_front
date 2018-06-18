@@ -22,7 +22,7 @@ export default class OtherProfileApi {
    */
   static async getTest() {
     try {
-      return request.get(TEST_URL+'/posts/1');
+      return request.get(TEST_URL+'/posts/1')
     } catch (e) {
       throw e;
     }

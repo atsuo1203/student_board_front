@@ -23,7 +23,7 @@ export default class ProvRegisterApi {
    */
   static async getTest(email) {
     try {
-      return request.get(TEST_URL+'/posts/1');
+      return request.get(TEST_URL+'/posts/1')
     } catch (e) {
       throw e;
     }
