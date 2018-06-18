@@ -68,9 +68,14 @@ class Top extends Component {
     const {actions, currentThread, dialogArticleComment} = this.props
     actions.postComment(currentThread.threadId, dialogArticleComment)
   }
-  handleReload = () => {
+  handleThreadsReload = () => {
     const {actions, currentCategory, currentPage, currentSort} = this.props
-    actions.getThreadArray(currentCategory.threadId, currentPage, currentSort.id)
+    actions.getThreadArray(currentCategory.id, currentPage, currentSort.id)
+  }
+  handleThreadReload = () => {
+    console.log('handleThreadReload')
+    const {actions, currentThread} = this.props
+    actions.getThread(currentThread.threadId)
   }
   handleSort = (sortModel) => {
     const {actions, currentCategory, currentPage} = this.props
@@ -161,7 +166,8 @@ class Top extends Component {
           sortArray={sortArray}
           currentSort={currentSort}
           currentPage={currentPage}
-          onReload={this.handleReload}
+          onThreadsReload={this.handleThreadsReload}
+          onThreadReload={this.handleThreadReload}
           onCreateThread={this.handleCreateThread}
           onCreateComment={this.handleCreateComment}
           onSort={this.handleSort}

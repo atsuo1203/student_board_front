@@ -11,6 +11,7 @@ import CommentModel from '../../models/CommentModel';
 export function* topOperation() {
   yield fork(getCategoryArray);
   yield fork(getSortArray);
+  yield fork(getThread);
   yield fork(getThreadArray);
   yield fork(postThread);
   yield fork(postComment);
@@ -67,6 +68,76 @@ function* getSortArray() {
         sortArray.push(sort)
       })
       yield put(TopAction.setSortArray(sortArray))
+    } catch (error) {
+      console.log(error)
+      window.confirm('データの取得に失敗しました。ページの更新を行ってください')
+    }
+  }
+}
+
+// threadを取得して書き換え
+function* getThread() {
+  while (true) {
+    const action = yield take('GET_THREAD')
+    const threadId = action.payload
+    // TODO: curretnCategoryはいらないから後で消す
+    const currentCategory = yield select(store => store.Top.currentCategory)
+    const data = {
+      thread: {id: threadId, title: 'reload後やで' + threadId,
+        date: '2018/05/28(月) 21:07:50.001',
+        categoryId: currentCategory, commentCount: 100, speed: 1000,},
+      comments: [
+        {id: 1, nickName: 'たかし', text: 'リロード乙', date: '2018/05/28(月) 21:07:50.001',
+         threadId: threadId, userId: 1, },
+        {id: 2, nickName: 'ぴろゆき', text: '>>1 キモ', date: '2018/05/28(月) 21:30:50.001',
+         threadId: threadId, userId: 2, },],
+    }
+    try {
+      // const response = yield call(TopApi.getThread, threadId)
+      const response = yield call(TopApi.getTest)
+      // TODO: rerloadThreadをresponse.bodyに書き換え
+      const reloadThread = new ThreadModel({
+        id: data.thread.id, title: data.thread.title, date: data.thread.date,
+        categoryId: data.thread.categoryId, commentCount: data.thread.commentCount,
+        speed: data.thread.speed, index: 0,
+        comments: data.comments.map(comment => {
+          return new CommentModel({
+            id: comment.id, nickName: comment.nickName, text: comment.text,
+            date: comment.date, threadId: comment.threadId, userId: comment.userId,})
+        }),
+      })
+      const articleArray = yield select(store => store.Top.articleArray)
+      const threadArray = yield select(store => store.Top.threadArray)
+      var newArticleArray = []
+      var newThreadArray = []
+      articleArray.forEach(article => {
+        if (article.id === reloadThread.id) {
+          var newArticle = new ThreadModel({
+            id: reloadThread.id, title: reloadThread.title, data: reloadThread.data,
+            categoryId: reloadThread.categoryId, commentCount: reloadThread.commentCount,
+            speed: reloadThread.speed, comments: reloadThread.comments, index: article.index,
+          })
+          newArticleArray.push(newArticle)
+        } else {
+          newArticleArray.push(article)
+        }
+      });
+      threadArray.forEach(thread => {
+        if (thread.id === reloadThread.id) {
+          var newThread = new ThreadModel({
+            id: reloadThread.id, title: reloadThread.title, data: reloadThread.data,
+            categoryId: reloadThread.categoryId, commentCount: reloadThread.commentCount,
+            speed: reloadThread.speed, comments: reloadThread.comments, index: thread.index,
+          })
+          newThreadArray.push(newThread)
+        } else {
+          newThreadArray.push(thread)
+        }
+      });
+      yield put(TopAction.setArticleArray(newArticleArray))
+      yield put(TopAction.setThreadArray(newThreadArray))
+      const currentThread = yield select(store => store.Top.currentThread)
+      yield put(TopAction.setCurrentThread(currentThread.isCategory, currentThread.threadId))
     } catch (error) {
       console.log(error)
       window.confirm('データの取得に失敗しました。ページの更新を行ってください')
@@ -145,6 +216,7 @@ function* getThreadArray() {
     }
   }
 }
+
 /*
  * post
  */
