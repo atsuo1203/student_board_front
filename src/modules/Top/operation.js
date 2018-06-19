@@ -25,18 +25,18 @@ function* getCategoryArray() {
   while (true) {
     yield take('GET_CATEGORY_ARRAY')
     const dataList = [
-      {id: 1, name: '雑談'},
-      {id: 2, name: '勉強'},
-      {id: 3, name: '恋愛'},
-      {id: 4, name: '部活'},
-      {id: 5, name: '進路'},
+      {category_id: 1, name: '雑談'},
+      {category_id: 2, name: '勉強'},
+      {category_id: 3, name: '恋愛'},
+      {category_id: 4, name: '部活'},
+      {category_id: 5, name: '進路'},
     ]
     try {
       const response = yield call(TopApi.getTest)
       var categoryArray = []
       // TODO: dataListをresponse.bodyに書き換え
       dataList.forEach(data => {
-        const category = new CategoryModel({id: data.id, name: data.name})
+        const category = new CategoryModel({id: data.category_id, name: data.name})
         categoryArray.push(category)
       })
       yield put(TopAction.setCategoryArray(categoryArray))
@@ -52,19 +52,19 @@ function* getSortArray() {
   while (true) {
     yield take('GET_SORT_ARRAY')
     const dataList = [
-      {id: 1, name: 'ID昇順'},
-      {id: 2, name: 'ID降順'},
-      {id: 3, name: '人気昇順'},
-      {id: 4, name: '人気降順'},
-      {id: 5, name: 'コメント数昇順'},
-      {id: 6, name: 'コメント数降順'},
+      {sort_id: 1, name: 'ID昇順'},
+      {sort_id: 2, name: 'ID降順'},
+      {sort_id: 3, name: '人気昇順'},
+      {sort_id: 4, name: '人気降順'},
+      {sort_id: 5, name: 'コメント数昇順'},
+      {sort_id: 6, name: 'コメント数降順'},
     ]
     try {
       const response = yield call(TopApi.getTest)
       var sortArray = []
       // TODO: dataListをresponse.bodyに書き換え
       dataList.forEach(data => {
-        const sort = new SortModel({id: data.id, name: data.name})
+        const sort = new SortModel({id: data.sort_id, name: data.name})
         sortArray.push(sort)
       })
       yield put(TopAction.setSortArray(sortArray))
@@ -83,13 +83,13 @@ function* getThread() {
     // TODO: curretnCategoryはいらないから後で消す
     const currentCategory = yield select(store => store.Top.currentCategory)
     const data = {
-      thread: {id: threadId, title: 'reload後やで' + threadId,
+      thread: {thread_id: threadId, title: 'reload後やで' + threadId,
         date: '2018/05/28(月) 21:07:50.001',
         categoryId: currentCategory, commentCount: 100, speed: 1000,},
       comments: [
-        {id: 1, nickName: 'たかし', text: 'リロード乙', date: '2018/05/28(月) 21:07:50.001',
+        {comment_id: 1, nickName: 'たかし', text: 'リロード乙', date: '2018/05/28(月) 21:07:50.001',
          threadId: threadId, userId: 1, },
-        {id: 2, nickName: 'ぴろゆき', text: '>>1 キモ', date: '2018/05/28(月) 21:30:50.001',
+        {comment_id: 2, nickName: 'ぴろゆき', text: '>>1 キモ', date: '2018/05/28(月) 21:30:50.001',
          threadId: threadId, userId: 2, },],
     }
     try {
@@ -97,7 +97,7 @@ function* getThread() {
       const response = yield call(TopApi.getTest)
       // TODO: rerloadThreadをresponse.bodyに書き換え
       const reloadThread = new ThreadModel({
-        id: data.thread.id, title: data.thread.title, date: data.thread.date,
+        id: data.thread.thread_id, title: data.thread.title, date: data.thread.date,
         categoryId: data.thread.categoryId, commentCount: data.thread.commentCount,
         speed: data.thread.speed, index: 0,
         comments: data.comments.map(comment => {
@@ -158,33 +158,33 @@ function* getThreadArray() {
     const thread3 = 'thread_3' + uniqueKey
     const dataList = [
       {
-        thread: {id: thread1, title: 'vipからきました',
+        thread: {thread_id: thread1, title: 'vipからきました',
           date: '2018/05/28(月) 21:07:50.001',
           categoryId: categoryId, commentCount: 100, speed: 1000,},
         comments: [
-          {id: 1, nickName: 'たかし', text: 'お前ら反論してみろ' + categoryId, date: '2018/05/28(月) 21:07:50.001',
+          {comment_id: 1, nickName: 'たかし', text: 'お前ら反論してみろ' + categoryId, date: '2018/05/28(月) 21:07:50.001',
            threadId: thread1, userId: 1, },
-          {id: 2, nickName: 'ぴろゆき', text: '>>1 キモ' + categoryId, date: '2018/05/28(月) 21:30:50.001',
+          {comment_id: 2, nickName: 'ぴろゆき', text: '>>1 キモ' + categoryId, date: '2018/05/28(月) 21:30:50.001',
            threadId: thread1, userId: 2, },],
       },
       {
-        thread: {id: thread2, title: 'なんjから来ました',
+        thread: {thread_id: thread2, title: 'なんjから来ました',
           date: '2018/05/29(火) 21:07:50.001',
           categoryId: categoryId, commentCount: 100, speed: 1000,},
         comments: [
-          {id: 1, nickName: 'たかし', text: 'お前ら反論してみろ' + categoryId, date: '2018/05/28(月) 21:07:50.001',
+          {comment_id: 1, nickName: 'たかし', text: 'お前ら反論してみろ' + categoryId, date: '2018/05/28(月) 21:07:50.001',
            threadId: thread2, userId: 1, },
-          {id: 2, nickName: 'ぴろゆき', text: '>>1 キモ', date: '2018/05/28(月) 21:30:50.001',
+          {comment_id: 2, nickName: 'ぴろゆき', text: '>>1 キモ', date: '2018/05/28(月) 21:30:50.001',
            threadId: thread2, userId: 2, },],
       },
       {
-        thread: {id: thread3, title: '生き物苦手版サイコー',
+        thread: {thread_id: thread3, title: '生き物苦手版サイコー',
           date: '2018/05/30(水) 21:07:50.001',
           categoryId: categoryId, commentCount: 100, speed: 1000,},
         comments: [
-          {id: 1, nickName: 'たかし', text: 'お前ら反論してみろ' + categoryId, date: '2018/05/28(月) 21:07:50.001',
+          {comment_id: 1, nickName: 'たかし', text: 'お前ら反論してみろ' + categoryId, date: '2018/05/28(月) 21:07:50.001',
            threadId: thread3, userId: 1, },
-          {id: 2, nickName: 'ぴろゆき', text: '>>1 キモ', date: '2018/05/28(月) 21:30:50.001',
+          {comment_id: 2, nickName: 'ぴろゆき', text: '>>1 キモ', date: '2018/05/28(月) 21:30:50.001',
            threadId: thread3, userId: 2, },],
       },
     ]
@@ -195,7 +195,7 @@ function* getThreadArray() {
       // TODO: dataListをresponse.bodyに書き換え
       dataList.forEach((data, index) => {
         const thread = new ThreadModel({
-          id: data.thread.id, title: data.thread.title, date: data.thread.date,
+          id: data.thread.thread_id, title: data.thread.title, date: data.thread.date,
           categoryId: data.thread.categoryId, commentCount: data.thread.commentCount,
           speed: data.thread.speed, index: index+1,
           comments: data.comments.map(comment => {
@@ -229,10 +229,10 @@ function* postThread() {
     const commentText = action.commentText
     const thread4 = 'thread_4'
     const data = {
-      thread: {id: thread4, title: title,
+      thread: {thread_id: thread4, title: title,
       date: '2018/05/28(月) 21:07:50.001', categoryId: categoryId, commentCount: 100, speed: 1000,},
       comments: [
-        {id: 1, nickName: 'ケンジ', text: commentText, date: '2018/05/28(月) 21:07:50.001',
+        {comment_id: 1, nickName: 'ケンジ', text: commentText, date: '2018/05/28(月) 21:07:50.001',
          threadId: thread4, userId: 3, }]
     }
     try {
@@ -241,7 +241,7 @@ function* postThread() {
       // TODO: dataをresponse.bodyに書き換え
       const comment = data.comments[0]
       const thread = new ThreadModel({
-        id: data.thread.id, title: data.thread.title, date: data.thread.date,
+        id: data.thread.thread_id, title: data.thread.title, date: data.thread.date,
         categoryId: data.thread.categoryId, commentCount: data.thread.commentCount,
         speed: data.thread.speed, index: 'new',
         comments: [new CommentModel({

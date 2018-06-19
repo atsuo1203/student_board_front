@@ -17,9 +17,9 @@ function* getOtherProfile() {
     const userId = action.payload
     console.log(userId)
     const data = {
-      nickName: 'KMR',
-      twitterName: '114514_kimura',
-      otherProfile: 'なんで見る必要があるんですか'
+      nick_name: 'KMR',
+      twitter_name: '114514_kimura',
+      profile: 'なんで見る必要があるんですか'
     }
     try {
       // const response = yield call(OtherProfileApi.getOtherProfile, userId)

@@ -12,8 +12,8 @@ export default class RegisterApi {
     try {
       return request
         .post(DEV_URL+'/auth/register')
-        .send({password: password, nickName: nickName,
-          twitterName: twitterName, profile: profile, token: token})
+        .send({password: password, nick_name: nickName,
+          twitter_name: twitterName, profile: profile, token: token})
     } catch (e) {
       throw e;
     }

@@ -2,9 +2,9 @@
 function setOtherProfile(profile){
   return {
     type: "SET_OTHER_PROFILE",
-    nickName: profile.nickName,
-    twitterName: profile.twitterName,
-    otherProfile: profile.otherProfile,
+    nickName: profile.nick_name,
+    twitterName: profile.twitter_name,
+    otherProfile: profile.profile,
   }
 }
 

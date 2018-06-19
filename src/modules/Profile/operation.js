@@ -16,9 +16,9 @@ function* getProfile() {
   while (true) {
     yield take('GET_PROFILE')
     const data = {
-      nickName: 'beast先輩',
-      twitterName: '114514_yajjuu',
-      myProfile: '24歳学生です'
+      nick_name: 'beast先輩',
+      twitter_name: '114514_yajjuu',
+      profile: '24歳学生です'
     }
     try {
       // const response = yield call(ProfileApi.getProfile)
@@ -44,9 +44,9 @@ function* putProfile() {
     const twitterName = action.twitterName
     const myProfile = action.myProfile
     const data = {
-      nickName: nickName,
-      twitterName: twitterName,
-      myProfile: myProfile
+      nick_name: nickName,
+      twitter_name: twitterName,
+      profile: myProfile
     }
     try {
       // const response = yield call(ProfileApi.putProfile, nickName, twitterName, myprofile)

@@ -5,7 +5,6 @@ import { withRouter } from "react-router-dom";
 import RegisterAction from '../../modules/Register/action'
 
 import RegisterApi from '../../API/RegisterApi'
-import LoginApi from '../../API/LoginApi'
 
 import CommonHeader from '../common/CommonHeader'
 import RegisterForm  from './RegisterForm'
@@ -40,6 +39,7 @@ class Register extends Component {
     RegisterApi.getTest(password, nickName, twitterName, profile, token)
       .then(response => {
         console.log(response)
+        window.confirm('登録が完了しました。ログイン画面より登録したemailアドレスにてログインしてください')
         this.props.history.push('/')
       })
       .catch(error => {
