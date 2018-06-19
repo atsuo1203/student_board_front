@@ -23,9 +23,9 @@ function setMyProfile(myProfile){
 function setProfile(profile){
   return {
     type: "SET_PROFILE",
-    nickName: profile.nickName,
-    twitterName: profile.twitterName,
-    myProfile: profile.myProfile,
+    nickName: profile.nick_name,
+    twitterName: profile.twitter_name,
+    myProfile: profile.profile,
   }
 }
 

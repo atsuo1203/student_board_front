@@ -39,6 +39,7 @@ class Register extends Component {
     RegisterApi.getTest(password, nickName, twitterName, profile, token)
       .then(response => {
         console.log(response)
+        window.confirm('登録が完了しました。ログイン画面より登録したemailアドレスにてログインしてください')
         this.props.history.push('/')
       })
       .catch(error => {
