@@ -14,6 +14,6 @@ export default class Authorization {
 
   static getAuthContentType() {
     const authorization = localStorage.getItem('authorization')
-    return {Authorization: authorization, ContentType: 'application/json'}
+    return {Authorization: authorization, 'Content-Type': 'application/json'}
   }
 }

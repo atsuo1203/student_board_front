@@ -28,7 +28,7 @@ export default class ProfileApi {
       return request
         .put(DEV_URL+'/user')
         .set(Authorization.getAuthContentType())
-        .send({nickName: nickName, twitterName: twitterName, profile: myprofile})
+        .send({nick_name: nickName, twitter_name: twitterName, profile: myprofile})
     } catch (e) {
       throw e;
     }

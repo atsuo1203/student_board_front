@@ -66,7 +66,7 @@ export default class TopApi {
       return request
         .post(DEV_URL+'/thread/')
         .set(Authorization.getAuthContentType())
-        .send({title: title, category_id: categoryId, commentText: commentText})
+        .send({title: title, category_id: categoryId, comment_text: commentText})
     } catch (e) {
       throw e;
     }
