@@ -42,7 +42,6 @@ class LoginForm extends Component {
             onClick={() => onClickCreateAccount()}
             style={{position: 'relative', margin: '3px'}}
           /><br />
-          パスワードを忘れた
         </Form>
       </MuiThemeProvider>
     );
