@@ -7,6 +7,7 @@ import Register from './Register';
 import Top from './Top';
 import OtherProfile from './OtherProfile';
 import Profile from './Profile';
+import Password from './Password';
 
 class App extends Component {
 
@@ -15,16 +16,17 @@ class App extends Component {
       <div>
         <Switch>
           <Route exact path='/' render={()=><Login/>} />
-          <Route path='/provRegister' render={()=><ProvRegister/>} />
-          <Route path='/register' render={()=><Register/>} />
+          <Route exact path='/provRegister' render={()=><ProvRegister/>} />
+          <Route exact path='/register' render={()=><Register/>} />
 
           {(() => {
             if (localStorage.authorization) {
               return (
                 <Switch>
-                  <Route path='/top' render={()=><Top/>} />
+                  <Route exact path='/top' render={()=><Top/>} />
                   <Route exact path='/otherProfile/:userId' render={()=><OtherProfile/>} />
                   <Route exact path='/profile' render={()=><Profile/>} />
+                  <Route exact path='/password' render={()=><Password/>} />
                 </Switch>
               )
             } else {

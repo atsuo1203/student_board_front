@@ -4,6 +4,7 @@ import OtherProfile from './modules/OtherProfile/reducer'
 import Profile from './modules/Profile/reducer'
 import Login from './modules/Login/reducer'
 import Top from './modules/Top/reducer'
+import Password from './modules/Password/reducer'
 import {combineReducers} from 'redux';
 
 export default combineReducers({
@@ -13,4 +14,5 @@ export default combineReducers({
   Profile,
   Login,
   Top,
+  Password,
 })

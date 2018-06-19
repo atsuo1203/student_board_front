@@ -34,6 +34,10 @@ class Profile extends Component {
     this.props.history.push('./top')
   }
 
+  handlePasswordEdit = () => {
+    this.props.history.push('./password')
+  }
+
   render() {
     const {nickName, twitterName, myProfile} = this.props
     return (
@@ -47,6 +51,7 @@ class Profile extends Component {
           onChangeTwitter={this.handleChangeTwitter}
           onChangeMyProfile={this.handleChangeMyProfile}
           onClickDecision={this.handleDecision}
+          onClickPasswordEdit={this.handlePasswordEdit}
         />
       </div>
     );
