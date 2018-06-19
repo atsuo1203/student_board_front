@@ -11,6 +11,7 @@ class RegisterForm extends Component {
   static propTypes = {
     onClickRegister: PropTypes.func.isRequired,
     onChangePassword: PropTypes.func.isRequired,
+    onChangeSecondPassword: PropTypes.func.isRequired,
     onChangeNickName: PropTypes.func.isRequired,
     onChangeTwitterName: PropTypes.func.isRequired,
     onChangeProfile: PropTypes.func.isRequired,
