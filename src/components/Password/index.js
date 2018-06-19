@@ -33,7 +33,8 @@ class Password extends Component {
     PasswordApi.getTest(password, newPassword)
       .then(response => {
         console.log(response)
-        window.confirm('パスワード変更がが完了しました。ログイン画面より登録したemailアドレスにてログインしてください')
+        window.confirm('パスワード変更がが完了しました。\nログイン画面より登録したemailアドレスにてログインしてください')
+        localStorage.removeItem('authorization');
         this.props.history.push('/')
       })
       .catch(error => {
@@ -60,7 +61,7 @@ class Password extends Component {
   render() {
     return (
       <div>
-        <CommonHeader title='登録ページ'/>
+        <CommonHeader title='パスワード変更ページ'/>
         <PasswordForm
           onClickPasswordEdit={this.handlePasswordEdit}
           onChangePassword={this.handleChangePassword}

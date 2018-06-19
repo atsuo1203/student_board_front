@@ -16,11 +16,13 @@ class ProfileForm extends Component {
     onChangeTwitter: PropTypes.func.isRequired,
     onChangeMyProfile: PropTypes.func.isRequired,
     onClickDecision: PropTypes.func.isRequired,
+    onClickPasswordEdit: PropTypes.func.isRequired,
   }
   render() {
     const {
       nickName, twitterName, myProfile,
-      onClickDecision, onChangeNickName, onChangeTwitter, onChangeMyProfile} = this.props
+      onClickDecision, onClickPasswordEdit,
+      onChangeNickName, onChangeTwitter, onChangeMyProfile} = this.props
     return (
       <MuiThemeProvider>
         <Form>
@@ -47,6 +49,13 @@ class ProfileForm extends Component {
             backgroundColor="#a4c639"
             hoverColor="#8AA62F"
             onClick={onClickDecision}
+          /><br />
+          <FlatButton
+            label="パスワード編集"
+            backgroundColor="#a4c639"
+            hoverColor="#8AA62F"
+            style={{position: 'relative', marginTop: '5px'}}
+            onClick={onClickPasswordEdit}
           /><br />
         </Form>
       </MuiThemeProvider>
