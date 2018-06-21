@@ -11,7 +11,7 @@ export default class ProvRegisterApi {
   static async postProvRegister(email) {
     try {
       return request
-        .post(DEV_URL+'/auth/prov_register')
+        .post(DEV_URL+'/auth/prov_user')
         .send({email: email})
     } catch (e) {
       throw e;

@@ -5,6 +5,14 @@ function setEmail(email){
   }
 }
 
+function postProvRegister(email){
+  return {
+    type: "POST_PROV_REGISTER",
+    payload: email,
+  }
+}
+
 export default ({
   setEmail,
+  postProvRegister
 })
