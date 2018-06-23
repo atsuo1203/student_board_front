@@ -1,17 +1,19 @@
 import {DEV_URL, TEST_URL} from './endpoint'
 import request from 'superagent';
+import Authorization from './Authorization'
 
 export default class LoginApi {
 
   /**
-   *  get
+   *  post
    */
   // auth
   // ログイン authorizationが返ってくる
-  static async getLogin(email, password) {
+  static async postLogin(email, password) {
     try {
       return request
-        .get(DEV_URL+'/auth/login')
+        .post(DEV_URL+'/auth/login')
+        .set(Authorization.getContentType())
         .send({email: email, password: password})
     } catch (e) {
       throw e;
