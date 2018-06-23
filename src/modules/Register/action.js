@@ -33,10 +33,23 @@ function setProfile(profile){
   }
 }
 
+function postRegister(password, nickName, twitterName, profile, token, history){
+  return {
+    type: "POST_REGISTER",
+    password: password,
+    nickName: nickName,
+    twitterName: twitterName,
+    profile: profile,
+    token: token,
+    history: history,
+  }
+}
+
 export default ({
   setPassword,
   setSecondPassword,
   setNickName,
   setTwitterName,
   setProfile,
+  postRegister,
 })

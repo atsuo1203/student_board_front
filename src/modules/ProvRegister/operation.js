@@ -1,6 +1,5 @@
-import {fork, take, put, call} from 'redux-saga/effects';
+import {fork, take, call} from 'redux-saga/effects';
 
-import ProvRegisterAction from '../../modules/ProvRegister/action'
 import ProvRegisterApi from '../../API/ProvRegisterApi'
 
 export function* provRegisterOperation() {
