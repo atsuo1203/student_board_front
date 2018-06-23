@@ -13,8 +13,8 @@ class Register extends Component {
   handleRegister = () => {
     const {password, secondPassword, nickName, twitterName, profile} = this.props
     const search = this.props.location.search
-    if (!search.startsWith("?token=")) {
-      window.confirm('メールに書いてあったURLを使用してください')
+    if (!search.startsWith("?login_token=")) {
+      window.confirm('最新のメールに書いてあったURLを使用してください')
       return
     }
     if ((password === "") || (password === undefined) || (password.length < 8)) {
@@ -33,10 +33,8 @@ class Register extends Component {
       window.confirm('プロフィールは150字まででお願いします')
       return
     }
-    const token = search.split('?token=')[1]
-    console.log(token)
-    // TODO getTest() を postRegister(password, nickName, twitterName, profile, token) に書き換え
-    RegisterApi.getTest(password, nickName, twitterName, profile, token)
+    const token = search.split('?login_token=')[1]
+    RegisterApi.postRegister(password, nickName, twitterName, profile, token)
       .then(response => {
         console.log(response)
         window.confirm('登録が完了しました。ログイン画面より登録したemailアドレスにてログインしてください')
