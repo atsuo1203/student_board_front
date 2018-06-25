@@ -38,12 +38,12 @@ class Top extends Component {
     }
   }
   handleClickMenu = (categoryId) => {
-    const {actions, categoryArray, currentSort, currentPage} = this.props
+    const {actions, categoryArray, currentSort, currentPaging} = this.props
     const category = categoryArray.find(c => {
       return (c.id === categoryId )
     })
     actions.setCurrentCategory(category)
-    actions.getThreadArray(categoryId, currentPage, currentSort.id)
+    actions.getThreadArray(categoryId, currentPaging, currentSort.id)
   }
   handleDelete = (threadId) => {
     const {actions, articleArray, currentCategory} = this.props
@@ -69,8 +69,8 @@ class Top extends Component {
     actions.postComment(currentThread.threadId, dialogArticleComment)
   }
   handleThreadsReload = () => {
-    const {actions, currentCategory, currentPage, currentSort} = this.props
-    actions.getThreadArray(currentCategory.id, currentPage, currentSort.id)
+    const {actions, currentCategory, currentPaging, currentSort} = this.props
+    actions.getThreadArray(currentCategory.id, currentPaging, currentSort.id)
   }
   handleThreadReload = () => {
     console.log('handleThreadReload')
@@ -78,19 +78,19 @@ class Top extends Component {
     actions.getThread(currentThread.threadId)
   }
   handleSort = (sortModel) => {
-    const {actions, currentCategory, currentPage} = this.props
+    const {actions, currentCategory, currentPaging} = this.props
     actions.setCurrentSort(sortModel)
-    actions.getThreadArray(currentCategory.id, currentPage, sortModel.id)
+    actions.getThreadArray(currentCategory.id, currentPaging, sortModel.id)
   }
   handleLogout = () => {
     localStorage.removeItem('authorization');
     this.props.history.push('/')
   }
-  handlePaging = (page) => {
+  handlePaging = (paging) => {
     const {actions, currentCategory, currentSort} = this.props
-    if (page > 0) {
-      actions.setCurrentPage(page)
-      actions.getThreadArray(currentCategory.id, page, currentSort.id)
+    if (paging > 0) {
+      actions.setCurrentPaging(paging)
+      actions.getThreadArray(currentCategory.id, paging, currentSort.id)
     }
   }
   handleOnChangeDialog = (isDialogOpen) => {
@@ -134,7 +134,7 @@ class Top extends Component {
   }
   render() {
     const {categoryArray, sortArray,
-      currentCategory, currentThread, currentSort, currentPage,
+      currentCategory, currentThread, currentSort, currentPaging,
       threadArray, articleArray, isDialogOpen,
       dialogThreadTitle, dialogThreadComment, dialogArticleComment} = this.props
     // 現在の記事
@@ -165,7 +165,7 @@ class Top extends Component {
           currentThread={currentThread}
           sortArray={sortArray}
           currentSort={currentSort}
-          currentPage={currentPage}
+          currentPaging={currentPaging}
           onThreadsReload={this.handleThreadsReload}
           onThreadReload={this.handleThreadReload}
           onCreateThread={this.handleCreateThread}
@@ -194,7 +194,7 @@ const mapStateToProps = (store) => ({
   currentCategory: store.Top.currentCategory,
   sortArray: store.Top.sortArray,
   currentSort: store.Top.currentSort,
-  currentPage: store.Top.currentPage,
+  currentPaging: store.Top.currentPaging,
   threadArray: store.Top.threadArray,
   articleArray: store.Top.articleArray,
   isDialogOpen: store.Top.isDialogOpen,

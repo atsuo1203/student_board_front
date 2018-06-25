@@ -48,10 +48,10 @@ function setArticleArray(articleArray){
   }
 }
 
-function setCurrentPage(page){
+function setCurrentPaging(paging){
   return {
-    type: "SET_CURRENT_PAGE",
-    payload: page,
+    type: "SET_CURRENT_PAGING",
+    payload: paging,
   }
 }
 
@@ -105,11 +105,11 @@ function getThread(threadId){
   }
 }
 
-function getThreadArray(categoryId, page, sortId){
+function getThreadArray(categoryId, paging, sortId){
   return {
     type: "GET_THREAD_ARRAY",
     categoryId: categoryId,
-    page: page,
+    paging: paging,
     sortId: sortId,
   }
 }
@@ -139,7 +139,7 @@ export default ({
   setSortArray,
   setCurrentSort,
   setArticleArray,
-  setCurrentPage,
+  setCurrentPaging,
   setIsDialogOpen,
   setDialogThreadTitle,
   setDialogThreadComment,

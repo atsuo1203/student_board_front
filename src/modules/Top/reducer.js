@@ -14,7 +14,7 @@ const initializeState = {
   // 記事関係 [new ThreadModel()] となる予定
   articleArray:  [],
   // ページ関係
-  currentPage: 1,
+  currentPaging: 1,
   // ダイアログ関係
   isDialogOpen: false,
   dialogThreadTitle: "",
@@ -45,8 +45,8 @@ export default (state=initializeState, action) => {
     case "SET_ARTICLE_ARRAY":
       return Object.assign({}, state, {articleArray: action.payload})
     // ページ関係
-    case "SET_CURRENT_PAGE":
-      return Object.assign({}, state, {currentPage: action.payload})
+    case "SET_CURRENT_PAGING":
+      return Object.assign({}, state, {currentPaging: action.payload})
     // ダイアログ関係
     case "SET_IS_DIALOG_OPEN":
       return Object.assign({}, state, {isDialogOpen: action.payload})

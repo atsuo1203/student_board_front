@@ -150,9 +150,9 @@ function* getThreadArray() {
   while (true) {
     const action = yield take('GET_THREAD_ARRAY')
     const categoryId = action.categoryId
-    const page = action.page
+    const paging = action.paging
     const sortId = action.sortId
-    const uniqueKey = String(categoryId)+String(page)+String(sortId)
+    const uniqueKey = String(categoryId)+String(paging)+String(sortId)
     const thread1 = 'thread_1' + uniqueKey
     const thread2 = 'thread_2' + uniqueKey
     const thread3 = 'thread_3' + uniqueKey
@@ -189,8 +189,7 @@ function* getThreadArray() {
       },
     ]
     try {
-      // const response = yield call(TopApi.getThreads, categoryId, page, sortId)
-      const response = yield call(TopApi.getTest)
+      const response = yield call(TopApi.getThreads, categoryId, paging, sortId)
       var threadArray = []
       // TODO: dataListをresponse.bodyに書き換え
       dataList.forEach((data, index) => {
@@ -236,8 +235,8 @@ function* postThread() {
          threadId: thread4, userId: 3, }]
     }
     try {
-      // const response = yield call(TopApi.getThreads, categoryId, title, commentText)
-      const response = yield call(TopApi.getTest)
+      const response = yield call(TopApi.postThread, title, categoryId, commentText)
+      console.log(response)
       // TODO: dataをresponse.bodyに書き換え
       const comment = data.comments[0]
       const thread = new ThreadModel({

@@ -44,13 +44,13 @@ export default class TopApi {
   }
 
   // threads
-  static async getThreads(categoryId, page, sortId) {
+  static async getThreads(categoryId, paging, sortId) {
     // TODO: headerを取得してつける
     try {
       return request
-        .get(DEV_URL+'/threads/'+String(categoryId))
+        .get(DEV_URL+'/threads')
         .set(Authorization.getAuth())
-        .query({page: page, sort_id: sortId})
+        .query({category_id: categoryId, paging: paging, sort_id: sortId})
     } catch (e) {
       throw e;
     }
@@ -60,11 +60,11 @@ export default class TopApi {
    * post
    */
   // thread
-  static async postThreads(title, categoryId, commentText) {
+  static async postThread(title, categoryId, commentText) {
     // TODO: headerを取得してつける
     try {
       return request
-        .post(DEV_URL+'/thread/')
+        .post(DEV_URL+'/thread')
         .set(Authorization.getAuthContentType())
         .send({title: title, category_id: categoryId, comment_text: commentText})
     } catch (e) {
