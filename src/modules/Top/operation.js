@@ -209,7 +209,6 @@ function* getThreadArray() {
         })
         threadArray.push(thread)
       })
-      console.log('threadArray', threadArray)
       yield put(TopAction.setThreadArray(threadArray))
       const currentThread = yield select(store => store.Top.currentThread)
       yield put(TopAction.setCurrentThread(currentThread.isCategory, currentThread.threadId))
@@ -262,14 +261,9 @@ function* postComment() {
     const action = yield take('POST_COMMENT')
     const threadId = action.threadId
     const commentText = action.commentText
-    const dataList = [
-      {comment_id: 100, name: 'ひろし', text: 'んキュ',
-        create_at: '3000年12月3日', thread_id: threadId, user_id: 8},
-      {comment_id: 101, name: 'ケンジ', text: 'んゴゴ',
-        create_at: '3000年12月4日', thread_id: threadId, user_id: 8},
-    ]
     try {
       const response = yield call(TopApi.postComment, threadId, commentText)
+      const dataList = response.body
       var commentList = []
       dataList.forEach(data => {
         const comment = new CommentModel({
@@ -282,7 +276,6 @@ function* postComment() {
       var newArticleArray = []
       const articleArray = yield select(store => store.Top.articleArray)
       articleArray.forEach(article => {
-        console.log('article', article)
         if (article.id === threadId) {
           const newArticle = new ThreadModel({
             id: article.id, title: article.title, update_at: article.update_at,

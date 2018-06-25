@@ -34,7 +34,7 @@ class Comment extends Component {
 
   commentObj = (comment, index) => {
     return(
-      <Div key={String(comment.comment_id)}>
+      <Div key={String(comment.id)}>
         {this.headerParts(comment, index)}
         {this.textParts(comment)}
       </Div>
