@@ -86,7 +86,7 @@ function* getThread() {
       const thread = new ThreadModel({
         id: data.thread.thread_id, title: data.thread.title,
         update_at: data.thread.update_at, create_at: data.thread.create_at,
-        categoryId: data.thread.categoryId, commentCount: data.thread.commentCount,
+        categoryId: data.thread.category_id, commentCount: data.thread.comment_count,
         speed: data.thread.speed, index: 0,
         comments: data.comments.map(comment => {
           return new CommentModel({
@@ -198,30 +198,18 @@ function* getThreadArray() {
     const categoryId = action.categoryId
     const paging = action.paging
     const sortId = action.sortId
-    const dataList = [
-      {
-        thread_id: 1, title: 'vipからきました',
-        update_at: '2018/05/28(月) 21:07:50.001', create_at: '2018/05/28(月) 21:07:50.001',
-        categoryId: categoryId, commentCount: 100, speed: 1000,
-      },
-      {
-        thread_id: 2, title: 'なんJからきました',
-        update_at: '2018/05/28(月) 21:07:50.001', create_at: '2018/05/28(月) 21:07:50.001',
-        categoryId: categoryId, commentCount: 100, speed: 1000,
-      },
-    ]
     try {
       const response = yield call(TopApi.getThreads, categoryId, paging, sortId)
       var threadArray = []
-      // TODO: dataListをresponse.bodyに書き換え
       response.body.forEach((data, index) => {
         const thread = new ThreadModel({
           id: data.thread_id, title: data.title, create_at: data.create_at, update_at: data.update_at,
-          categoryId: data.categoryId, commentCount: data.commentCount,
+          categoryId: data.category_id, commentCount: data.comment_count,
           speed: data.speed, index: index+1,
         })
         threadArray.push(thread)
       })
+      console.log('threadArray', threadArray)
       yield put(TopAction.setThreadArray(threadArray))
       const currentThread = yield select(store => store.Top.currentThread)
       yield put(TopAction.setCurrentThread(currentThread.isCategory, currentThread.threadId))
@@ -243,32 +231,22 @@ function* postThread() {
     const title = action.title
     const commentText = action.commentText
     const thread4 = 'thread_4'
-    const data = {
-      thread: {thread_id: thread4, title: title,
-      create_at: '2018/05/28(月) 21:07:50.001', update_at: '2018/05/28(月) 21:07:50.001',
-      categoryId: categoryId, comment_count: 100, speed: 1000,},
-      comments: [
-        {
-          comment_id: 1, nickName: 'ケンジ', text: commentText,
-          create_at: '2018/05/28(月) 21:07:50.001', update_at: '2018/05/28(月) 21:07:50.001',
-          threadId: thread4, userId: 3, }]
-    }
     try {
       const response = yield call(TopApi.postThread, title, categoryId, commentText)
-      console.log(response)
-      // TODO: dataをresponse.bodyに書き換え
+      const data = response.body
+      const thread = data.thread
       const comment = data.comments[0]
-      const thread = new ThreadModel({
-        id: data.thread_id, title: data.title, update_at: data.update_at, create_at: data.create_at,
-        categoryId: data.categoryId, commentCount: data.comment_count,
-        speed: data.speed, index: 'new',
+      const newThread = new ThreadModel({
+        id: thread.thread_id, title: thread.title, update_at: thread.update_at, create_at: thread.create_at,
+        categoryId: thread.categoryId, commentCount: thread.comment_count,
+        speed: thread.speed, index: 'new',
         comments: [new CommentModel({
           id: comment.comment_id, nickName: comment.name, text: comment.text,
           update_at: comment.update_at, create_at: comment.create_at,
           threadId: comment.threadId, userId: comment.userId,})]
       })
       const threadArray = yield select(store => store.Top.threadArray)
-      threadArray.unshift(thread)
+      threadArray.unshift(newThread)
       yield put(TopAction.setThreadArray(threadArray))
       yield put(TopAction.setCurrentThread(true, categoryId))
     } catch (error) {
@@ -284,6 +262,7 @@ function* postComment() {
     const action = yield take('POST_COMMENT')
     const threadId = action.threadId
     const commentText = action.commentText
+    console.log(threadId, commentText)
     const data = {
       id: 3, nickName: 'たかし', text: commentText,
       create_at: '2018/05/28(月) 21:07:50.001', update_at: '2018/05/28(月) 21:07:50.001',
@@ -300,18 +279,12 @@ function* postComment() {
       })
       const articleArray = yield select(store => store.Top.articleArray)
       articleArray.forEach(article => {
-        if (article.threadId === threadId) {
+        console.log('article', article)
+        if (article.id === threadId) {
           article.comments.push(comment)
         }
       });
-      const threadArray = yield select(store => store.Top.threadArray)
-      threadArray.forEach(thread => {
-        if (thread.id === threadId) {
-          thread.comments.push(comment)
-        }
-      });
       yield put(TopAction.setArticleArray(articleArray))
-      yield put(TopAction.setThreadArray(threadArray))
       yield put(TopAction.setCurrentThread(false, threadId))
     } catch (error) {
       console.log(error)
