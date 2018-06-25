@@ -21,7 +21,8 @@ class Tab extends Component {
   render() {
     const {threadName, threadId, currentThread,
       isCategoryThread, onDelete, onSelect} = this.props
-    const isCurrentThread = (threadId === currentThread.threadId)
+    const isCurrentThread =
+      ((threadId === currentThread.threadId) && (currentThread.isCategory === isCategoryThread))
     const num = 20
     const appBarStyle = {
       display: 'flex',
