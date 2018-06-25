@@ -77,7 +77,7 @@ function* getThread() {
           return new CommentModel({
             id: comment.comment_id, nickName: comment.name, text: comment.text,
             create_at: comment.create_at, update_at: comment.update_at,
-            threadId: comment.threadId, userId: comment.userId,})
+            threadId: comment.thread_id, userId: comment.user_id,})
         }),
       })
       const articleArray = yield select(store => store.Top.articleArray)
@@ -89,6 +89,7 @@ function* getThread() {
       });
       if (!isExist) {
         articleArray.push(thread)
+        console.log('articleArray', articleArray)
         yield put(TopAction.setArticleArray(articleArray))
       }
       const currentCategory = yield select(store => store.Top.currentCategory)
