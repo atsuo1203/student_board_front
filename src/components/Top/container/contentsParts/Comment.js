@@ -11,14 +11,14 @@ class Comment extends Component {
     onClickUserName: PropTypes.func.isRequired,
   }
 
-  headerParts = (comment) => {
+  headerParts = (comment, index) => {
     const {onClickUserName} = this.props
     return(
       <HeaderDiv>
-        <HeaderID>{comment.id}</HeaderID>:
+        <HeaderID>{index+1}</HeaderID>:
         <HeaderName onClick={() => onClickUserName(comment.userId)}>
           {comment.nickName}</HeaderName>
-        <HeaderDate>{comment.date}</HeaderDate>
+        <HeaderDate>{comment.create_at}</HeaderDate>
       </HeaderDiv>
     )
 
@@ -32,10 +32,10 @@ class Comment extends Component {
     )
   }
 
-  commentObj = (comment) => {
+  commentObj = (comment, index) => {
     return(
-      <Div key={comment.id}>
-        {this.headerParts(comment)}
+      <Div key={String(comment.comment_id)}>
+        {this.headerParts(comment, index)}
         {this.textParts(comment)}
       </Div>
     )
@@ -45,8 +45,8 @@ class Comment extends Component {
     const {comments} = this.props
     if (comments === undefined) { return(<div></div>) }
     const result = []
-    comments.forEach(comment => {
-      result.push(this.commentObj(comment))
+    comments.forEach((comment, index) => {
+      result.push(this.commentObj(comment, index))
     })
     return result
   }

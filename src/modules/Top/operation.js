@@ -90,7 +90,7 @@ function* getThread() {
         speed: data.thread.speed, index: 0,
         comments: data.comments.map(comment => {
           return new CommentModel({
-            id: comment.id, nickName: comment.nickName, text: comment.text,
+            id: comment.comment_id, nickName: comment.name, text: comment.text,
             create_at: comment.create_at, update_at: comment.update_at,
             threadId: comment.threadId, userId: comment.userId,})
         }),
@@ -145,7 +145,7 @@ function* reloadThread() {
         speed: data.thread.speed, index: 0,
         comments: data.comments.map(comment => {
           return new CommentModel({
-            id: comment.id, nickName: comment.nickName, text: comment.text,
+            id: comment.comment_id, nickName: comment.name, text: comment.text,
             create_at: comment.create_at, update_at: data.update_at,
             threadId: comment.threadId, userId: comment.userId,})
         }),
@@ -263,7 +263,7 @@ function* postThread() {
         categoryId: data.categoryId, commentCount: data.comment_count,
         speed: data.speed, index: 'new',
         comments: [new CommentModel({
-          id: comment.id, nickName: comment.nickName, text: comment.text,
+          id: comment.comment_id, nickName: comment.name, text: comment.text,
           update_at: comment.update_at, create_at: comment.create_at,
           threadId: comment.threadId, userId: comment.userId,})]
       })
