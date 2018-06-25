@@ -121,69 +121,35 @@ function* reloadThread() {
   while (true) {
     const action = yield take('RELOAD_THREAD')
     const threadId = action.payload
-    // TODO: curretnCategoryはいらないから後で消す
-    const currentCategory = yield select(store => store.Top.currentCategory)
-    const data = {
-      thread: {thread_id: threadId, title: 'reload後やで' + threadId,
-        create_at: '2018/05/28(月) 21:07:50.001',
-        update_at: '2018/05/28(月) 21:07:50.001',
-        categoryId: currentCategory.categoryId, commentCount: 100, speed: 1000,},
-      comments: [
-        {comment_id: 1, nickName: 'たかし', text: 'リロード乙',
-          create_at: '2018/05/28(月) 21:07:50.001',
-          update_at: '2018/05/28(月) 21:07:50.001',
-         threadId: threadId, userId: 1, },],
-    }
     try {
-      // const response = yield call(TopApi.getThread, threadId)
-      const response = yield call(TopApi.getTest)
-      // TODO: rerloadThreadをresponse.bodyに書き換え
-      const reloadThread = new ThreadModel({
-        id: data.thread.thread_id, title: data.thread.title,
-        update_at: data.thread.update_at, create_at: data.thread.create_at,
-        categoryId: data.thread.categoryId, commentCount: data.thread.commentCount,
-        speed: data.thread.speed, index: 0,
-        comments: data.comments.map(comment => {
-          return new CommentModel({
-            id: comment.comment_id, nickName: comment.name, text: comment.text,
-            create_at: comment.create_at, update_at: data.update_at,
-            threadId: comment.threadId, userId: comment.userId,})
-        }),
+      const response = yield call(TopApi.getThread, threadId)
+      const dataList = response.body.comments
+      var commentList = []
+      dataList.forEach(data => {
+        const comment = new CommentModel({
+          id: data.comment_id, nickName: data.name, text: data.text,
+          create_at: data.create_at,
+          threadId: data.threadId, userId: data.userId,
+        })
+        commentList.push(comment)
       })
-      const articleArray = yield select(store => store.Top.articleArray)
-      const threadArray = yield select(store => store.Top.threadArray)
       var newArticleArray = []
-      var newThreadArray = []
+      const articleArray = yield select(store => store.Top.articleArray)
       articleArray.forEach(article => {
-        if (article.id === reloadThread.id) {
-          var newArticle = new ThreadModel({
-            id: reloadThread.id, title: reloadThread.title,
-            update_at: reloadThread.update_at, create_at: data.reloadThread.create_at,
-            categoryId: reloadThread.categoryId, commentCount: reloadThread.commentCount,
-            speed: reloadThread.speed, comments: reloadThread.comments, index: article.index,
+        if (article.id === threadId) {
+          const newArticle = new ThreadModel({
+            id: article.id, title: article.title, update_at: article.update_at,
+            create_at: article.create_at,
+            categoryId: article.categoryId, commentCount: article.comment_count,
+            speed: article.speed, index: article.index, comments: commentList
           })
           newArticleArray.push(newArticle)
         } else {
           newArticleArray.push(article)
         }
       });
-      threadArray.forEach(thread => {
-        if (thread.id === reloadThread.id) {
-          var newThread = new ThreadModel({
-            id: reloadThread.id, title: reloadThread.title,
-            update_at: reloadThread.update_at, create_at: data.reloadThread.create_at,
-            categoryId: reloadThread.categoryId, commentCount: reloadThread.commentCount,
-            speed: reloadThread.speed, comments: reloadThread.comments, index: thread.index,
-          })
-          newThreadArray.push(newThread)
-        } else {
-          newThreadArray.push(thread)
-        }
-      });
       yield put(TopAction.setArticleArray(newArticleArray))
-      yield put(TopAction.setThreadArray(newThreadArray))
-      const currentThread = yield select(store => store.Top.currentThread)
-      yield put(TopAction.setCurrentThread(currentThread.isCategory, currentThread.threadId))
+      yield put(TopAction.setCurrentThread(false, threadId))
     } catch (error) {
       console.log(error)
       window.confirm('データの取得に失敗しました。ページの更新を行ってください')
