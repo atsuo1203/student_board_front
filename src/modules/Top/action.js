@@ -105,6 +105,13 @@ function getThread(threadId){
   }
 }
 
+function reloadThread(threadId){
+  return {
+    type: "RELOAD_THREAD",
+    payload: threadId,
+  }
+}
+
 function getThreadArray(categoryId, paging, sortId){
   return {
     type: "GET_THREAD_ARRAY",
@@ -147,6 +154,7 @@ export default ({
   getCategoryArray,
   getSortArray,
   getThread,
+  reloadThread,
   getThreadArray,
   postThread,
   postComment,

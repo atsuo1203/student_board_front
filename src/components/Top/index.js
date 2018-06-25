@@ -20,22 +20,23 @@ class Top extends Component {
   }
   // TODO: 選択された時にAPI通信を行い、Articleの配列に追加して行く予定
   handleAddArticle = (threadId) => {
-    const {articleArray, actions, currentCategory, threadArray} = this.props
+    const {actions} = this.props
+    actions.getThread(threadId)
     // 既にその記事を開いていた場合
-    var isExistArticle = false
-    articleArray.forEach(article => {
-      if (article.id === threadId) {
-        isExistArticle = true
-      }
-    })
-    actions.setCurrentThread(true, currentCategory.id)
-    if (!isExistArticle) {
-      const pushedArticle = threadArray.find(thread => {
-        return (thread.id === threadId )
-      })
-      articleArray.push(pushedArticle)
-      actions.setArticleArray(articleArray)
-    }
+    // var isExistArticle = false
+    // articleArray.forEach(article => {
+    //   if (article.id === threadId) {
+    //     isExistArticle = true
+    //   }
+    // })
+    // actions.setCurrentThread(true, currentCategory.id)
+    // if (!isExistArticle) {
+    //   const pushedArticle = threadArray.find(thread => {
+    //     return (thread.id === threadId )
+    //   })
+    //   articleArray.push(pushedArticle)
+    //   actions.setArticleArray(articleArray)
+    // }
   }
   handleClickMenu = (categoryId) => {
     const {actions, categoryArray, currentSort, currentPaging} = this.props
@@ -75,7 +76,7 @@ class Top extends Component {
   handleThreadReload = () => {
     console.log('handleThreadReload')
     const {actions, currentThread} = this.props
-    actions.getThread(currentThread.threadId)
+    actions.reloadThread(currentThread.threadId)
   }
   handleSort = (sortModel) => {
     const {actions, currentCategory, currentPaging} = this.props
