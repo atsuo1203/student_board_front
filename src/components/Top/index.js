@@ -22,21 +22,6 @@ class Top extends Component {
   handleAddArticle = (threadId) => {
     const {actions} = this.props
     actions.getThread(threadId)
-    // 既にその記事を開いていた場合
-    // var isExistArticle = false
-    // articleArray.forEach(article => {
-    //   if (article.id === threadId) {
-    //     isExistArticle = true
-    //   }
-    // })
-    // actions.setCurrentThread(true, currentCategory.id)
-    // if (!isExistArticle) {
-    //   const pushedArticle = threadArray.find(thread => {
-    //     return (thread.id === threadId )
-    //   })
-    //   articleArray.push(pushedArticle)
-    //   actions.setArticleArray(articleArray)
-    // }
   }
   handleClickMenu = (categoryId) => {
     const {actions, categoryArray, currentSort, currentPaging} = this.props

@@ -80,23 +80,9 @@ function* getThread() {
   while (true) {
     const action = yield take('GET_THREAD')
     const threadId = action.payload
-    // TODO: curretnCategoryはいらないから後で消す
-    const currentCategory = yield select(store => store.Top.currentCategory)
-    const data = {
-      thread: {thread_id: threadId, title: 'getThread' + threadId,
-        create_at: '2018/05/28(月) 21:07:50.001',
-        update_at: '2018/05/28(月) 21:07:50.001',
-        categoryId: currentCategory.categoryId, commentCount: 100, speed: 1000,},
-      comments: [
-        {comment_id: 1, nickName: 'たかし', text: 'すれ取得乙',
-          create_at: '2018/05/28(月) 21:07:50.001',
-          update_at: '2018/05/28(月) 21:07:50.001',
-         threadId: threadId, userId: 1, },],
-    }
     try {
-      // const response = yield call(TopApi.getThread, threadId)
-      const response = yield call(TopApi.getTest)
-      // TODO: rerloadThreadをresponse.bodyに書き換え
+      const response = yield call(TopApi.getThread, threadId)
+      const data = response.body
       const thread = new ThreadModel({
         id: data.thread.thread_id, title: data.thread.title,
         update_at: data.thread.update_at, create_at: data.thread.create_at,
@@ -105,7 +91,7 @@ function* getThread() {
         comments: data.comments.map(comment => {
           return new CommentModel({
             id: comment.id, nickName: comment.nickName, text: comment.text,
-            create_at: comment.create_at, update_at: data.update_at,
+            create_at: comment.create_at, update_at: comment.update_at,
             threadId: comment.threadId, userId: comment.userId,})
         }),
       })
@@ -121,6 +107,7 @@ function* getThread() {
         articleArray.push(thread)
         yield put(TopAction.setArticleArray(articleArray))
       }
+      const currentCategory = yield select(store => store.Top.currentCategory)
       yield put(TopAction.setCurrentThread(true, currentCategory.id))
     } catch (error) {
       console.log(error)
@@ -225,10 +212,9 @@ function* getThreadArray() {
     ]
     try {
       const response = yield call(TopApi.getThreads, categoryId, paging, sortId)
-      console.log(response.body)
       var threadArray = []
       // TODO: dataListをresponse.bodyに書き換え
-      dataList.forEach((data, index) => {
+      response.body.forEach((data, index) => {
         const thread = new ThreadModel({
           id: data.thread_id, title: data.title, create_at: data.create_at, update_at: data.update_at,
           categoryId: data.categoryId, commentCount: data.commentCount,
