@@ -81,7 +81,6 @@ function* getThread() {
         }),
       })
       const articleArray = yield select(store => store.Top.articleArray)
-      const threadArray = yield select(store => store.Top.threadArray)
       var isExist = false
       articleArray.forEach(article => {
         if (article.id === thread.id) {
@@ -161,8 +160,7 @@ function* getThreadArray() {
         threadArray.push(thread)
       })
       yield put(TopAction.setThreadArray(threadArray))
-      const currentThread = yield select(store => store.Top.currentThread)
-      yield put(TopAction.setCurrentThread(currentThread.isCategory, currentThread.threadId))
+      yield put(TopAction.setCurrentThread(true, categoryId))
     } catch (error) {
       console.log(error)
       window.confirm('データの取得に失敗しました。ページの更新を行ってください')
@@ -180,7 +178,6 @@ function* postThread() {
     const categoryId = action.categoryId
     const title = action.title
     const commentText = action.commentText
-    const thread4 = 'thread_4'
     try {
       const response = yield call(TopApi.postThread, title, categoryId, commentText)
       const data = response.body
