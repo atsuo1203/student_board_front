@@ -12,7 +12,7 @@ export default class TopApi {
     // TODO: headerを取得してつける
     try {
       return request
-        .get(DEV_URL+'/categories')
+        .get(DEV_URL+'/category')
         .set(Authorization.getAuth())
     } catch (e) {
       throw e;

@@ -25,17 +25,10 @@ export function* topOperation() {
 function* getCategoryArray() {
   while (true) {
     yield take('GET_CATEGORY_ARRAY')
-    const dataList = [
-      {category_id: 1, name: '雑談'},
-      {category_id: 2, name: '勉強'},
-      {category_id: 3, name: '恋愛'},
-      {category_id: 4, name: '部活'},
-      {category_id: 5, name: '進路'},
-    ]
     try {
-      const response = yield call(TopApi.getTest)
+      const response = yield call(TopApi.getCategories)
+      const dataList = response.body
       var categoryArray = []
-      // TODO: dataListをresponse.bodyに書き換え
       dataList.forEach(data => {
         const category = new CategoryModel({id: data.category_id, name: data.name})
         categoryArray.push(category)
@@ -52,18 +45,10 @@ function* getCategoryArray() {
 function* getSortArray() {
   while (true) {
     yield take('GET_SORT_ARRAY')
-    const dataList = [
-      {sort_id: 1, name: 'ID昇順'},
-      {sort_id: 2, name: 'ID降順'},
-      {sort_id: 3, name: '人気昇順'},
-      {sort_id: 4, name: '人気降順'},
-      {sort_id: 5, name: 'コメント数昇順'},
-      {sort_id: 6, name: 'コメント数降順'},
-    ]
     try {
-      const response = yield call(TopApi.getTest)
+      const response = yield call(TopApi.getSorts)
+      const dataList = response.body
       var sortArray = []
-      // TODO: dataListをresponse.bodyに書き換え
       dataList.forEach(data => {
         const sort = new SortModel({id: data.sort_id, name: data.name})
         sortArray.push(sort)
