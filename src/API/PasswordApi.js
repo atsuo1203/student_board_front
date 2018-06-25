@@ -2,16 +2,16 @@ import {DEV_URL, TEST_URL} from './endpoint'
 import request from 'superagent';
 import Authorization from './Authorization';
 
-export default class RegisterApi {
+export default class PasswordApi {
 
   /**
    *  post
    */
   // パスワード変更を行う
-  static async postRegister(password, newPassword) {
+  static async putPassword(password, newPassword) {
     try {
       return request
-        .post(DEV_URL+'/user/password')
+        .put(DEV_URL+'/user/password')
         .set(Authorization.getAuthContentType())
         .send({password: password, new_password: newPassword})
     } catch (e) {

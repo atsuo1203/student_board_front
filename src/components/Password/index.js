@@ -4,14 +4,12 @@ import { bindActionCreators } from 'redux';
 import { withRouter } from "react-router-dom";
 import PasswordAction from '../../modules/Password/action'
 
-import PasswordApi from '../../API/PasswordApi'
-
 import CommonHeader from '../common/CommonHeader'
 import PasswordForm  from './PasswordForm'
 
 class Password extends Component {
   handlePasswordEdit = () => {
-    const {password, newPassword, secondNewPassword} = this.props
+    const {actions, password, newPassword, secondNewPassword} = this.props
     if ((password === "") || (password === undefined) || (password.length < 8)) {
       window.confirm('passwrodを正しく入力してください\nパスワードは英数字を含めた8文字です')
       return
@@ -29,18 +27,7 @@ class Password extends Component {
       window.confirm('現在のパスワードと新しいパスワードが同じです')
       return
     }
-    // TODO getTest() を postPassword(password, newPassword) に書き換え
-    PasswordApi.getTest(password, newPassword)
-      .then(response => {
-        console.log(response)
-        window.confirm('パスワード変更がが完了しました。\nログイン画面より登録したemailアドレスにてログインしてください')
-        localStorage.removeItem('authorization');
-        this.props.history.push('/')
-      })
-      .catch(error => {
-        window.confirm('何らか問題が発生したため登録できません')
-        console.log(error)
-      })
+    actions.putPassword(password, newPassword, this.props.history)
   }
 
   handleChangePassword = (event) => {
