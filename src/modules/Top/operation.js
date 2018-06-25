@@ -262,29 +262,40 @@ function* postComment() {
     const action = yield take('POST_COMMENT')
     const threadId = action.threadId
     const commentText = action.commentText
-    console.log(threadId, commentText)
-    const data = {
-      id: 3, nickName: 'たかし', text: commentText,
-      create_at: '2018/05/28(月) 21:07:50.001', update_at: '2018/05/28(月) 21:07:50.001',
-      threadId: threadId, userId: 1,
-    }
+    const dataList = [
+      {comment_id: 100, name: 'ひろし', text: 'んキュ',
+        create_at: '3000年12月3日', thread_id: threadId, user_id: 8},
+      {comment_id: 101, name: 'ケンジ', text: 'んゴゴ',
+        create_at: '3000年12月4日', thread_id: threadId, user_id: 8},
+    ]
     try {
-      // const response = yield call(TopApi.postComment, thread_id, commentText)
-      const response = yield call(TopApi.getTest)
-      // TODO: dataをresponse.bodyに書き換え
-      const comment = new CommentModel({
-        id: data.id, nickName: data.nickName, text: data.text,
-        update_at: data.update_at, create_at: data.create_at,
-        threadId: data.threadId, userId: data.userId,
+      const response = yield call(TopApi.postComment, threadId, commentText)
+      var commentList = []
+      dataList.forEach(data => {
+        const comment = new CommentModel({
+          id: data.comment_id, nickName: data.name, text: data.text,
+          create_at: data.create_at,
+          threadId: data.threadId, userId: data.userId,
+        })
+        commentList.push(comment)
       })
+      var newArticleArray = []
       const articleArray = yield select(store => store.Top.articleArray)
       articleArray.forEach(article => {
         console.log('article', article)
         if (article.id === threadId) {
-          article.comments.push(comment)
+          const newArticle = new ThreadModel({
+            id: article.id, title: article.title, update_at: article.update_at,
+            create_at: article.create_at,
+            categoryId: article.categoryId, commentCount: article.comment_count,
+            speed: article.speed, index: article.index, comments: commentList
+          })
+          newArticleArray.push(newArticle)
+        } else {
+          newArticleArray.push(article)
         }
       });
-      yield put(TopAction.setArticleArray(articleArray))
+      yield put(TopAction.setArticleArray(newArticleArray))
       yield put(TopAction.setCurrentThread(false, threadId))
     } catch (error) {
       console.log(error)

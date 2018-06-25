@@ -77,9 +77,9 @@ export default class TopApi {
     // TODO: headerを取得してつける
     try {
       return request
-        .post(DEV_URL+'/thread/comment/'+String(threadId))
+        .post(DEV_URL+'/comment')
         .set(Authorization.getAuthContentType())
-        .send({text: commentText})
+        .send({text: commentText, thread_id: threadId})
     } catch (e) {
       throw e;
     }
