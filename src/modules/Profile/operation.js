@@ -36,10 +36,13 @@ function* putProfile() {
     const nickName = action.nickName
     const twitterName = action.twitterName
     const myProfile = action.myProfile
+    const history = action.history
     try {
       const response = yield call(ProfileApi.putProfile, nickName, twitterName, myProfile)
       const profile = response.body
       yield put(ProfileAction.setProfile(profile))
+      window.confirm('変更が完了しました')
+      history.push('./top')
     } catch (error) {
       console.log(error)
       window.confirm('データの取得に失敗しました。ページの更新を行ってください')

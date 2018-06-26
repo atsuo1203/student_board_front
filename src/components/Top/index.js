@@ -59,7 +59,6 @@ class Top extends Component {
     actions.getThreadArray(currentCategory.id, currentPaging, currentSort.id)
   }
   handleThreadReload = () => {
-    console.log('handleThreadReload')
     const {actions, currentThread} = this.props
     actions.reloadThread(currentThread.threadId)
   }
@@ -99,8 +98,6 @@ class Top extends Component {
     this.props.history.push('/profile')
   }
   handleOnClickUserName = (userId) => {
-    console.log('click userName')
-    console.log(userId)
     this.props.history.push('/otherProfile/' + String(userId))
   }
   makeTabs = () => {

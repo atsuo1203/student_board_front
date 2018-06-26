@@ -41,12 +41,13 @@ function getProfile(){
 /*
  * put
  */
-function putProfile(nickName, twitterName, myProfile){
+function putProfile(nickName, twitterName, myProfile, history){
   return {
     type: "PUT_PROFILE",
     nickName: nickName,
     twitterName: twitterName,
     myProfile: myProfile,
+    history: history,
   }
 }
 

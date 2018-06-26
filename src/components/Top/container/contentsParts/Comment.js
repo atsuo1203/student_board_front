@@ -13,7 +13,6 @@ class Comment extends Component {
 
   headerParts = (comment, index) => {
     const {onClickUserName} = this.props
-    console.log('comment2', comment)
     return(
       <HeaderDiv>
         <HeaderID>{index+1}</HeaderID>:
@@ -34,7 +33,6 @@ class Comment extends Component {
   }
 
   commentObj = (comment, index) => {
-    console.log('comment', comment)
     return(
       <Div key={String(comment.id)}>
         {this.headerParts(comment, index)}

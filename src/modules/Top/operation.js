@@ -89,7 +89,6 @@ function* getThread() {
       });
       if (!isExist) {
         articleArray.push(thread)
-        console.log('articleArray', articleArray)
         yield put(TopAction.setArticleArray(articleArray))
       }
       const currentCategory = yield select(store => store.Top.currentCategory)

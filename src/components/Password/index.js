@@ -15,7 +15,6 @@ class Password extends Component {
       return
     }
     if ((newPassword === "") || (newPassword === undefined) || (newPassword.length < 8)) {
-      console.log(newPassword)
       window.confirm('新しいpasswrodを正しく入力してください\nパスワードは英数字を含めた8文字です')
       return
     }
