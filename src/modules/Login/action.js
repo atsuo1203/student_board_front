@@ -12,7 +12,17 @@ function setPassword(password){
   }
 }
 
+function postLogin(email, password, history) {
+  return {
+    type: "POST_LOGIN",
+    email: email,
+    password: password,
+    history: history,
+  }
+}
+
 export default ({
   setEmail,
   setPassword,
+  postLogin,
 })

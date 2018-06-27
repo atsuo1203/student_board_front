@@ -5,7 +5,8 @@ const ThreadRecord = Record(
   {
     id: 'thread_id',
     title: "vipからきました",
-    date: '2018/05/28(月) 21:07:50.001',
+    updata_at: '2018/05/28(月) 21:07:50.001',
+    create_at: '2018/05/28(月) 21:07:50.001',
     categoryId: 1,
     commentCount: 100,
     speed: 1000,

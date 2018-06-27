@@ -13,7 +13,7 @@ export default class RegisterApi {
       return request
         .post(DEV_URL+'/auth/register')
         .send({password: password, nick_name: nickName,
-          twitter_name: twitterName, profile: profile, token: token})
+          twitter_name: twitterName, profile: profile, login_token: token})
     } catch (e) {
       throw e;
     }

@@ -30,8 +30,7 @@ class Profile extends Component {
 
   handleDecision = () => {
     const {actions, nickName, twitterName, myProfile} = this.props
-    actions.putProfile(nickName, twitterName, myProfile)
-    this.props.history.push('./top')
+    actions.putProfile(nickName, twitterName, myProfile, this.props.history)
   }
 
   handlePasswordEdit = () => {

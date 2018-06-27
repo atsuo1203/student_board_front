@@ -17,7 +17,7 @@ class Contents extends Component {
     currentThread: PropTypes.object.isRequired,
     sortArray: PropTypes.array.isRequired,
     currentSort: PropTypes.object.isRequired,
-    currentPage: PropTypes.number.isRequired,
+    currentPaging: PropTypes.number.isRequired,
     onCreateThread: PropTypes.func.isRequired,
     onCreateComment: PropTypes.func.isRequired,
     onThreadsReload: PropTypes.func.isRequired,
@@ -37,7 +37,7 @@ class Contents extends Component {
     onClickUserName: PropTypes.func.isRequired,
   }
   render() {
-    const {threadArray, currentThread, currentSort, currentPage,
+    const {threadArray, currentThread, currentSort, currentPaging,
       onThreadsReload, onThreadReload, sortArray, onCreateThread, onCreateComment, onSort, onPaging,
       addArticle, currentArticle, isDialogOpen, onChangeDialog,
       onChangeDialogThreadTitle, onChangeDialogThreadComment, onChangeDialogArticleComment,
@@ -48,7 +48,7 @@ class Contents extends Component {
     const isThreadDialog = currentThread.isCategory
     const inContents = currentThread.isCategory ?
       (<ThreadContents threads={threadArray}
-        addArticle={addArticle} currentPage={currentPage} onPaging={onPaging}/>) :
+        addArticle={addArticle} currentPaging={currentPaging} onPaging={onPaging}/>) :
       (<ArticleContents currentArticle={currentArticle} onClickUserName={onClickUserName}/>)
     const sortButton = currentThread.isCategory ?
       (<SortButton sortArray={sortArray} currentSort={currentSort} onSort={onSort}/>) :

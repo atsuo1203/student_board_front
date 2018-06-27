@@ -8,12 +8,12 @@ from '../../../../style/Top/container/contentsParts/ThreadFooterPartsStyle'
 
 class ThreadFooterParts extends Component {
   static propTypes = {
-    currentPage: PropTypes.number.isRequired,
+    currentPaging: PropTypes.number.isRequired,
     onPaging: PropTypes.func.isRequired,
   }
 
   render() {
-    const {currentPage, onPaging} = this.props
+    const {currentPaging, onPaging} = this.props
     return (
       <MuiThemeProvider >
         <Div>
@@ -23,16 +23,16 @@ class ThreadFooterParts extends Component {
             labelStyle={{color: 'white'}}
             backgroundColor='#7ca6ff'
             hoverColor='#7cb6ff'
-            onClick={() => onPaging(currentPage-1)}
+            onClick={() => onPaging(currentPaging-1)}
           />
-          <label style={{position: 'relative'}}>現在: {currentPage} ページ目</label>
+          <label style={{position: 'relative'}}>現在: {currentPaging} ページ目</label>
           <FlatButton
             style={{margin: '5px'}}
             label="次へ"
             labelStyle={{color: 'white'}}
             backgroundColor='#7ca6ff'
             hoverColor='#7cb6ff'
-            onClick={() => onPaging(currentPage+1)}
+            onClick={() => onPaging(currentPaging+1)}
           />
         </Div>
       </MuiThemeProvider>

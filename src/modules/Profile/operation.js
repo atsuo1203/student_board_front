@@ -15,16 +15,9 @@ export function* profileOperation() {
 function* getProfile() {
   while (true) {
     yield take('GET_PROFILE')
-    const data = {
-      nick_name: 'beast先輩',
-      twitter_name: '114514_yajjuu',
-      profile: '24歳学生です'
-    }
     try {
-      // const response = yield call(ProfileApi.getProfile)
-      const response = yield call(ProfileApi.getTest)
-      console.log(response)
-      const profile = data
+      const response = yield call(ProfileApi.getProfile)
+      const profile = response.body
       yield put(ProfileAction.setProfile(profile))
     } catch (error) {
       console.log(error)
@@ -43,18 +36,13 @@ function* putProfile() {
     const nickName = action.nickName
     const twitterName = action.twitterName
     const myProfile = action.myProfile
-    const data = {
-      nick_name: nickName,
-      twitter_name: twitterName,
-      profile: myProfile
-    }
+    const history = action.history
     try {
-      // const response = yield call(ProfileApi.putProfile, nickName, twitterName, myprofile)
-      const response = yield call(ProfileApi.putTest, nickName, twitterName, myProfile)
-      console.log(response)
-      // TODO: dataをresponse.bodyに書き換え
-      const profile = data
+      const response = yield call(ProfileApi.putProfile, nickName, twitterName, myProfile)
+      const profile = response.body
       yield put(ProfileAction.setProfile(profile))
+      window.confirm('変更が完了しました')
+      history.push('./top')
     } catch (error) {
       console.log(error)
       window.confirm('データの取得に失敗しました。ページの更新を行ってください')

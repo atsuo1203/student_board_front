@@ -4,17 +4,15 @@ import { bindActionCreators } from 'redux';
 import { withRouter } from "react-router-dom";
 import RegisterAction from '../../modules/Register/action'
 
-import RegisterApi from '../../API/RegisterApi'
-
 import CommonHeader from '../common/CommonHeader'
 import RegisterForm  from './RegisterForm'
 
 class Register extends Component {
   handleRegister = () => {
-    const {password, secondPassword, nickName, twitterName, profile} = this.props
+    const {actions, password, secondPassword, nickName, twitterName, profile} = this.props
     const search = this.props.location.search
-    if (!search.startsWith("?token=")) {
-      window.confirm('メールに書いてあったURLを使用してください')
+    if (!search.startsWith("?login_token=")) {
+      window.confirm('最新のメールに書いてあったURLを使用してください')
       return
     }
     if ((password === "") || (password === undefined) || (password.length < 8)) {
@@ -33,19 +31,8 @@ class Register extends Component {
       window.confirm('プロフィールは150字まででお願いします')
       return
     }
-    const token = search.split('?token=')[1]
-    console.log(token)
-    // TODO getTest() を postRegister(password, nickName, twitterName, profile, token) に書き換え
-    RegisterApi.getTest(password, nickName, twitterName, profile, token)
-      .then(response => {
-        console.log(response)
-        window.confirm('登録が完了しました。ログイン画面より登録したemailアドレスにてログインしてください')
-        this.props.history.push('/')
-      })
-      .catch(error => {
-        window.confirm('何らか問題が発生したため登録できません')
-        console.log(error)
-      })
+    const token = search.split('?login_token=')[1]
+    actions.postRegister(password, nickName, twitterName, profile, token, this.props.history)
   }
 
   handleChangePassword = (event) => {

@@ -19,8 +19,18 @@ function setSecondNewPassword(secondNewPassword){
   }
 }
 
+function putPassword(password, newPassword, history) {
+  return {
+    type: "PUT_PASSWORD",
+    password: password,
+    newPassword: newPassword,
+    history: history
+  }
+}
+
 export default ({
   setPassword,
   setNewPassword,
   setSecondNewPassword,
+  putPassword,
 })
