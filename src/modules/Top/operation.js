@@ -113,7 +113,7 @@ function* reloadThread() {
         const comment = new CommentModel({
           id: data.comment_id, nickName: data.name, text: data.text,
           create_at: data.create_at,
-          threadId: data.threadId, userId: data.userId,
+          threadId: data.thread_id, userId: data.user_id,
         })
         commentList.push(comment)
       })
@@ -217,7 +217,7 @@ function* postComment() {
         const comment = new CommentModel({
           id: data.comment_id, nickName: data.name, text: data.text,
           create_at: data.create_at,
-          threadId: data.threadId, userId: data.userId,
+          threadId: data.thread_id, userId: data.user_id,
         })
         commentList.push(comment)
       })
