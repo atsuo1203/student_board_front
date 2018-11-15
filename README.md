@@ -18,3 +18,7 @@ $ yarn start
 ## 関連
 
 * [back](https://github.com/atsuo1203/student_board_back)
+
+## 動作図
+
+![トップ画面](https://github.com/atsuo1203/student_board_front/blob/master/Top.png?raw=true)
